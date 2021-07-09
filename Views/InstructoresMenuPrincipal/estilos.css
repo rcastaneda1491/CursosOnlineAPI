@@ -1,0 +1,76 @@
+:root {
+    --color-blue-medium: #8fe2e4;
+    --color-purple: #632ce7;
+    --color-gray: #ccc;
+    --color-gray-medium: #f8f9fa;
+    --color-yellow: #fac32c;
+  
+    position: relative;
+    min-height: 100%;
+  }
+  
+  body {
+    background-color: #4F73CF;
+  }
+  
+  a {
+    color: inherit;
+  }
+  
+  .container > .row {
+    margin-bottom: 3rem;
+  }
+  /* ------ ------------------- ------- */
+  /* ------ Barra De Navegacion ------- */
+  /* ------ ------------------- ------- */
+  .navbar-brand > img {
+    width: 55px;
+  }
+  .navbar-main .active {
+    background-color: #4F73CF;
+    border-radius: 50px;
+  }
+  
+  .navbar-main{
+    background-color: #2752C3;
+  }
+  
+  .navbar-main a {
+    color: white;
+  }
+  
+  .navbar-main a:hover {
+    color: black;
+    background-color: #B7BDCC;
+    border-radius: 50px;
+  }
+  
+  .selector-for-some-widget {
+    box-sizing: content-box;
+  }
+  
+  /* ------ ------------------- ------- */
+  /* ------ Contenedor Principal ------ */
+  /* ------ ------------------- ------- */
+  
+  .contenedor {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: block;
+    background-color: #4F73CF;
+
+    margin-top: 6%;
+}
+  
+  /* ------ ------------------- ------- */
+  /* ------        Varios       ------- */
+  /* ------ ------------------- ------- */
+  
+.card-title{
+    text-align: center;
+    font-weight: bold;
+}

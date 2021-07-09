@@ -8,14 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- CSS Main -->
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./estilos.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-main">
         <div class="container">
             <!-- Logo -->
             <a href="#" class="navbar-brand">
-                <img src="./img/logo-blanco.svg" alt="Logo">
+                <img src="../img/logo-blanco.svg" alt="Logo">
             </a>
             <!-- Btn -->
             <button 
@@ -34,9 +34,18 @@
                 <div class="nav flex-column flex-md-row">
                     <a href="./index.html" class="nav-link active">Menú Principal</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
+
+                <div class="nav flex-column flex-md-row">
+                    <a href="./index.html" class="nav-link">Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                </div>
+
+                <div class="nav flex-column flex-md-row">
+                    <a href="./index.html" class="nav-link">Estadisticas</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                </div>
+
                 <!-- Elementos a la derecha-->
                 <div class="nav ms-auto text-white flex-column flex-md-row">
-                    <a href="#" class="nav-link">Iniciar Sesión</a>
+                    <a href="#" class="nav-link">Salir</a>
                 </div>
             </div>
         </div>
@@ -47,31 +56,40 @@
 
 
     <div class="contenedor">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="./img/ImagenInicio1.png" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="./img/ImagenInicio2.png" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <div class="card mb-3">
-                    <img class="card-img-top" src="./img/ImagenInicio3.png" alt="Card image cap">
-                    <div class="card-body">
-                        <center><a href='#'class="btn btn-primary btn-lg btn-block" role="button">Iniciar Sesión</a></center>
-                    </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card">
+                <img src="./img/Imagen1.gif" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Mis Cursos</h5>
+                  <div class="d-grid gap-2">
+                    <a class="btn btn-primary" type="button">Ir</a>
+                  </div>
                 </div>
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+            <div class="col">
+              <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Estadisticas</h5>
+                  <div class="d-grid gap-2">
+                    <a class="btn btn-primary" type="button">Ir</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Perfil</h5>
+                  <div class="d-grid gap-2">
+                    <a class="btn btn-primary" type="button">Ir</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
     </div> 
     
