@@ -28,9 +28,20 @@ namespace CursosOnlineAPI
         {
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CursosOnlineAPI", Version = "v1" });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("permitir",
+                    builder =>
+                    {
+                        builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                    });
             });
         }
 
@@ -47,6 +58,8 @@ namespace CursosOnlineAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("permitir");
 
             app.UseAuthorization();
 
