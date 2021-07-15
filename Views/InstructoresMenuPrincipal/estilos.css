@@ -63,7 +63,9 @@
     display: block;
     background-color: #4F73CF;
 
-    margin-top: 6%;
+    margin-top: 100px;
+
+
 }
   
   /* ------ ------------------- ------- */
@@ -74,3 +76,32 @@
     text-align: center;
     font-weight: bold;
 }
+
+/* ------ ------------------- ------- */
+/* ------  Menu Mis Cursos  ------- */
+/* ------ ------------------ ------ */
+
+.cursosMostrar{
+  margin: 15%;
+}
+/* ------ ------------------- ------- */
+/* ------  Menu Mi Perfil  ------- */
+/* ------ ------------------ ------ */
+
+#titulo-miPerfil{
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px rgb(15, 15, 15);
+  margin-block-end: 2%;
+}
+
+#titulo-datosBancarios{
+  color: white;
+  text-shadow: 1px 1px rgb(15, 15, 15);
+  margin-block-end: 2%;
+}
+
+/*.AlertaCampoVacio{
+  border-color: brown;
+  border-style: outset;
+}*/
