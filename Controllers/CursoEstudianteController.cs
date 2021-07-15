@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CursosOnlineAPI.Controllers.MenuEstudiante
+namespace CursosOnlineAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("permitir")]
-    public class CursoController : ControllerBase
+    public class CursoEstudianteController : ControllerBase
     {
         [HttpGet]
         public ActionResult Get()

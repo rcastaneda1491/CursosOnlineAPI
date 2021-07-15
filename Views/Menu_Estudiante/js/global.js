@@ -1,1 +1,1 @@
-const URL = "https://localhost:44328/api/Curso"
+const URL = "https://localhost:44328/api/CursoEstudiante"
