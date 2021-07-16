@@ -1,6 +1,49 @@
 const cardListElement = document.getElementById("lista-cursos");
+const searchInput = document.getElementById("search");
 
-const insertCursoIntoDom = (curso) => {
+window.onload = () => {
+  GetDatos();
+}
+
+function GetDatos() {
+
+  const url = `https://localhost:44328/api/CursoEstudiante`;
+
+  fetch(url)
+      .then(respuesta => respuesta.json())
+      .then(resultado => {
+          mostrarDatos(resultado);
+      })
+}
+
+function searchCursos(){
+  document.getElementById('alert').style.display = 'none';
+  if(searchInput.value == ""){
+    document.getElementById("lista-cursos").innerHTML="";
+    GetDatos();
+  }
+  else{
+    document.getElementById("lista-cursos").innerHTML="";
+    const url = `https://localhost:44328/api/BuscadorEstudiante?nombreCurso=${searchInput.value}`;
+ 
+    fetch(url)
+          .then(respuesta => respuesta.json())
+          .then(resultado => { 
+            mostrarDatos(resultado);
+              if(Object.keys(resultado).length == 0){
+                document.getElementById('alert').style.display = 'block';
+              }else{
+                
+                document.getElementById('alert').style.display = 'none';
+              }
+          })
+  }
+}
+
+
+function mostrarDatos(datos) {
+
+  datos.forEach(curso => {
     const card = `
     <div class="col">
       <div class="card">
@@ -14,17 +57,7 @@ const insertCursoIntoDom = (curso) => {
     </div> 
    `;  
     cardListElement.innerHTML += card;
-  
-  };
+})
+}
 
- 
-
-  const setCursos = async () => {
-    cardListElement.innerHTML = "";
-    const datacurso = await CursoService.getCursos();
-    cursos = datacurso;
-    cursos.forEach((curso) => insertCursoIntoDom(curso));
-  };
-
-  document.addEventListener("DOMContentLoaded", () => setCursos());
 

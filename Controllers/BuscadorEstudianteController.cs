@@ -11,20 +11,19 @@ namespace CursosOnlineAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("permitir")]
-    public class CursoEstudianteController : ControllerBase
+    public class BuscadorEstudianteController : ControllerBase
     {
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(string nombreCurso)
         {
             using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
             {
-                var cursos = (from d in db.Cursos.Where(p => p.Estado == true)
-                                select d).ToList();
+                var cursos = (from d in db.Cursos.Where(p => p.Nombre.Contains(nombreCurso) && p.Estado == true)
+                              select d).ToList();
 
                 return Ok(cursos);
             }
 
         }
-
     }
 }
