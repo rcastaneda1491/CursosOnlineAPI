@@ -56,14 +56,25 @@
     
     <div class="contenedor">
         <form id="formulario">
-            <h1 id="titulo-miPerfil">Mi Perfil</h1>
+            <h1 id="titulo-miPerfil">Mi Perfil
+                <a onclick="actualizarInformacion()" id="editar"> <img src="./img/editar-logo.svg" id="imgeditar" alt=""> </a>
+            </h1>
+            <hr style="height: 6px; color: #DFE0E6;">
 
-            <div class="input-group textoCajas">
-                <span class="input-group-text">Nombre Completo</span>
-                <input id="nombres" type="text" aria-label="First name" class="form-control" placeholder="Nombres" >
-                <input id="apellidos" type="text" aria-label="Last name" class="form-control" placeholder="Apellidos">
+            <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; display: none;">
+                Todos los Datos son Obligatorios
             </div>
-            <br>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Nombres</span>
+                <input id="nombres" type="text" class="form-control" placeholder="Nombres" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Apellidos</span>
+                <input id="apellidos" type="text" class="form-control" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Correo</span>
                 <input id="correo" type="email" class="form-control" placeholder="Correo electronico" aria-label="Username" aria-describedby="basic-addon1">
@@ -107,6 +118,7 @@
             </div>
 
             <h2 id="titulo-datosBancarios">Datos Bancarios</h2>
+            <hr style="height: 6px; color: #DFE0E6;">
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Nombre del Banco</span>
@@ -127,10 +139,15 @@
                 <span class="input-group-text" id="basic-addon1">No. de Cuenta</span>
                 <input id="noCuenta" type="text" class="form-control" placeholder="Numero de Cuenta" aria-label="Username" aria-describedby="basic-addon1">
             </div>
+
+            <div class="alert alert-danger" role="alert" id="alert2" style="text-align: center; display: none;">
+                Todos los Datos son Obligatorios
+            </div>
+
         </form>
         <br>
         <div class="d-grid gap-2">
-            <button class="btn btn-warning" onclick="actualizarInformacion()" id="boton-Actualizar" > Actualizar Informacion</button>
+            <button style="background-color: #FFDE59; text-align: center; display: none;" class="btn" onclick="actualizarInformacion()" id="boton-Actualizar" > Confirmar Cambios</button>
         </div>
         <br>
     </div> 

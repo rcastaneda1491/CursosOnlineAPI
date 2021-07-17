@@ -17,7 +17,11 @@ const nombreCuentaInput = document.querySelector('#nombreCuenta');
 const tipoDeCuentaInput = document.querySelector('#tipoDeCuenta');
 const noCuentaInput = document.querySelector('#noCuenta');
 
+const btnActualizarPequeno = document.querySelector('#editar');
 const btnActualizar = document.querySelector('#boton-Actualizar');
+
+const alerta = document.querySelector('#alert');
+const alerta2 = document.querySelector('#alert2');
 
 let estadoActualizar = 0;
 let IdUsuarioObtenido;
@@ -104,17 +108,14 @@ function mostrarDatosInstructor(datos){
 
 function actualizarInformacion(){
     if(estadoActualizar === 0){
+
         for(i=0; ele=formulario.elements[i]; i++){
             ele.disabled=false;
         }
 
         estadoActualizar = 1;
 
-        btnActualizar.textContent = "Confirmar Cambios";
-        
-        btnActualizar.classList.remove('btn-warning');
-
-        btnActualizar.classList.add('btn-success');
+        btnActualizar.style.display = 'block';
 
     }else{
 
@@ -123,15 +124,15 @@ function actualizarInformacion(){
         experienciaLaboralInput.value === '' || nombreBancoInput.value === '' || nombreCuentaInput.value === '' || 
         tipoDeCuentaInput.value === '' || noCuentaInput.value === ''){
 
-            alert("Por favor, ingrese todos los datos");
+            alerta.style.display = 'block';
+            alerta2.style.display = 'block';
 
-            /*for(i=0; ele=formulario.elements[i]; i++){
-
-                if(ele.value == ''){
-                    ele.classList.add('AlertaCampoVacio');
-                }
-            }*/
-
+            setTimeout(() => {
+                alerta.style.display = 'none';
+                alerta2.style.display = 'none';
+            }, 3000);
+        
+            return;
 
         }else{
             const urlActualizarUsuario = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&clave=${claveInput.value}`;
@@ -167,10 +168,7 @@ function actualizarInformacion(){
     
             estadoActualizar = 0;
     
-            btnActualizar.textContent = "Actualizar Información";
-            
-            btnActualizar.classList.remove('btn-success');
-            btnActualizar.classList.add('btn-warning');
+            btnActualizar.style.display = 'none';
         }
     } 
 }

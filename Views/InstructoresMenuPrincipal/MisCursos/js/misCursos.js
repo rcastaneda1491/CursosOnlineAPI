@@ -10,7 +10,7 @@ window.onload = () => {
 function cargarCursos(){
     const idInstructor = 1;
 
-    const url = `https://localhost:44328/api/Cursos?idInstructor=${idInstructor}`;
+    const url = `https://localhost:44328/api/CursosInstructor?idInstructor=${idInstructor}`;
 
     fetch(url)
         .then(respuesta => respuesta.json())
@@ -22,7 +22,7 @@ function cargarCursos(){
 function mostrarCursos(cursos){
     
     cursos.forEach( curso => {
-        const { nombre , descripcion, duracion, costo, costoVenta, cantidadEstudiantes, estado} = curso;
+        const { idCurso, nombre , descripcion, duracion, costo, costoVenta, cantidadEstudiantes, estado} = curso;
 
         let activoLetra;
 
@@ -43,8 +43,8 @@ function mostrarCursos(cursos){
                     <button class="btn btn-info" type="button">Ir</button>
                 </div>
                 <br>
-                <a href="#" class="btn btn-warning">Editar Curso</a>
-                <a href="#" class="btn btn-danger">Eliminar Curso</a>
+                <a href="./editarCurso.html?idCurso=${idCurso}" class="btn btn-warning">Editar Curso</a>
+                <button class="btn btn-danger" onclick="confimarEliminar(${idCurso});">Eliminar Curso</button>
             </div>
             <div class="card-footer text-muted">
                 Cantidad de Estudiantes Inscritos: ${cantidadEstudiantes}
@@ -53,5 +53,24 @@ function mostrarCursos(cursos){
         <br>
         `;
     })
+}
 
+function confimarEliminar(id){
+    const confirmar = confirm('¿ Desea eliminar el Curso ?')
+
+    if(confirmar){
+
+        const url = `https://localhost:44328/api/CursosInstructor?IdCurso=${id}`;
+
+        fetch(url , { method: 'DELETE'})
+        .then(respuesta => respuesta)
+        .then(resultado => {
+            console.log(resultado.body);
+    })
+
+    location.reload();
+
+
+
+    }
 }
