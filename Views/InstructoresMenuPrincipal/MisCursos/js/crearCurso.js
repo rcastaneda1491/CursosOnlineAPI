@@ -50,6 +50,6 @@ function agregarCurso(){
     })
 
     alert('Curso Agregado Exitosamente');
-    window.location.href = ('/Views/InstructoresMenuPrincipal/MisCursos/misCursos.html');
+    window.location.href = ('/InstructoresMenuPrincipal/MisCursos/misCursos.html');
 }
 

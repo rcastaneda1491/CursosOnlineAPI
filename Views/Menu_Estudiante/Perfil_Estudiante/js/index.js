@@ -28,7 +28,7 @@ function mostrar() {
 }
 
 function GetDatos() {
-    const idEstudiante = 3;
+    const idEstudiante = 1;
 
     const url = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${idEstudiante}`;
 
