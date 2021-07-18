@@ -21,7 +21,9 @@ namespace CursosOnlineAPI.Models
         public decimal CostoVenta { get; set; }
         public int? CantidadEstudiantes { get; set; }
         public bool? Estado { get; set; }
+        public int IdUsuario { get; set; }
 
+        public virtual Usuario IdUsuarioNavigation { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<Leccione> Lecciones { get; set; }
     }
