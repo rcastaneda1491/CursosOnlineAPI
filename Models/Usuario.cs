@@ -12,6 +12,7 @@ namespace CursosOnlineAPI.Models
             ComentarioIdUsuarioEstudianteNavigations = new HashSet<Comentario>();
             ComentarioIdUsuarioInstructorNavigations = new HashSet<Comentario>();
             Compras = new HashSet<Compra>();
+            Cursos = new HashSet<Curso>();
             Facturas = new HashSet<Factura>();
         }
 
@@ -31,6 +32,7 @@ namespace CursosOnlineAPI.Models
         public virtual ICollection<Comentario> ComentarioIdUsuarioEstudianteNavigations { get; set; }
         public virtual ICollection<Comentario> ComentarioIdUsuarioInstructorNavigations { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
+        public virtual ICollection<Curso> Cursos { get; set; }
         public virtual ICollection<Factura> Facturas { get; set; }
     }
 }
