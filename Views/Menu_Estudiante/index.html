@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carrito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+    </head>
+<body>
+
+
+  <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-main">
+    <div class="container" >
+        <!-- Logo -->
+        <img src="./img/logo-blanco.svg" alt="Logo" ">
+        <!-- Btn -->
+        <button 
+            class="navbar-toggler" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#mainNav" 
+            aria-controls="mainNav"
+            aria-expanded="false" 
+            aria-label="Barra de navegacion"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Elementos -->
+        <div class="collapse navbar-collapse" id="mainNav">
+            <!-- Elementos a la izquierda-->
+            <div class="nav flex-column flex-md-row">
+                <a href="./index.html" class="nav-link active">Menú Principal</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+            </div>
+
+            <div class="nav flex-column flex-md-row">
+                <a href="./index.html" class="nav-link">Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+            </div>
+
+            <div class="nav flex-column flex-md-row">
+                <a href="./Perfil_Estudiante/index.html" class="nav-link">Perfil</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+            </div>
+
+           <!-- Elementos a la derecha-->
+            <div class="nav ms-auto text-white flex-column flex-md-row">
+                <a href="#" class="nav-link">Salir</a>
+            </div>
+        </div>
+
+        <div class="u-pull-right">
+          <ul>
+              <li class="submenu">
+
+                      <img src="img/carrito.svg" id="img-carrito" style="width: 150%;">
+         
+                      <div id="carrito">
+                              
+                              <table id="lista-carrito" class="u-full-width">
+                                  <thead>
+                                      <tr>
+                                          <th>Nombre</th>
+                                          <th>Precio</th>
+                                          <th>Cantidad</th>
+                                          <th></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody></tbody>
+                              </table>
+
+                              <a href="#" id="vaciar-carrito" class="button u-full-width" style="color: black;">Vaciar Carrito</a>
+                              <a href="#" id="" class="button u-full-width" style="color: black;">Comprar</a>
+                      </div>
+              </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="contenedor">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card">
+                <img src="./img/Imagen1.gif" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Mis Cursos</h5>
+                  <div class="d-grid gap-2">
+                    <a class="btn btn-primary" type="button">Ir</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="./img/Imagen3.gif" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">Perfil</h5>
+                  <div class="d-grid gap-2">
+                    <a href="./Perfil_Estudiante/index.html" class="btn btn-primary" type="button">Ir</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                  <img src="./img/imagenFactura.gif" class="card-img-top" >
+                  <div class="card-body">
+                    <h5 class="card-title">Facturas</h5>
+                    <div class="d-grid gap-2">
+                      <a class="btn btn-primary" type="button">Ir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div> 
+    <hr style="height: 6px; color: #DFE0E6;">
+  </div>
+
+
+<h1 style="text-align: center;">Cursos Online</h1>
+
+<div class="input-group rounded" style="padding-left: 30%; padding-right: 30%; padding-bottom: 3%;">
+  <input id="search" type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
+    aria-describedby="search-addon"  style="font-size: 20px; padding-left: 5%; "/><a onclick="searchCursos()" id="editar">  <img src="./img/search.svg" id="imgeditar" alt="" style=" width: 45px;"> </a>
+</div>
+
+
+    <div class="container">
+      <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; display: none;">
+        No se encontraron Resultados!!
+      </div>
+        <div id="lista-cursos" class="row row-cols-1 row-cols-md-3 g-4">
+
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+    <script src="js/index.js"></script>
+
+    
+
+</body>
+</html>
