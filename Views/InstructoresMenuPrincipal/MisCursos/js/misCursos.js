@@ -2,15 +2,28 @@ const contenedor = document.querySelector('#contenedor');
 const mostrar = document.querySelector('#cursosMostrar');
 
 window.onload = () => {
-    
-
     cargarCursos();
 }
 
-function cargarCursos(){
-    const idInstructor = 1;
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
 
-    const url = `https://localhost:44328/api/CursosInstructor?idInstructor=${idInstructor}`;
+    return JSON.parse(jsonPayload);
+};
+
+function cargarCursos(){
+    const stringJWT = Cookies.get('jwt');
+    let jwt;
+
+    if (stringJWT) {
+        jwt = parseJwt(stringJWT);
+    }
+
+    const url = `https://localhost:44328/api/CursosInstructor?idInstructor=${jwt.sub}`;
 
     fetch(url)
         .then(respuesta => respuesta.json())
