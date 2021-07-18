@@ -28,6 +28,7 @@ namespace CursosOnlineAPI
         {
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CursosOnlineAPI", Version = "v1" });
