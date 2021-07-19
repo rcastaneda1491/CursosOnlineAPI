@@ -5,38 +5,43 @@ window.onload = () => {
   GetDatos();
 }
 
+function CerrarSesion(){
+  Cookies.remove('jwt');
+};
+
+
 function GetDatos() {
 
   const url = `https://localhost:44328/api/CursoEstudiante`;
 
   fetch(url)
-      .then(respuesta => respuesta.json())
-      .then(resultado => {
-          mostrarDatos(resultado);
-      })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+      mostrarDatos(resultado);
+    })
 }
 
-function searchCursos(){
+function searchCursos() {
   document.getElementById('alert').style.display = 'none';
-  if(searchInput.value == ""){
-    document.getElementById("lista-cursos").innerHTML="";
+  if (searchInput.value == "") {
+    document.getElementById("lista-cursos").innerHTML = "";
     GetDatos();
   }
-  else{
-    document.getElementById("lista-cursos").innerHTML="";
+  else {
+    document.getElementById("lista-cursos").innerHTML = "";
     const url = `https://localhost:44328/api/BuscadorEstudiante?nombreCurso=${searchInput.value}`;
- 
+
     fetch(url)
-          .then(respuesta => respuesta.json())
-          .then(resultado => { 
-            mostrarDatos(resultado);
-              if(Object.keys(resultado).length == 0){
-                document.getElementById('alert').style.display = 'block';
-              }else{
-                
-                document.getElementById('alert').style.display = 'none';
-              }
-          })
+      .then(respuesta => respuesta.json())
+      .then(resultado => {
+        mostrarDatos(resultado);
+        if (Object.keys(resultado).length == 0) {
+          document.getElementById('alert').style.display = 'block';
+        } else {
+
+          document.getElementById('alert').style.display = 'none';
+        }
+      })
   }
 }
 
@@ -55,9 +60,9 @@ function mostrarDatos(datos) {
       </div>
       </div>
     </div> 
-   `;  
+   `;
     cardListElement.innerHTML += card;
-})
+  })
 }
 
 
