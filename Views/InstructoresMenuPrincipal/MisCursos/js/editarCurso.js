@@ -41,15 +41,19 @@ window.onload = () => {
 
 }
 
-function CerrarSesion(){
+function CerrarSesion() {
     Cookies.remove('jwt');
-  };
+};
 
 
 function cargarDatos() {
     const url = `https://localhost:44328/api/CursosInstructor?idCurso=${idCurso}`;
     console.log(idCurso);
-    fetch(url)
+    fetch(url, {
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
         .then(respuesta => respuesta.json())
         .then(resultado => {
             mostrarDatos(resultado);
@@ -105,7 +109,12 @@ function editarCurso() {
 
     const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdCurso=${idCurso}&nombre=${nombre.value}&descripcion=${descripcion.value}&costo=${costoVenta.value}&costoVenta=${costoEstudiantes.value}&estado=${estadoLetras}`;
 
-    fetch(urlActualizarUsuario, { method: 'PUT' })
+    fetch(urlActualizarUsuario, {
+        method: 'PUT',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
         .then(respuesta => respuesta)
         .then(resultado => {
         })
