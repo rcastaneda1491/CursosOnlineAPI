@@ -55,7 +55,7 @@ const signIn = async (e) => {
         }else if(jwt.rol == "instructor"){
             window.location.href = "../../InstructoresMenuPrincipal/menuPrincipalInstructor.html";
         }else if(jwt.rol == "administrador"){
-            window.location.href = "../../InstructoresMenuPrincipal/menuPrincipalInstructor.html";
+            window.location.href = "../../MenuPrincipalAdministrador/Index.html";
         };
     } catch (err) {
         console.error(err);
