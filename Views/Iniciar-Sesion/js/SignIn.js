@@ -6,6 +6,7 @@ const URL = 'https://localhost:44328/api/Usuarios/SignIn';
 const emailInput = document.getElementById("inputEmail");
 const passwordInput = document.getElementById("inputPassword");
 const form = document.getElementById('signin-form');
+const alerta = document.querySelector('#alert');
 
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
@@ -36,16 +37,24 @@ const signIn = async (e) => {
         passwordInput.value = '';
 
         Cookies.set('jwt', data);
-
+        
         const stringJWT = Cookies.get('jwt');
         let jwt;
 
         if (stringJWT) {
             jwt = parseJwt(stringJWT);
         }
-        if(jwt.rol == "estudiante"){
+
+        if(stringJWT == ""){
+            alerta.style.display = 'block';
+            setTimeout(() => {
+                alerta.style.display = 'none';
+            }, 3000);
+        }else if(jwt.rol == "estudiante"){
             window.location.href = "../../Menu_Estudiante/index.html";
-        }else if(jwt.rol == "instructores"){
+        }else if(jwt.rol == "instructor"){
+            window.location.href = "../../InstructoresMenuPrincipal/menuPrincipalInstructor.html";
+        }else if(jwt.rol == "administrador"){
             window.location.href = "../../InstructoresMenuPrincipal/menuPrincipalInstructor.html";
         };
     } catch (err) {

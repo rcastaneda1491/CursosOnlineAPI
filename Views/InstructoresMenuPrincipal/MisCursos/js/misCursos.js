@@ -15,6 +15,11 @@ function parseJwt (token) {
     return JSON.parse(jsonPayload);
 };
 
+function CerrarSesion(){
+    Cookies.remove('jwt');
+  };
+
+
 function cargarCursos(){
     const stringJWT = Cookies.get('jwt');
     let jwt;
@@ -51,7 +56,7 @@ function mostrarCursos(cursos){
                 <h5 class="card-title">${nombre}</h5>
                 <p class="card-text">${descripcion}
                 <hr>
-                Duracion: ${duracion} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
+                Duracion: ${duracion} - Costo: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
                 <div class="d-grid gap-2">
                     <button class="btn btn-info" type="button">Ir</button>
                 </div>

@@ -23,9 +23,28 @@ const btnActualizar = document.querySelector('#boton-Actualizar');
 const alerta = document.querySelector('#alert');
 const alerta2 = document.querySelector('#alert2');
 
+function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
+
+const stringJWT = Cookies.get('jwt');
+let jwt;
+
+if (stringJWT) {
+    jwt = parseJwt(stringJWT);
+}
+
 let estadoActualizar = 0;
-let IdUsuarioObtenido;
+let IdUsuarioObtenido = jwt.sub;
 let estadoDatosInstuctor;
+
+
 
 window.onload = () => {
     formulario.addEventListener('submit', validarDatos);
@@ -33,14 +52,18 @@ window.onload = () => {
     cargarDatos();
 }
 
-function validarDatos(){
+
+function CerrarSesion(){
+    Cookies.remove('jwt');
+  };
+
+function validarDatos() {
     console.log('Validando datos')
 }
 
-function cargarDatos(){
-    const idInstructor = 1;
+function cargarDatos() {
 
-    const url = `https://localhost:44328/api/Instructor?idInstructor=${idInstructor}`;
+    const url = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}`;
 
     fetch(url)
         .then(respuesta => respuesta.json())
@@ -49,15 +72,15 @@ function cargarDatos(){
         })
 }
 
-function mostrarDatos(datos){
+function mostrarDatos(datos) {
 
-    datos.forEach( instructor => {
-        const { idUsuario, nombres, apellidos, correo, noTelefono, nit, clave, rol, idDatosInstructor } = instructor;
+    datos.forEach(instructor => {
+        const { nombres, apellidos, correo, noTelefono, nit, clave, rol, idDatosInstructor } = instructor;
 
-        for(i=0; ele=formulario.elements[i]; i++){
-            ele.disabled=true;
+        for (i = 0; ele = formulario.elements[i]; i++) {
+            ele.disabled = true;
         }
-        IdUsuarioObtenido = idUsuario;
+        
         estadoDatosInstuctor = idDatosInstructor;
 
         nombresInput.value = nombres;
@@ -70,16 +93,16 @@ function mostrarDatos(datos){
         rolInput.value = rol;
     })
 
-    if(estadoDatosInstuctor === null){
-        
-    }else{
+    if (estadoDatosInstuctor === null) {
+
+    } else {
         cargarDatosInstructor(IdUsuarioObtenido);
     }
 
-    
+
 }
 
-function cargarDatosInstructor(id){
+function cargarDatosInstructor(id) {
     const url = `https://localhost:44328/api/DatosInstructor?idInstructor=${id}`;
 
     fetch(url)
@@ -90,9 +113,9 @@ function cargarDatosInstructor(id){
         })
 }
 
-function mostrarDatosInstructor(datos){
+function mostrarDatosInstructor(datos) {
 
-    datos.forEach( instructorDatos => {
+    datos.forEach(instructorDatos => {
 
         const { nivelEstudios, certificaciones, experienciaLaboral, nombreBanco, nombreCuenta, tipoDeCuenta, noCuentaBancaria } = instructorDatos;
 
@@ -106,23 +129,23 @@ function mostrarDatosInstructor(datos){
     })
 }
 
-function actualizarInformacion(){
-    if(estadoActualizar === 0){
+function actualizarInformacion() {
+    if (estadoActualizar === 0) {
 
-        for(i=0; ele=formulario.elements[i]; i++){
-            ele.disabled=false;
+        for (i = 0; ele = formulario.elements[i]; i++) {
+            ele.disabled = false;
         }
 
         estadoActualizar = 1;
 
         btnActualizar.style.display = 'block';
 
-    }else{
+    } else {
 
-        if(nombresInput.value === '' || apellidosInput.value === '' || correoInput.value === '' || telefonoInput.value === '' || 
-        nitInput.value === '' || claveInput.value === '' || nivelEstudiosInput.value === '' || certificacionesInput.value === '' || 
-        experienciaLaboralInput.value === '' || nombreBancoInput.value === '' || nombreCuentaInput.value === '' || 
-        tipoDeCuentaInput.value === '' || noCuentaInput.value === ''){
+        if (nombresInput.value === '' || apellidosInput.value === '' || correoInput.value === '' || telefonoInput.value === '' ||
+            nitInput.value === '' || claveInput.value === '' || nivelEstudiosInput.value === '' || certificacionesInput.value === '' ||
+            experienciaLaboralInput.value === '' || nombreBancoInput.value === '' || nombreCuentaInput.value === '' ||
+            tipoDeCuentaInput.value === '' || noCuentaInput.value === '') {
 
             alerta.style.display = 'block';
             alerta2.style.display = 'block';
@@ -131,44 +154,44 @@ function actualizarInformacion(){
                 alerta.style.display = 'none';
                 alerta2.style.display = 'none';
             }, 3000);
-        
+
             return;
 
-        }else{
+        } else {
             const urlActualizarUsuario = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&clave=${claveInput.value}`;
 
-            fetch(urlActualizarUsuario , { method: 'PUT'})
+            fetch(urlActualizarUsuario, { method: 'PUT' })
                 .then(respuesta => respuesta)
                 .then(resultado => {
-            })
-    
-            if(estadoDatosInstuctor == null){
+                })
+
+            if (estadoDatosInstuctor == null) {
                 // Metodo POST Para agregar datos del Instructor
                 const urlActualizarDatosInstructor = `https://localhost:44328/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
-    
-                fetch(urlActualizarDatosInstructor , { method: 'POST'})
-                .then(respuesta => respuesta)
-                .then(resultado => {
-                    alert("Datos Actualizados Correctamente")
-                })
-            }else{
+
+                fetch(urlActualizarDatosInstructor, { method: 'POST' })
+                    .then(respuesta => respuesta)
+                    .then(resultado => {
+                        alert("Datos Actualizados Correctamente")
+                    })
+            } else {
                 // Metodo POST para actualizar datos del Instructor
                 const urlActualizarDatosInstructor = `https://localhost:44328/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
-    
-                fetch(urlActualizarDatosInstructor , { method: 'PUT'})
-                .then(respuesta => respuesta)
-                .then(resultado => {
-                    alert("Datos Actualizados Correctamente")
-                })
+
+                fetch(urlActualizarDatosInstructor, { method: 'PUT' })
+                    .then(respuesta => respuesta)
+                    .then(resultado => {
+                        alert("Datos Actualizados Correctamente")
+                    })
             }
-    
-            for(i=0; ele=formulario.elements[i]; i++){
-                ele.disabled=true;
+
+            for (i = 0; ele = formulario.elements[i]; i++) {
+                ele.disabled = true;
             }
-    
+
             estadoActualizar = 0;
-    
+
             btnActualizar.style.display = 'none';
         }
-    } 
+    }
 }
