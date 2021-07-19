@@ -31,9 +31,9 @@ function calcularCostoVenta() {
     costoEstudiantes.value = Number(costoVenta.value) + (Number(costoVenta.value) * 0.2)
 }
 
-function CerrarSesion(){
+function CerrarSesion() {
     Cookies.remove('jwt');
-  };
+};
 
 
 function validarDatos() {
@@ -65,7 +65,12 @@ function agregarCurso() {
 
     const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdUsuario=${IdUsuario}&nombre=${nombre.value}&descripcion=${descripcion.value}&costo=${costoVenta.value}&costoVenta=${costoEstudiantes.value}&estado=${estadoLetras}`;
 
-    fetch(urlActualizarUsuario, { method: 'POST' })
+    fetch(urlActualizarUsuario, {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
         .then(respuesta => respuesta)
         .then(resultado => {
         })

@@ -20,15 +20,22 @@ function parseJwt(token) {
     return JSON.parse(jsonPayload);
 };
 
+const stringJWT = Cookies.get('jwt');
+let jwt;
+
+if (stringJWT) {
+    jwt = parseJwt(stringJWT);
+}
+
 let IdUsuario;
 
 window.onload = () => {
     GetDatos();
 }
 
-function CerrarSesion(){
+function CerrarSesion() {
     Cookies.remove('jwt');
-  };
+};
 
 function mostrar() {
     document.getElementById('boton-Actualizar').style.display = 'block';
@@ -47,7 +54,11 @@ function GetDatos() {
     }
     const url = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${jwt.sub}`;
 
-    fetch(url)
+    fetch(url, {
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
         .then(respuesta => respuesta.json())
         .then(resultado => {
             mostrarDatos(resultado);
@@ -109,7 +120,12 @@ function actualizar() {
             console.log("Actualizando..")
             const urlActualizarUsuario = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${jwt.sub}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&clave=${contraInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&noTarjeta=${noTarjetaInput.value}`;
 
-            fetch(urlActualizarUsuario, { method: 'PUT' })
+            fetch(urlActualizarUsuario, {
+                method: 'PUT',
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + stringJWT
+                })
+            })
                 .then(respuesta => respuesta)
 
             location.reload();
@@ -119,8 +135,6 @@ function actualizar() {
             location.reload();
 
         }
-
-
     }
 }
 

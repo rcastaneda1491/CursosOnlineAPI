@@ -44,18 +44,17 @@ let estadoActualizar = 0;
 let IdUsuarioObtenido = jwt.sub;
 let estadoDatosInstuctor;
 
-
-
 window.onload = () => {
     formulario.addEventListener('submit', validarDatos);
 
     cargarDatos();
+
 }
 
 
-function CerrarSesion(){
+function CerrarSesion() {
     Cookies.remove('jwt');
-  };
+};
 
 function validarDatos() {
     console.log('Validando datos')
@@ -65,7 +64,11 @@ function cargarDatos() {
 
     const url = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}`;
 
-    fetch(url)
+    fetch(url, {
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
         .then(respuesta => respuesta.json())
         .then(resultado => {
             mostrarDatos(resultado);
@@ -80,7 +83,7 @@ function mostrarDatos(datos) {
         for (i = 0; ele = formulario.elements[i]; i++) {
             ele.disabled = true;
         }
-        
+
         estadoDatosInstuctor = idDatosInstructor;
 
         nombresInput.value = nombres;
@@ -105,7 +108,11 @@ function mostrarDatos(datos) {
 function cargarDatosInstructor(id) {
     const url = `https://localhost:44328/api/DatosInstructor?idInstructor=${id}`;
 
-    fetch(url)
+    fetch(url, {
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
         .then(respuesta => respuesta.json())
         .then(resultado => {
             mostrarDatosInstructor(resultado);
@@ -160,7 +167,12 @@ function actualizarInformacion() {
         } else {
             const urlActualizarUsuario = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&clave=${claveInput.value}`;
 
-            fetch(urlActualizarUsuario, { method: 'PUT' })
+            fetch(urlActualizarUsuario, {
+                method: 'PUT',
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + stringJWT
+                })
+            })
                 .then(respuesta => respuesta)
                 .then(resultado => {
                 })
@@ -169,7 +181,12 @@ function actualizarInformacion() {
                 // Metodo POST Para agregar datos del Instructor
                 const urlActualizarDatosInstructor = `https://localhost:44328/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
 
-                fetch(urlActualizarDatosInstructor, { method: 'POST' })
+                fetch(urlActualizarDatosInstructor, {
+                    method: 'POST',
+                    headers: new Headers({
+                        'Authorization': 'Bearer ' + stringJWT
+                    })
+                })
                     .then(respuesta => respuesta)
                     .then(resultado => {
                         alert("Datos Actualizados Correctamente")
@@ -178,7 +195,12 @@ function actualizarInformacion() {
                 // Metodo POST para actualizar datos del Instructor
                 const urlActualizarDatosInstructor = `https://localhost:44328/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
 
-                fetch(urlActualizarDatosInstructor, { method: 'PUT' })
+                fetch(urlActualizarDatosInstructor, {
+                    method: 'PUT',
+                    headers: new Headers({
+                        'Authorization': 'Bearer ' + stringJWT
+                    })
+                })
                     .then(respuesta => respuesta)
                     .then(resultado => {
                         alert("Datos Actualizados Correctamente")
