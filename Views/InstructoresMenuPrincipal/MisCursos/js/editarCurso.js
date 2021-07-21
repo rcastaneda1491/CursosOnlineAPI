@@ -107,7 +107,7 @@ function editarCurso() {
         estadoLetras = false;
     }
 
-    const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdCurso=${idCurso}&nombre=${nombre.value}&descripcion=${descripcion.value}&costo=${costoVenta.value}&costoVenta=${costoEstudiantes.value}&estado=${estadoLetras}`;
+    const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdCurso=${idCurso}&nombre=${nombreI.value}&descripcion=${descripcionI.value.toString()}&costo=${costoVentaI.value}&costoVenta=${costoEstudiantesI.value}&estado=${estadoLetras}`;
 
     fetch(urlActualizarUsuario, {
         method: 'PUT',
