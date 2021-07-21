@@ -9,6 +9,8 @@ const nitInput = document.getElementById("inputNIT");
 const rolInput = document.getElementById("rolInput");
 const loginButton = document.getElementById("loginButton");
 
+var ip = location.host; 
+
 function validarDatos() {
 
     if (rol.value != null) {
@@ -19,6 +21,7 @@ function validarDatos() {
 }
 
 function crearUsuario() {
+
     const urlCrearUsuario = `https://localhost:44328/api/Usuarios?Nombres=${nombresInput.value}&Apellidos=${apellidosInput.value}&Correo=${correoInput.value}&NoTelefono=${telefonoInput.value}&Nit=${nitInput.value}&Clave=${passwordInput.value}&Rol=${rolInput.value}`;
 
     fetch(urlCrearUsuario, { method: 'POST' })
