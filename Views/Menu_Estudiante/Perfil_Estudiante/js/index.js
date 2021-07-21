@@ -47,6 +47,8 @@ function GetDatos() {
     }
     const url = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${jwt.sub}`;
 
+
+
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(resultado => {

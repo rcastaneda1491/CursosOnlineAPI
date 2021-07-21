@@ -14,6 +14,7 @@ function GetDatos() {
 
   const url = `https://localhost:44328/api/CursoEstudiante`;
 
+
   fetch(url)
     .then(respuesta => respuesta.json())
     .then(resultado => {
