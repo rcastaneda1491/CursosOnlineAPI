@@ -15,11 +15,12 @@ const stringJWT = Cookies.get('jwt');
 let jwt;
 
 if (stringJWT) {
-  jwt = parseJwt(stringJWT);
+    jwt = parseJwt(stringJWT);
 }
 
 window.onload = () => {
   GetDatos();
+ 
 }
 
 function CerrarSesion() {
@@ -89,5 +90,3 @@ function mostrarDatos(datos) {
     cardListElement.innerHTML += card;
   })
 }
-
-

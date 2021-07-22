@@ -17,6 +17,7 @@ namespace CursosOnlineAPI.Models
         {
         }
 
+        public virtual DbSet<CarritoCompra> CarritoCompras { get; set; }
         public virtual DbSet<Comentario> Comentarios { get; set; }
         public virtual DbSet<Compra> Compras { get; set; }
         public virtual DbSet<Curso> Cursos { get; set; }
@@ -30,7 +31,7 @@ namespace CursosOnlineAPI.Models
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-U4PFR0A;DATABASE=CURSOS_ONLINE_API;user=Rogelio;password=12345");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-FGBRIH1;DATABASE=CURSOS_ONLINE_API;user=capacitacion;password=12345");
             }
         }
 
@@ -38,10 +39,34 @@ namespace CursosOnlineAPI.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
 
+            modelBuilder.Entity<CarritoCompra>(entity =>
+            {
+                entity.HasKey(e => new { e.IdUsuario, e.IdCurso })
+                    .HasName("PK__CarritoC__2C023D7639D703F2");
+
+                entity.ToTable("CarritoCompra");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+
+                entity.Property(e => e.IdCurso).HasColumnName("idCurso");
+
+                entity.HasOne(d => d.IdCursoNavigation)
+                    .WithMany(p => p.CarritoCompras)
+                    .HasForeignKey(d => d.IdCurso)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COMPRASCARRITO_CURSOS");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.CarritoCompras)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COMPRASCARRITO_USUARIO");
+            });
+
             modelBuilder.Entity<Comentario>(entity =>
             {
                 entity.HasKey(e => e.IdComentario)
-                    .HasName("PK__Comentar__C74515DAC832EE8D");
+                    .HasName("PK__Comentar__C74515DA09075616");
 
                 entity.ToTable("Comentario");
 
@@ -87,11 +112,14 @@ namespace CursosOnlineAPI.Models
             modelBuilder.Entity<Compra>(entity =>
             {
                 entity.HasKey(e => new { e.IdFactura, e.IdCurso })
-                    .HasName("PK__Compra__748076AE61B92391");
+                    .HasName("PK__Compra__748076AE8929EC36");
 
                 entity.ToTable("Compra");
 
-                entity.Property(e => e.IdFactura).HasColumnName("idFactura");
+                entity.Property(e => e.IdFactura)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("idFactura");
 
                 entity.Property(e => e.IdCurso).HasColumnName("idCurso");
 
@@ -119,7 +147,7 @@ namespace CursosOnlineAPI.Models
             modelBuilder.Entity<Curso>(entity =>
             {
                 entity.HasKey(e => e.IdCurso)
-                    .HasName("PK__Cursos__8551ED05F0E3C180");
+                    .HasName("PK__Cursos__8551ED05C5EC2A53");
 
                 entity.Property(e => e.IdCurso).HasColumnName("idCurso");
 
@@ -145,10 +173,7 @@ namespace CursosOnlineAPI.Models
                     .HasColumnName("duracion")
                     .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.Estado)
-                    .IsRequired()
-                    .HasColumnName("estado")
-                    .HasDefaultValueSql("((1))");
+                entity.Property(e => e.Estado).HasColumnName("estado");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
@@ -168,7 +193,7 @@ namespace CursosOnlineAPI.Models
             modelBuilder.Entity<DatosInstructor>(entity =>
             {
                 entity.HasKey(e => e.IdDatos)
-                    .HasName("PK__DatosIns__B0831DB707D26A61");
+                    .HasName("PK__DatosIns__B0831DB79877E3F3");
 
                 entity.ToTable("DatosInstructor");
 
@@ -215,11 +240,14 @@ namespace CursosOnlineAPI.Models
             modelBuilder.Entity<Factura>(entity =>
             {
                 entity.HasKey(e => e.IdFactura)
-                    .HasName("PK__Factura__3CD5687E5FE43346");
+                    .HasName("PK__Factura__3CD5687E51995B4C");
 
                 entity.ToTable("Factura");
 
-                entity.Property(e => e.IdFactura).HasColumnName("idFactura");
+                entity.Property(e => e.IdFactura)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("idFactura");
 
                 entity.Property(e => e.Fecha)
                     .HasColumnType("datetime")
@@ -241,7 +269,7 @@ namespace CursosOnlineAPI.Models
             modelBuilder.Entity<Leccione>(entity =>
             {
                 entity.HasKey(e => e.IdLeccion)
-                    .HasName("PK__Leccione__8916A4118F994AF1");
+                    .HasName("PK__Leccione__8916A411BF1B8D0F");
 
                 entity.Property(e => e.IdLeccion).HasColumnName("idLeccion");
 
@@ -277,7 +305,7 @@ namespace CursosOnlineAPI.Models
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuarios__645723A68E92B8F5");
+                    .HasName("PK__Usuarios__645723A620CB2809");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 

@@ -44,7 +44,7 @@ CREATE TABLE Cursos(
 	costo		decimal(8,2) NOT NULL,  -- Costo que le asignara el instructor
 	costoVenta	decimal(8,2) NOT NULL, -- Costo al Usuario
 	cantidadEstudiantes	int DEFAULT(0),
-	estado		bit DEFAULT(1) NOT NULL,
+	estado		bit  NOT NULL,
 	idUsuario	int NOT NULL,
 	CONSTRAINT FK_CURSOS_USUARIO FOREIGN KEY(idUsuario) 
 		REFERENCES Usuarios(idUsuario)
@@ -62,7 +62,7 @@ CREATE TABLE Lecciones(
 );
 GO
 CREATE TABLE Factura(
-	idFactura	int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	idFactura	 VARCHAR(255) NOT NULL PRIMARY KEY,
 	idUsuario	int NOT NULL,
 	total		decimal(8,2),
 	fecha		DATETIME,
@@ -73,7 +73,7 @@ GO
 CREATE TABLE Compra( -- Funcionaria como "Tabla Detalle"
 	idUsuario	int NOT NULL,
 	idCurso		int NOT NULL,
-	idFactura	int NOT NULL,
+	idFactura	VARCHAR(255)  NOT NULL,
 	PRIMARY KEY(idFactura,idCurso),
 	CONSTRAINT FK_COMPRAS_USUARIO FOREIGN KEY(idUsuario) 
 		REFERENCES Usuarios(idUsuario),
@@ -83,6 +83,17 @@ CREATE TABLE Compra( -- Funcionaria como "Tabla Detalle"
 		REFERENCES Factura(idFactura)
 );
 GO
+CREATE TABLE CarritoCompra(
+	idUsuario	int NOT NULL,
+	idCurso		int NOT NULL
+	PRIMARY KEY(idUsuario,idCurso),
+	CONSTRAINT FK_COMPRASCARRITO_USUARIO FOREIGN KEY(idUsuario) 
+		REFERENCES Usuarios(idUsuario),
+	CONSTRAINT FK_COMPRASCARRITO_CURSOS FOREIGN KEY(idCurso) 
+		REFERENCES Cursos(idCurso)
+);
+GO
+
 CREATE TABLE Comentario(
 	idComentario	int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	idLeccion		int NOT NULL,
@@ -102,13 +113,19 @@ CREATE TABLE Comentario(
 SELECT * FROM Usuarios;
 SELECT * FROM DatosInstructor;
 SELECT * FROM Cursos;
+SELECT * FROM CarritoCompra ;
+select * from Factura
+select * from compra
+--delete from Factura
+--delete from Compra
+--delete from CarritoCompra where idUsuario=2
 
 INSERT INTO Usuarios(nombres,apellidos,correo,noTelefono,nit,clave,rol)
-	VALUES('Iker','Rivas','rivas@gmail.com','5896586','12585','12345','instructores');
+	VALUES('Julio','Garcia','juce@gmail.com','5896586','12585','12345','estudiante');
 
 INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
 	Values('Curso ACER','Curso de computadoras','100','120',1,1);
 
 INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
-	Values('Pasos para aprender Matematica','Curso matematica básica','50','60',1,1);
+	Values('Curso 3','Intermedio','50','60',1,1);
 

@@ -9,7 +9,7 @@ namespace CursosOnlineAPI.Models
     {
         public int IdUsuario { get; set; }
         public int IdCurso { get; set; }
-        public int IdFactura { get; set; }
+        public string IdFactura { get; set; }
 
         public virtual Curso IdCursoNavigation { get; set; }
         public virtual Factura IdFacturaNavigation { get; set; }

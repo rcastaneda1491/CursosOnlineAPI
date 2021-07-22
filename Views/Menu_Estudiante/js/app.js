@@ -4,6 +4,7 @@ const listaCursos = document.querySelector('#lista-cursos');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 let articulosCarrito = [];
 
+
 // Listeners
 cargarEventListeners();
 
@@ -16,8 +17,8 @@ function cargarEventListeners() {
 
      // NUEVO: Contenido cargado
      document.addEventListener('DOMContentLoaded', () => {
-          articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
-          // console.log(articulosCarrito);
+          GetDatosCurso();
+   
           carritoHTML();
      });
 }
@@ -31,6 +32,7 @@ function agregarCurso(e) {
           const curso = e.target.parentElement.parentElement;
           // Enviamos el curso seleccionado para tomar sus datos
           leerDatosCurso(curso);
+          window.location.reload();
      }
 }
 
@@ -55,10 +57,21 @@ function leerDatosCurso(curso) {
      } else {
           articulosCarrito = [...articulosCarrito, infoCurso];
      }
-
+     const curso_id = curso.querySelector('a').getAttribute('data-id');
      console.log(articulosCarrito)
 
 
+     const urlActualizarUsuario = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${curso_id}`;
+
+    fetch(urlActualizarUsuario, {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
+        .then(respuesta => respuesta)
+        .then(resultado => {
+        })
 
      // console.log(articulosCarrito)
      carritoHTML();
@@ -75,9 +88,24 @@ function eliminarCurso(e) {
           // Eliminar del arreglo del carrito
           articulosCarrito = articulosCarrito.filter(curso => curso.id !== cursoId);
 
+
+          const urlActualizarUsuario = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${cursoId}`;
+
+          fetch(urlActualizarUsuario, {
+               method: 'DELETE',
+               headers: new Headers({
+                    'Authorization': 'Bearer ' + stringJWT
+               })
+          })
+          .then(respuesta => respuesta)
+          .then(resultado => {
+          })
+
           carritoHTML();
-          localStorage.removeItem(cursoId);
+
      }
+     GetDatosCurso();
+     window.location.reload();
 }
 
 
@@ -99,22 +127,61 @@ function carritoHTML() {
           contenedorCarrito.appendChild(row);
      });
 
-     // NUEVO:
-     sincronizarStorage();
-
+ 
 }
 
 
-// NUEVO: 
-function sincronizarStorage() {
-     localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
-}
+
 
 // Elimina los cursos del carrito en el DOM
 function vaciarCarrito() {
      // forma rapida (recomendada)
      while (contenedorCarrito.firstChild) {
-          localStorage.clear();
+
           contenedorCarrito.removeChild(contenedorCarrito.firstChild);
      }
 }
+
+
+function GetDatosCurso() {
+     
+console.log('cargando...')
+     const url = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}`;
+   
+     fetch(url, {
+       headers: new Headers({
+         'Authorization': 'Bearer ' + stringJWT
+       })
+     })
+       .then(respuesta => respuesta.json())
+       .then(resultado => {
+         mostrarDatos2(resultado);
+       })
+   }
+
+
+   function mostrarDatos2(datos) {
+     
+     console.log('mostrar datos')
+
+     datos.forEach(curso => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+
+               <td>${curso.nombre}</td>
+               <td>${curso.costoVenta}</td>
+               <td>
+                    <a href="#" class="borrar-curso" data-id="${curso.idCurso}">X</a>
+               </td>
+          `;
+          contenedorCarrito.appendChild(row);
+     });
+     
+}
+
+function ViewCompra(){
+  
+     window.location.href = ('/ComprarCursosEstudiantes/index.html');
+}
+
+
