@@ -112,10 +112,13 @@ CREATE TABLE Comentario(
 -- Erick
 SELECT * FROM Usuarios;
 SELECT * FROM DatosInstructor;
-SELECT * FROM Cursos;
+
+select * from Lecciones;
+
+select * from Factura;
+select * from Compra;
 SELECT * FROM CarritoCompra ;
-select * from Factura
-select * from compra
+SELECT * FROM Cursos;
 --delete from Factura
 --delete from Compra
 --delete from CarritoCompra where idUsuario=2

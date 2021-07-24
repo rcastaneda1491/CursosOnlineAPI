@@ -3,6 +3,8 @@ const carrito = document.querySelector('#carrito');
 const listaCursos = document.querySelector('#lista-cursos');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 let articulosCarrito = [];
+let idsMisCursos = [];
+let validate;
 
 
 // Listeners
@@ -18,23 +20,64 @@ function cargarEventListeners() {
      // NUEVO: Contenido cargado
      document.addEventListener('DOMContentLoaded', () => {
           GetDatosCurso();
-   
+          
           carritoHTML();
+
+          GetDatosMisCursos();
      });
 }
 
 
 // Función que añade el curso al carrito
 function agregarCurso(e) {
+     console.log(idsMisCursos);
+     validate = 0;
      e.preventDefault();
      // Delegation para agregar-carrito
      if (e.target.classList.contains('agregar-carrito')) {
           const curso = e.target.parentElement.parentElement;
-          // Enviamos el curso seleccionado para tomar sus datos
-          leerDatosCurso(curso);
-          window.location.reload();
+          for(i=0;i<idsMisCursos.length;i++){
+               if(idsMisCursos[i] == curso.querySelector('a').getAttribute('data-id')){
+                   
+                    alert('Ya tienes este curso')
+                    validate = 1;
+                    break;
+               }
+          }
+          
+          if(validate != 1){
+               leerDatosCurso(curso);
+               window.location.reload();
+          }
+              
+          // Enviamos el curso seleccionado para tomar sus datos        
      }
 }
+
+function GetDatosMisCursos() {
+     
+     console.log('llenando...')
+          const url = `https://localhost:44328/api/MisCursosEstudiante?IdUsuario=${jwt.sub}`;
+        
+          fetch(url, {
+            headers: new Headers({
+              'Authorization': 'Bearer ' + stringJWT
+            })
+          })
+            .then(respuesta => respuesta.json())
+            .then(resultado => {
+              llenar(resultado);
+            })
+        }
+
+
+function llenar(datos) {
+
+     datos.forEach(curso => {
+          idsMisCursos.push(curso.idCurso);
+     })
+}
+
 
 // Lee los datos del curso
 function leerDatosCurso(curso) {

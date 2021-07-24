@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CursosOnlineAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,7 @@ namespace CursosOnlineAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("permitir")]
-    [Authorize]
+    //[Authorize]
     public class CursoEstudianteController : ControllerBase
     {
         [HttpGet]
@@ -27,6 +28,10 @@ namespace CursosOnlineAPI.Controllers
             }
 
         }
+
+
+
+       
 
     }
 }

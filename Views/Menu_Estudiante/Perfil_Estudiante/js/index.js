@@ -116,7 +116,7 @@ function actualizar() {
 
         const confirmar = confirm('¿Desea editar sus datos?');
         if (confirmar) {
-            debugger;
+           
             console.log("Actualizando..")
             const urlActualizarUsuario = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${jwt.sub}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&clave=${contraInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&noTarjeta=${noTarjetaInput.value}`;
 
