@@ -103,7 +103,77 @@ a {
   margin-block-end: 2%;
 }
 
-/*.AlertaCampoVacio{
-  border-color: brown;
-  border-style: outset;
-}*/
+/* ------ ------------------- ------- */
+/* ------  Vista de Cursos  ------- */
+/* ------ ------------------ ------ */
+.boton-Agregar{
+  margin-top: 75px;
+}
+
+.video{
+  float: left;
+  background-color: #fac32c;
+  margin-top: 5px;
+  width: 70%;
+  height: 446px;
+
+  display: flex;
+  justify-content: center;
+
+  padding-top: 1%
+}
+
+.listadoCursos{
+  float: right;
+  background-color: #7a7976;
+  margin-top: 5px;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comentarios{
+  float: left;
+  background-color: #f1f0ec;
+  width: 70%;
+  height: 250px;
+
+  display: flex;
+  justify-content: center;
+
+}
+
+@media screen and (max-width: 943px){
+
+
+  .video{
+    background-color: #fac32c;
+    margin-top: 5px;
+    width: 100%;
+    height: 446px;
+  
+    display: flex;
+    justify-content: center;
+  
+    padding-top: 1%
+  }
+
+  .listadoCursos{
+    width: 100%;
+    margin-top: 0px;
+  }
+
+  .comentarios{
+    width: 100%;
+    margin-top: 0px;
+  }
+
+}
+
+.seleccionarLeccion h1{
+  font-size: 20px;
+  padding-top: 50%;
+  text-decoration: underline black;
+}
+

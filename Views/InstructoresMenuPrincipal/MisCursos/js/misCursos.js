@@ -65,7 +65,7 @@ function mostrarCursos(cursos) {
                 <hr>
                 Duracion: ${duracion} - Costo: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-info" type="button">Ir</button>
+                    <a href="../Lecciones/lecciones.html?idCurso=${idCurso}" class="btn btn-info" type="button">Ir</a>
                 </div>
                 <br>
                 <a href="./editarCurso.html?idCurso=${idCurso}" class="btn btn-warning">Editar Curso</a>
