@@ -104,7 +104,7 @@ a {
 }
 
 /* ------ ------------------- ------- */
-/* ------  Vista de Cursos  ------- */
+/* ------  Vista de Lecciones  ------- */
 /* ------ ------------------ ------ */
 .boton-Agregar{
   margin-top: 75px;
@@ -144,9 +144,7 @@ a {
   float: left;
   background-color: #f1f0ec;
   width: 70%;
-  height: 250px;
-
-  display: flex;
+  height: auto;
   justify-content: center;
 
   margin-top: 1%;
@@ -161,7 +159,6 @@ a {
 }
 
 @media screen and (max-width: 943px){
-
 
   .video{
     background-color: #fac32c;
@@ -192,9 +189,32 @@ a {
   text-decoration: underline black;
 }
 
+.comentario{
+  background-color:#fff; 
+  width: 98%;
+  margin: 1%;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.comentario h1{
+  font-size: 20px;
+}
+
+.comentario h2{
+  font-size: 17px;
+  padding-left: 115px; 
+}
+
+.comentario #respuesta{
+  float: right;
+}
 
 
 
+/* ------ ------------------- ------- */
+/* ------  Spinner de Carga  -------- */
+/* ------ ------------------ -------- */
 .spinner {
   margin: 100px auto 0;
   width: 70px;

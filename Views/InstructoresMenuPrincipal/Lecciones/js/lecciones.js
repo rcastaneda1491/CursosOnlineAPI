@@ -31,6 +31,7 @@ let idCurso = getParameterByName('idCurso');
 let idUsuarioObtenido = jwt.sub;
 
 const mostrar = document.querySelector('#listado');
+const mostrarComentarios = document.querySelector('#comentarios');
 const contenedorVideo = document.querySelector('#contenedorVideo');
 
 const alerta = document.querySelector('#alert');
@@ -73,16 +74,38 @@ function mostrarLecciones(lecciones) {
                 <div class="card-body">
                   <h5 class="card-title">${titulo}</h5>
                   <center><p class="card-text">${descripcion} | Duración: ${duracion} minutos</p>
-                  <button onclick="visualizarVideo('${enlace}');" class="btn btn-success">Visualizar</button>
-                  <a href="#" class="btn btn-warning">Editar</a>
-                  <a href="#" class="btn btn-danger">Eliminar</a></center>
+                  <button onclick="visualizarVideoComentarios('${enlace}',${idLeccion});" class="btn btn-success">Visualizar</button>
+                  <a href="./editarLeccion.html?idCurso=${idCurso}&idLeccion=${idLeccion}" class="btn btn-warning">Editar</a>
+                  <button class="btn btn-danger" onclick="confimarEliminar(${idLeccion});">Eliminar</button></center>
                 </div>
             </div>
         `;
     })
 }
 
-function visualizarVideo(codigoVideo){
+async function confimarEliminar(id) {
+    const confirmar = confirm('¿ Desea eliminar la lección ?')
+
+    if (confirmar) {
+
+        const url = `https://localhost:44328/api/LeccionesInstructor?idLeccion=${id}`;
+
+        await fetch(url, {
+            method: 'DELETE',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + stringJWT
+            })
+        })
+            .then(respuesta => respuesta)
+            .then(resultado => {
+                console.log(resultado.body);
+            })
+
+        location.reload();
+    }
+}
+
+async function visualizarVideoComentarios(codigoVideo,idLeccion){
     
     const visualizador = document.querySelector('#visualizador');
     const textoAlerta = document.querySelector('#textoAlerta');
@@ -104,9 +127,56 @@ function visualizarVideo(codigoVideo){
     video.src = `https://www.youtube.com/embed/${codigoVideo}?&autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&rel=0`;
 
     contenedorVideo.appendChild(video);
+  
+    const urlComentarios = `https://localhost:44328/api/ComentariosInstructor?idLeccion=${idLeccion}`;
 
+        await fetch(urlComentarios, {
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + stringJWT
+            })
+        })
+            .then(respuesta => respuesta.json())
+            .then(resultado => {
+                imprimirComentarios(resultado);
+            })
+}
+
+async function imprimirComentarios(comentarios){
+
+    comentarios.forEach(async comentario => {
+        const { idUsuarioEstudiante, mensaje, respuesta} = comentario;
+
+        let nombresApellidos;
+
+        var urlObtnerNombresDelEstudiante = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${idUsuarioEstudiante}`;
+
+        await fetch(urlObtnerNombresDelEstudiante, {
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + stringJWT
+            })
+        })
+            .then(respuesta => respuesta.json())
+            .then(resultado => {
+                nombresApellidos = resultado[0].nombres + ' ' + resultado[0].apellidos;
+            })
+
+
+
+        mostrarComentarios.innerHTML += `
+        <div class="comentario">
+            <h1> ⚫️ Usuario: ${nombresApellidos} | ${idUsuarioEstudiante}</h1>
+            <h2>Comentario: ${mensaje}</h2>
+            <hr>
+            <h2 id="respuesta">Respuesta: ${respuesta} 🔵 <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </h2>
+            <br>
+        </div>
+        `;
+    })
 
 }
+
 
 function CerrarSesion() {
     Cookies.remove('jwt');

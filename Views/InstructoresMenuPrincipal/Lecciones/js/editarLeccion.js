@@ -35,25 +35,57 @@ if (stringJWT) {
 }
 
 let idCurso = getParameterByName('idCurso');
+let idLeccion = getParameterByName('idLeccion');
 let idUsuarioObtenido = jwt.sub;
 
 window.onload = () => {
+    obtenerDatosLeccion();
 
 }
 
 const formulario = document.querySelector('#formulario');
 
-const titulo = document.querySelector('#titulo');
-const descripcion = document.querySelector('#descripcion');
-const enlace = document.querySelector('#enlace');
+const tituloI = document.querySelector('#titulo');
+const descripcionI = document.querySelector('#descripcion');
+const enlaceI = document.querySelector('#enlace');
 const alerta = document.querySelector('#alert');
 const alerta2 = document.querySelector('#alert2');
 
 let minutos;
 
+async function obtenerDatosLeccion(){
+
+    const url = `https://localhost:44328/api/LeccionesInstructor?idLeccion=${idLeccion}`;
+
+    await fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            mostrarDatosLeccion(resultado);
+        })
+}
+
+function mostrarDatosLeccion(lecciones){
+
+    lecciones.forEach(leccion => {
+        const { descripcion, enlace, titulo } = leccion;
+
+        tituloI.value = titulo;
+        descripcionI.value = descripcion;
+        enlaceI.value = 'https://www.youtube.com/watch?v='+enlace;
+
+    })
+}
+
+
+
 function validarDatos() {
 
-    if (titulo.value === '' || descripcion.value === '' || enlace.value === '') 
+    if (tituloI.value === '' || descripcionI.value === '' || enlaceI.value === '') 
     {
         alerta.style.display = 'block';
 
@@ -64,10 +96,10 @@ function validarDatos() {
         return;
     }
 
-    agregarLeccion();
+    actualizarLeccion();
 }
 
-async function agregarLeccion() {
+async function actualizarLeccion() {
 
     mostrarSpinner();
 
@@ -91,10 +123,10 @@ async function agregarLeccion() {
             obtenerDatosVideo(resultado.items);
         });
 
-    const url = `https://localhost:44328/api/LeccionesInstructor?idCurso=${idCurso}&titulo=${titulo.value}&descripcion=${descripcion.value}&duracion=${minutos}&enlace=${codigoVideo}`;
+    const url = `https://localhost:44328/api/LeccionesInstructor?idLeccion=${idLeccion}&titulo=${titulo.value}&descripcion=${descripcion.value}&duracion=${minutos}&enlace=${codigoVideo}`;
 
     await fetch(url, {
-        method: 'POST',
+        method: 'PUT',
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT
         })
@@ -103,7 +135,7 @@ async function agregarLeccion() {
         .then(resultado => {
         })
 
-    alert('Agregado Exitosamente');
+    alert('Actualizado Exitosamente');
     window.location.href = (`/InstructoresMenuPrincipal/Lecciones/lecciones.html?idCurso=${idCurso}`);
 }
 
