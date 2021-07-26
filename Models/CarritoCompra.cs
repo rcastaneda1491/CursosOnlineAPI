@@ -5,14 +5,12 @@ using System.Collections.Generic;
 
 namespace CursosOnlineAPI.Models
 {
-    public partial class Compra
+    public partial class CarritoCompra
     {
         public int IdUsuario { get; set; }
         public int IdCurso { get; set; }
-        public string IdFactura { get; set; }
 
         public virtual Curso IdCursoNavigation { get; set; }
-        public virtual Factura IdFacturaNavigation { get; set; }
         public virtual Usuario IdUsuarioNavigation { get; set; }
     }
 }
