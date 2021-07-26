@@ -38,26 +38,19 @@ const alerta = document.querySelector('#alert');
 
 window.onload = () => {
     obtenerLecciones();
-
-    const lecciones = document.querySelector('#leccion');
-
-    if(!lecciones){
-        alerta.style.display = 'block';
-
-        return;
-    }
-
 }
 
 function agregarLeccion(){
     window.location.href = `/InstructoresMenuPrincipal/Lecciones/crearLeccion.html?idCurso=${idCurso}`;
 }
 
-function obtenerLecciones(){
+async function obtenerLecciones(){
+
+    mostrarSpinner();
 
     const url = `https://localhost:44328/api/LeccionesInstructor?idCurso=${idCurso}`;
 
-    fetch(url, {
+    await fetch(url, {
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT
         })
@@ -66,6 +59,8 @@ function obtenerLecciones(){
     .then(resultado => {
         mostrarLecciones(resultado);
     })
+
+    eliminarSpinner();
 }
 
 function mostrarLecciones(lecciones) {
@@ -111,4 +106,29 @@ function visualizarVideo(codigoVideo){
     contenedorVideo.appendChild(video);
 
 
+}
+
+function CerrarSesion() {
+    Cookies.remove('jwt');
+};
+
+
+function mostrarSpinner(){
+
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+
+    spinner.innerHTML = `
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    `;
+
+    mostrar.appendChild(spinner);
+}
+
+function eliminarSpinner(){
+    const spinner = document.querySelector('.spinner');
+
+    mostrar.removeChild(spinner);
 }

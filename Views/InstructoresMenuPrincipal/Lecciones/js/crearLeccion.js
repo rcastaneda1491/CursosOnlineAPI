@@ -91,7 +91,7 @@ async function agregarLeccion() {
 
     const url = `https://localhost:44328/api/LeccionesInstructor?idCurso=${idCurso}&titulo=${titulo.value}&descripcion=${descripcion.value}&duracion=${minutos}&enlace=${codigoVideo}`;
 
-    fetch(url, {
+    await fetch(url, {
         method: 'POST',
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT
@@ -119,3 +119,7 @@ function obtenerDatosVideo(video){
         minutos = Number(duracionSeparadaMinutos[0]);        
     })
 }
+
+function CerrarSesion() {
+    Cookies.remove('jwt');
+};

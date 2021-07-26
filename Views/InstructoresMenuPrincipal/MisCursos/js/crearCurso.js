@@ -53,7 +53,7 @@ function validarDatos() {
     agregarCurso();
 }
 
-function agregarCurso() {
+async function agregarCurso() {
 
     let estadoLetras;
 
@@ -65,7 +65,7 @@ function agregarCurso() {
 
     const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdUsuario=${IdUsuario}&nombre=${nombre.value}&descripcion=${descripcion.value}&costo=${costoVenta.value}&costoVenta=${costoEstudiantes.value}&estado=${estadoLetras}`;
 
-    fetch(urlActualizarUsuario, {
+    await fetch(urlActualizarUsuario, {
         method: 'POST',
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT
