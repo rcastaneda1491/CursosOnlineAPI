@@ -1,4 +1,5 @@
 const formulario = document.querySelector('#formulario');
+const contenedor = document.querySelector('#contenedor');
 
 const nombre = document.querySelector('#nombre');
 const descripcion = document.querySelector('#descripcion');
@@ -53,7 +54,7 @@ function validarDatos() {
     agregarCurso();
 }
 
-function agregarCurso() {
+async function agregarCurso() {
 
     let estadoLetras;
 
@@ -63,9 +64,11 @@ function agregarCurso() {
         estadoLetras = false;
     }
 
+    mostrarSpinner();
+
     const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdUsuario=${IdUsuario}&nombre=${nombre.value}&descripcion=${descripcion.value}&costo=${costoVenta.value}&costoVenta=${costoEstudiantes.value}&estado=${estadoLetras}`;
 
-    fetch(urlActualizarUsuario, {
+    await fetch(urlActualizarUsuario, {
         method: 'POST',
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT
@@ -77,5 +80,25 @@ function agregarCurso() {
 
     alert('Curso Agregado Exitosamente');
     window.location.href = ('/InstructoresMenuPrincipal/MisCursos/misCursos.html');
+}
+
+function mostrarSpinner(){
+
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+
+    spinner.innerHTML = `
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    `;
+
+    contenedor.appendChild(spinner);
+}
+
+function eliminarSpinner(){
+    const spinner = document.querySelector('.spinner');
+
+    contenedor.removeChild(spinner);
 }
 

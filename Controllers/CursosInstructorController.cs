@@ -68,7 +68,7 @@ namespace CursosOnlineAPI.Controllers
 
                 if(curso.CantidadEstudiantes > 0)
                 {
-                    return Ok("Estudiantes ya ha adquirido el curso, el curso no se puede eliminar");
+                    return Ok("Estudiantes ya han adquirido el curso, el curso no se puede eliminar");
                 }
                 else
                 {

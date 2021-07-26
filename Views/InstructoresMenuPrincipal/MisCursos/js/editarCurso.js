@@ -98,7 +98,7 @@ function validarDatos() {
     editarCurso();
 }
 
-function editarCurso() {
+async function editarCurso() {
     let estadoLetras;
 
     if (estado.value = 1) {
@@ -109,7 +109,7 @@ function editarCurso() {
 
     const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdCurso=${idCurso}&nombre=${nombreI.value}&descripcion=${descripcionI.value.toString()}&costo=${costoVentaI.value}&costoVenta=${costoEstudiantesI.value}&estado=${estadoLetras}`;
 
-    fetch(urlActualizarUsuario, {
+    await fetch(urlActualizarUsuario, {
         method: 'PUT',
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT

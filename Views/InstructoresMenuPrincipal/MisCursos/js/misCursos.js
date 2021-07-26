@@ -28,12 +28,12 @@ function CerrarSesion() {
 };
 
 
-function cargarCursos() {
+async function cargarCursos() {
 
 
     const url = `https://localhost:44328/api/CursosInstructor?idInstructor=${jwt.sub}`;
 
-    fetch(url, {
+    await fetch(url, {
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT
         })
@@ -65,7 +65,7 @@ function mostrarCursos(cursos) {
                 <hr>
                 Duracion: ${duracion} - Costo: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-info" type="button">Ir</button>
+                    <a href="../Lecciones/lecciones.html?idCurso=${idCurso}" class="btn btn-info" type="button">Ir</a>
                 </div>
                 <br>
                 <a href="./editarCurso.html?idCurso=${idCurso}" class="btn btn-warning">Editar Curso</a>
@@ -80,14 +80,14 @@ function mostrarCursos(cursos) {
     })
 }
 
-function confimarEliminar(id) {
+async function confimarEliminar(id) {
     const confirmar = confirm('¿ Desea eliminar el Curso ?')
 
     if (confirmar) {
 
         const url = `https://localhost:44328/api/CursosInstructor?IdCurso=${id}`;
 
-        fetch(url, {
+        await fetch(url, {
             method: 'DELETE',
             headers: new Headers({
                 'Authorization': 'Bearer ' + stringJWT
