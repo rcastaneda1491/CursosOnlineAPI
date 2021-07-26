@@ -13,7 +13,7 @@ namespace CursosOnlineAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("permitir")]
-    //[Authorize]
+    [Authorize]
     public class MisCursosEstudianteController : ControllerBase
     {
         [HttpGet]

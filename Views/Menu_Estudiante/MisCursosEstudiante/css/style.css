@@ -63,4 +63,13 @@
     display: block;
     background-color: #4F73CF;
     margin-top: 100px;
+    margin-bottom: 5%;
+}
+
+.card{
+  text-align: center;
+}
+
+#boton-verleccion{
+  background: #FFDE59;
 }

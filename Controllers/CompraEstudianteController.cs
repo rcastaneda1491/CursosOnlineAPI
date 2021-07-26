@@ -48,5 +48,25 @@ namespace CursosOnlineAPI.Controllers
 
             }
         }
+
+
+        [HttpPut]
+        public ActionResult Put(int IdCurso)
+        {
+            using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
+            {
+                Models.Curso datos = db.Cursos.Find(IdCurso);
+
+                datos.CantidadEstudiantes = datos.CantidadEstudiantes + 1;
+
+                db.Entry(datos).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.SaveChanges();
+
+                return Ok("Datos Actualizados Correctamente");
+
+            }
+        }
+
+
     }
 }

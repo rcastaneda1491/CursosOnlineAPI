@@ -89,26 +89,36 @@ function MostrarTotal(){
 
 function GenerarFactura(){
 
-    generarid = uuid.v4();
+    if(total == 0){
+        alert('No tienes cursos agregados')
+    }else{
+        generarid = uuid.v4();
     
-    const url = `https://localhost:44328/api/FacturaEstudiante?NoFactura=${generarid}&IdUsuario=${jwt.sub}&Total=${total}`;
-
-    fetch(url, {
-        method: 'POST',
-        headers: new Headers({
-            'Authorization': 'Bearer ' + stringJWT
+        const url = `https://localhost:44328/api/FacturaEstudiante?NoFactura=${generarid}&IdUsuario=${jwt.sub}&Total=${total}`;
+    
+        fetch(url, {
+            method: 'POST',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + stringJWT
+            })
         })
-    })
-        .then(respuesta => respuesta)
-        .then(resultado => {
-        })
+            .then(respuesta => respuesta)
+            .then(resultado => {
+            })
+    
+            
+            setTimeout(GenerarCompra(), 8000);  
+    }
 
-        GenerarCompra();  
+ 
+        
 }
 
 function GenerarCompra(){
 
     for(i=0;i< idsCursos.length;i++){
+        
+        console.log(idsCursos[i]);
         const url = `https://localhost:44328/api/CompraEstudiante?IdUsuario=${jwt.sub}&idCurso=${idsCursos[i]}&NoFactura=${generarid}`;
 
     fetch(url, {
@@ -118,8 +128,7 @@ function GenerarCompra(){
         })
     })
         .then(respuesta => respuesta)
-        .then(resultado => {
-        })
+        
     }
     
 
@@ -132,6 +141,7 @@ function BorrarCarrito(){
     for(i=0;i< idsCursos.length;i++){
 
     const urlVaciarCarrito = `https://localhost:44328/api/CompraEstudiante?IdUsuario=${jwt.sub}&IdCurso=${idsCursos[i]}`;
+    const urlCantidadEstudiantes = `https://localhost:44328/api/CompraEstudiante?IdCurso=${idsCursos[i]}`;
 
     fetch(urlVaciarCarrito, {
         method: 'DELETE',
@@ -140,9 +150,20 @@ function BorrarCarrito(){
         })
     })
         .then(respuesta => respuesta)
-        .then(resultado => {
+        
+
+
+        fetch(urlCantidadEstudiantes, {
+            method: 'PUT',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + stringJWT
+            })
         })
+            .then(respuesta => respuesta)
+          
     } 
+
+    
 
     alert('Compra Exitosa');
     window.location.reload();
@@ -186,5 +207,3 @@ function Validar(data){
     })
        
 }
-
-

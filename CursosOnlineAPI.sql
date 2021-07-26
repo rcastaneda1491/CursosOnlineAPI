@@ -119,6 +119,8 @@ select * from Factura;
 select * from Compra;
 SELECT * FROM CarritoCompra ;
 SELECT * FROM Cursos;
+
+select * from Usuarios
 --delete from Factura
 --delete from Compra
 --delete from CarritoCompra where idUsuario=2
@@ -130,5 +132,5 @@ INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
 	Values('Curso ACER','Curso de computadoras','100','120',1,1);
 
 INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
-	Values('Curso 3','Intermedio','50','60',1,1);
+	Values('Curso 11','Intermedio','50','60',1,1);
 

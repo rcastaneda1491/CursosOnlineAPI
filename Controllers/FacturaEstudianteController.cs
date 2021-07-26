@@ -15,6 +15,20 @@ namespace CursosOnlineAPI.Controllers
     [Authorize]
     public class FacturaEstudianteController : ControllerBase
     {
+        [HttpGet]
+        public ActionResult Get(int IdUsuario)
+        {
+            using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
+            {
+                var facturas = (from d in db.Facturas.Where(p => p.IdUsuario == IdUsuario)
+                              select d).ToList();
+
+                return Ok(facturas);
+            }
+
+        }
+
+
         [HttpPost]
         public ActionResult Post(string NoFactura, int IdUsuario, decimal Total)
         {
