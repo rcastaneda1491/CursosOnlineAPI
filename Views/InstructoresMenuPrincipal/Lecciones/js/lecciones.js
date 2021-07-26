@@ -79,7 +79,8 @@ function mostrarLecciones(lecciones) {
                   <h5 class="card-title">${titulo}</h5>
                   <center><p class="card-text">${descripcion} | Duración: ${duracion} minutos</p>
                   <button onclick="visualizarVideo('${enlace}');" class="btn btn-success">Visualizar</button>
-                  <a href="#" class="btn btn-warning">Editar</a></center>
+                  <a href="#" class="btn btn-warning">Editar</a>
+                  <a href="#" class="btn btn-danger">Eliminar</a></center>
                 </div>
             </div>
         `;
@@ -104,8 +105,8 @@ function visualizarVideo(codigoVideo){
     video.id="visualizador";
     video.title="YouTube video player";
     video.frameborder="0";
-    video.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-    video.src = `https://www.youtube.com/embed/${codigoVideo}?&autoplay=1&modestbranding=1&rel=0&showinfo=0`;
+    video.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;";
+    video.src = `https://www.youtube.com/embed/${codigoVideo}?&autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&rel=0`;
 
     contenedorVideo.appendChild(video);
 
