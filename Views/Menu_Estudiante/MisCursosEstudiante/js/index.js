@@ -48,11 +48,23 @@ function llenar(datos) {
           <h4 class="card-title"">${curso.nombre}</h4>
           <p>${curso.descripcion}</p>
           <p>Duracion: ${curso.duracion}</p>
-          <button class="btn" id="boton-verleccion" data-id="${curso.idCurso}"> Ver Lecciones </button>
+          <button class="btn view" id="boton-verleccion" data-id="${curso.idCurso}"> Ver Lecciones </button>
         </div>
         </div>
       </div> 
      `;
       cardListElement.innerHTML += card;
     })
+
+    var elements = document.getElementsByClassName("view");
+
+    for(var i=0;i<elements.length;i++){
+        elements[i].addEventListener('click',viewleccion);  
+    }
+  }
+
+  function viewleccion(e){
+    const curso = e.target.parentElement.parentElement;
+    const cursoId = curso.querySelector('button').getAttribute('data-id');
+    window.location.href = (`./lecciones.html?idCurso=${cursoId}`);
   }

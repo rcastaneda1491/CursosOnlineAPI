@@ -20,7 +20,6 @@ if (stringJWT) {
 
 window.onload = () => {
   GetDatos();
- 
 }
 
 function CerrarSesion() {
@@ -82,11 +81,17 @@ function mostrarDatos(datos) {
         <h4 class="card-title"">${curso.nombre}</h4>
         <p>${curso.descripcion}</p>
         <p>Duracion: ${curso.duracion}</p>
-        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="${curso.idCurso}">$${curso.costoVenta}</a>
+        <a href="#" class="u-full-width button-primary button input agregar-carrito addcarrito" data-id="${curso.idCurso}">$${curso.costoVenta}</a>
       </div>
       </div>
     </div> 
    `;
     cardListElement.innerHTML += card;
   })
+
+  var elements = document.getElementsByClassName("addcarrito");
+
+    for(var i=0;i<elements.length;i++){
+        elements[i].addEventListener('click',agregarCurso);  
+    }
 }

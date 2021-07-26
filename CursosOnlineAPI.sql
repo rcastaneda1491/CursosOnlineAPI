@@ -134,3 +134,7 @@ INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
 INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
 	Values('Curso 11','Intermedio','50','60',1,1);
 
+INSERT INTO Lecciones(idCurso,titulo,descripcion,duracion,enlace)
+	Values(4,'Curso Básico de Javascript 3. ','Tipos de Datos',15.27,'https://www.youtube.com/watch?v=Zx-RuG66X5M&list=PLhSj3UTs2_yVC0iaCGf16glrrfXuiSd0G&index=3');
+
+

@@ -7,15 +7,16 @@ let idsMisCursos = [];
 let validate;
 
 
+
 // Listeners
 cargarEventListeners();
 
 function cargarEventListeners() {
      // Dispara cuando se presiona "Agregar Carrito"
-     listaCursos.addEventListener('click', agregarCurso);
+     /*listaCursos.addEventListener('click', agregarCurso);*/
 
      // Cuando se elimina un curso del carrito
-     carrito.addEventListener('click', eliminarCurso);
+     //carrito.addEventListener('click', eliminarCurso);
 
      // NUEVO: Contenido cargado
      document.addEventListener('DOMContentLoaded', () => {
@@ -122,6 +123,7 @@ function leerDatosCurso(curso) {
 
 // Elimina el curso del carrito en el DOM
 function eliminarCurso(e) {
+     alert('sorry');
      e.preventDefault();
      if (e.target.classList.contains('borrar-curso')) {
           // e.target.parentElement.parentElement.remove();
@@ -164,11 +166,17 @@ function carritoHTML() {
                <td>${curso.titulo}</td>
                <td>${curso.precio}</td>
                <td>
-                    <a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
+                    <a  class="borrar-curso deletecurso" data-id="${curso.id}">X</a>
                </td>
           `;
           contenedorCarrito.appendChild(row);
      });
+
+   var elementscarrito = document.getElementsByClassName("deletecurso");
+
+     for(var i=0;i<elementscarrito.length;i++){
+          elementscarrito[i].addEventListener('click',eliminarCurso);  
+     }
 
  
 }
@@ -214,17 +222,19 @@ console.log('cargando...')
                <td>${curso.nombre}</td>
                <td>${curso.costoVenta}</td>
                <td>
-                    <a href="#" class="borrar-curso" data-id="${curso.idCurso}">X</a>
+                    <a href="#" class="borrar-curso deletecurso" data-id="${curso.idCurso}">X</a>
                </td>
           `;
           contenedorCarrito.appendChild(row);
      });
+
+     var elementscarritos = document.getElementsByClassName("deletecurso");
+
+     for(var i=0;i<elementscarritos.length;i++){
+          elementscarritos[i].addEventListener('click',eliminarCurso);  
+     }
      
 }
 
-function ViewCompra(){
-  
-     window.location.href = ('/ComprarCursosEstudiantes/index.html');
-}
 
 

@@ -18,21 +18,8 @@ function parseJwt(token) {
       jwt = parseJwt(stringJWT);
   }
   
-
-  cargarEventListeners();
-
-  function cargarEventListeners() {
-       // Dispara cuando se presiona "Agregar Carrito"
-      tableElements.addEventListener('click', GetDetalle);
-  
-
-  
-       // NUEVO: Contenido cargado
-       document.addEventListener('DOMContentLoaded', () => {
-    
-        GetFacturas();
-
-       });
+  window.onload = () =>{
+    GetFacturas();
   }
 
   
@@ -64,12 +51,18 @@ function mostrarDatos(datos) {
           <td>${factura.idFactura}</td>
           <td>${factura.fecha}</td>
           <td>${factura.total}</td>
-          <td><button  class="btn" id="detalle" data-id="${factura.idFactura}"> Ver Detalle </button></td>
+          <td><button  class="btn block" id="detalle" data-id="${factura.idFactura}"> Ver Detalle </button></td>
         </tr>
           
      `;
       tableElements.innerHTML += card;
     })
+
+    var elements = document.getElementsByClassName("block");
+
+    for(var i=0;i<elements.length;i++){
+        elements[i].addEventListener('click',GetDetalle);  
+    }
 
   }
 
