@@ -12,7 +12,7 @@ namespace CursosOnlineAPI.Models
             Compras = new HashSet<Compra>();
         }
 
-        public int IdFactura { get; set; }
+        public string IdFactura { get; set; }
         public int IdUsuario { get; set; }
         public decimal? Total { get; set; }
         public DateTime? Fecha { get; set; }

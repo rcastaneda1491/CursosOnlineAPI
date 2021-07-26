@@ -9,6 +9,7 @@ namespace CursosOnlineAPI.Models
     {
         public Usuario()
         {
+            CarritoCompras = new HashSet<CarritoCompra>();
             ComentarioIdUsuarioEstudianteNavigations = new HashSet<Comentario>();
             ComentarioIdUsuarioInstructorNavigations = new HashSet<Comentario>();
             Compras = new HashSet<Compra>();
@@ -29,6 +30,7 @@ namespace CursosOnlineAPI.Models
         public int? IdDatosInstructor { get; set; }
 
         public virtual DatosInstructor IdDatosInstructorNavigation { get; set; }
+        public virtual ICollection<CarritoCompra> CarritoCompras { get; set; }
         public virtual ICollection<Comentario> ComentarioIdUsuarioEstudianteNavigations { get; set; }
         public virtual ICollection<Comentario> ComentarioIdUsuarioInstructorNavigations { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }

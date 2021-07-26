@@ -1,5 +1,4 @@
-﻿using CursosOnlineAPI.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,24 +13,17 @@ namespace CursosOnlineAPI.Controllers
     [ApiController]
     [EnableCors("permitir")]
     [Authorize]
-    public class CursoEstudianteController : ControllerBase
+    public class LeccionesEstudianteController : ControllerBase
     {
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(int? idCurso)
         {
             using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
             {
-                var cursos = (from d in db.Cursos.Where(p => p.Estado == true)
-                                select d).ToList();
+                var leccionesCursos = (from d in db.Lecciones select d).Where(d => d.IdCurso == idCurso).ToList();
 
-                return Ok(cursos);
+                return Ok(leccionesCursos);
             }
-
         }
-
-
-
-       
-
     }
 }
