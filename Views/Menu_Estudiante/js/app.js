@@ -21,7 +21,7 @@ function cargarEventListeners() {
      // NUEVO: Contenido cargado
      document.addEventListener('DOMContentLoaded', () => {
           GetDatosCurso();
-          
+
           carritoHTML();
 
           GetDatosMisCursos();
@@ -37,39 +37,39 @@ function agregarCurso(e) {
      // Delegation para agregar-carrito
      if (e.target.classList.contains('agregar-carrito')) {
           const curso = e.target.parentElement.parentElement;
-          for(i=0;i<idsMisCursos.length;i++){
-               if(idsMisCursos[i] == curso.querySelector('a').getAttribute('data-id')){
-                   
+          for (i = 0; i < idsMisCursos.length; i++) {
+               if (idsMisCursos[i] == curso.querySelector('a').getAttribute('data-id')) {
+
                     alert('Ya tienes este curso')
                     validate = 1;
                     break;
                }
           }
-          
-          if(validate != 1){
+
+          if (validate != 1) {
                leerDatosCurso(curso);
                window.location.reload();
           }
-              
+
           // Enviamos el curso seleccionado para tomar sus datos        
      }
 }
 
-function GetDatosMisCursos() {
-     
+async function GetDatosMisCursos() {
+
      console.log('llenando...')
-          const url = `https://localhost:44328/api/MisCursosEstudiante?IdUsuario=${jwt.sub}`;
-        
-          fetch(url, {
-            headers: new Headers({
-              'Authorization': 'Bearer ' + stringJWT
-            })
+     const url = `https://localhost:44328/api/MisCursosEstudiante?IdUsuario=${jwt.sub}`;
+
+     await fetch(url, {
+          headers: new Headers({
+               'Authorization': 'Bearer ' + stringJWT
           })
-            .then(respuesta => respuesta.json())
-            .then(resultado => {
-              llenar(resultado);
-            })
-        }
+     })
+          .then(respuesta => respuesta.json())
+          .then(resultado => {
+               llenar(resultado);
+          })
+}
 
 
 function llenar(datos) {
@@ -81,7 +81,7 @@ function llenar(datos) {
 
 
 // Lee los datos del curso
-function leerDatosCurso(curso) {
+async function leerDatosCurso(curso) {
      const infoCurso = {
           titulo: curso.querySelector('h4').textContent,
           precio: curso.querySelector('a').textContent,
@@ -107,23 +107,22 @@ function leerDatosCurso(curso) {
 
      const urlActualizarUsuario = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${curso_id}`;
 
-    fetch(urlActualizarUsuario, {
-        method: 'POST',
-        headers: new Headers({
-            'Authorization': 'Bearer ' + stringJWT
-        })
-    })
-        .then(respuesta => respuesta)
-        .then(resultado => {
-        })
+     await fetch(urlActualizarUsuario, {
+          method: 'POST',
+          headers: new Headers({
+               'Authorization': 'Bearer ' + stringJWT
+          })
+     })
+          .then(respuesta => respuesta)
+          .then(resultado => {
+          })
 
      // console.log(articulosCarrito)
      carritoHTML();
 }
 
 // Elimina el curso del carrito en el DOM
-function eliminarCurso(e) {
-     alert('sorry');
+async function eliminarCurso(e) {
      e.preventDefault();
      if (e.target.classList.contains('borrar-curso')) {
           // e.target.parentElement.parentElement.remove();
@@ -136,15 +135,15 @@ function eliminarCurso(e) {
 
           const urlActualizarUsuario = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${cursoId}`;
 
-          fetch(urlActualizarUsuario, {
+          await fetch(urlActualizarUsuario, {
                method: 'DELETE',
                headers: new Headers({
                     'Authorization': 'Bearer ' + stringJWT
                })
           })
-          .then(respuesta => respuesta)
-          .then(resultado => {
-          })
+               .then(respuesta => respuesta)
+               .then(resultado => {
+               })
 
           carritoHTML();
 
@@ -172,13 +171,13 @@ function carritoHTML() {
           contenedorCarrito.appendChild(row);
      });
 
-   var elementscarrito = document.getElementsByClassName("deletecurso");
+     var elementscarrito = document.getElementsByClassName("deletecurso");
 
-     for(var i=0;i<elementscarrito.length;i++){
-          elementscarrito[i].addEventListener('click',eliminarCurso);  
+     for (var i = 0; i < elementscarrito.length; i++) {
+          elementscarrito[i].addEventListener('click', eliminarCurso);
      }
 
- 
+
 }
 
 
@@ -194,25 +193,25 @@ function vaciarCarrito() {
 }
 
 
-function GetDatosCurso() {
-     
-console.log('cargando...')
+async function GetDatosCurso() {
+
+     console.log('cargando...')
      const url = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}`;
-   
-     fetch(url, {
-       headers: new Headers({
-         'Authorization': 'Bearer ' + stringJWT
-       })
+
+     await fetch(url, {
+          headers: new Headers({
+               'Authorization': 'Bearer ' + stringJWT
+          })
      })
-       .then(respuesta => respuesta.json())
-       .then(resultado => {
-         mostrarDatos2(resultado);
-       })
-   }
+          .then(respuesta => respuesta.json())
+          .then(resultado => {
+               mostrarDatos2(resultado);
+          })
+}
 
 
-   function mostrarDatos2(datos) {
-     
+function mostrarDatos2(datos) {
+
      console.log('mostrar datos')
 
      datos.forEach(curso => {
@@ -230,10 +229,10 @@ console.log('cargando...')
 
      var elementscarritos = document.getElementsByClassName("deletecurso");
 
-     for(var i=0;i<elementscarritos.length;i++){
-          elementscarritos[i].addEventListener('click',eliminarCurso);  
+     for (var i = 0; i < elementscarritos.length; i++) {
+          elementscarritos[i].addEventListener('click', eliminarCurso);
      }
-     
+
 }
 
 

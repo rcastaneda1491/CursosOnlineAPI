@@ -30,7 +30,6 @@ window.onload = () => {
     } else {
         GetDatos();
     }
-
 }
 
 function GetDatos() {

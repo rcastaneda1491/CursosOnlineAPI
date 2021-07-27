@@ -27,11 +27,11 @@ function CerrarSesion() {
 };
 
 
-function GetDatos() {
+async function GetDatos() {
 
   const url = `https://localhost:44328/api/CursoEstudiante`;
 
-  fetch(url, {
+  await fetch(url, {
     headers: new Headers({
       'Authorization': 'Bearer ' + stringJWT
     })
@@ -42,7 +42,7 @@ function GetDatos() {
     })
 }
 
-function searchCursos() {
+async function searchCursos() {
   document.getElementById('alert').style.display = 'none';
   if (searchInput.value == "") {
     document.getElementById("lista-cursos").innerHTML = "";
@@ -52,7 +52,7 @@ function searchCursos() {
     document.getElementById("lista-cursos").innerHTML = "";
     const url = `https://localhost:44328/api/BuscadorEstudiante?nombreCurso=${searchInput.value}`;
 
-    fetch(url, {
+    await fetch(url, {
       headers: new Headers({
         'Authorization': 'Bearer ' + stringJWT
       })
@@ -81,7 +81,7 @@ function mostrarDatos(datos) {
         <h4 class="card-title"">${curso.nombre}</h4>
         <p>${curso.descripcion}</p>
         <p>Duracion: ${curso.duracion}</p>
-        <a href="#" class="u-full-width button-primary button input agregar-carrito addcarrito" data-id="${curso.idCurso}">$${curso.costoVenta}</a>
+        <a style="background-color: #09297C; color: white;" class="u-full-width button input agregar-carrito addcarrito" data-id="${curso.idCurso}">$${curso.costoVenta}</a>
       </div>
       </div>
     </div> 

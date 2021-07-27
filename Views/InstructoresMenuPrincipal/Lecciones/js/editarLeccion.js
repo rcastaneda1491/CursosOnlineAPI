@@ -100,7 +100,6 @@ function validarDatos() {
 }
 
 async function actualizarLeccion() {
-
     mostrarSpinner();
 
     let codigoVideo = getCodigoVideo('v');

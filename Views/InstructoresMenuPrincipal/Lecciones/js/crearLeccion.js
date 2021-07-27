@@ -68,7 +68,6 @@ function validarDatos() {
 }
 
 async function agregarLeccion() {
-
     mostrarSpinner();
 
     let codigoVideo = getCodigoVideo('v');
