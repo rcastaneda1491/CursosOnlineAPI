@@ -67,8 +67,8 @@ function mostrarDatos(datos) {
               <td>${instructor.nit}</td>
               <td>${instructor.rol}</td>
               <td style="color: ${color}">${status}</td>
-              <td class="block"><button class="btn" id="detalle" data-id="${instructor.idUsuario}"> Bloquear/Desbloquear </button></td>
-              <td><button class="btn" id="detalle" data-id="${instructor.idUsuario}"> Ver Cursos </button></td>
+              <td class="block"><button class="btn" id="detalle" data-id="${instructor.idUsuario}" style="background-color: #4F73CF; color:white;"> Bloquear/Desbloquear </button></td>
+              <td><button class="btn" id="detalle" data-id="${instructor.idUsuario}" style="background-color: #4F73CF; color:white;"> Ver Cursos </button></td>
             </tr>
         `;
         cardListElement.innerHTML += card;
