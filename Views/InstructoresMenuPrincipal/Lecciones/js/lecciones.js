@@ -74,8 +74,8 @@ function mostrarLecciones(lecciones) {
                 <div class="card-body">
                   <h5 class="card-title">${titulo}</h5>
                   <center><p class="card-text">${descripcion} | Duración: ${duracion} minutos</p>
-                  <button onclick="visualizarVideoComentarios('${enlace}',${idLeccion});" class="btn btn-success">Visualizar</button>
-                  <a href="./editarLeccion.html?idCurso=${idCurso}&idLeccion=${idLeccion}" class="btn btn-warning">Editar</a>
+                  <button onclick="visualizarVideoComentarios('${enlace}',${idLeccion});" class="btn" style="background-color: #4F73CF; color:white;">Visualizar</button>
+                  <a href="./editarLeccion.html?idCurso=${idCurso}&idLeccion=${idLeccion}" class="btn" style="background-color:#FFDE59;">Editar</a>
                   <button class="btn btn-danger" onclick="confimarEliminar(${idLeccion});">Eliminar</button></center>
                 </div>
             </div>
@@ -118,11 +118,12 @@ async function visualizarVideoComentarios(codigoVideo,idLeccion){
 
     var video = document.createElement('iframe');
 
-    video.width = "660px";
-    video.height = "415px";
+    video.width = "98%";
+    video.height = "98%";
     video.id="visualizador";
     video.title="YouTube video player";
     video.frameborder="0";
+    video.allowFullscreen="1";
     video.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;";
     video.src = `https://www.youtube.com/embed/${codigoVideo}?&autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&rel=0`;
 

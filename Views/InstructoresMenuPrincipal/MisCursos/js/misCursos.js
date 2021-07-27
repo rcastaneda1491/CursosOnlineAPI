@@ -64,12 +64,13 @@ function mostrarCursos(cursos) {
                 <p class="card-text">${descripcion}
                 <hr>
                 Duracion: ${duracion} - Costo: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
-                <div class="d-grid gap-2">
-                    <a href="../Lecciones/lecciones.html?idCurso=${idCurso}" class="btn btn-info" type="button">Ir</a>
-                </div>
-                <br>
-                <a href="./editarCurso.html?idCurso=${idCurso}" class="btn btn-warning">Editar Curso</a>
+                <a href="./editarCurso.html?idCurso=${idCurso}" class="btn" style="background-color:#FFDE59;">Editar Curso</a>
                 <button class="btn btn-danger" onclick="confimarEliminar(${idCurso});">Eliminar Curso</button>
+                <br>
+                <br>
+                <div class=""d-flex justify-content-center">
+                    <a href="../Lecciones/lecciones.html?idCurso=${idCurso}" class="btn" type="button" style="width: 40%; background-color: #4F73CF; color:white;">Ir</a>
+                </div>
             </div>
             <div class="card-footer text-muted">
                 Cantidad de Estudiantes Inscritos: ${cantidadEstudiantes}

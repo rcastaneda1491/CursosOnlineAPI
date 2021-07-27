@@ -112,17 +112,15 @@ a {
 
 .video{
   float: left;
-  background-color: #fac32c;
+  background-color: black !important;
   margin-top: 10px;
   margin-left: 1%;
   width: 70%;
   height: 446px;
   border-radius: 15px;
-
   display: flex;
   justify-content: center;
-
-  padding-top: 1%
+  align-items: center;
 }
 
 .listadoCursos{
@@ -185,8 +183,14 @@ a {
 
 .seleccionarLeccion h1{
   font-size: 20px;
-  padding-top: 50%;
-  text-decoration: underline black;
+  color: lightgray;
+  text-align: center;
+}
+
+.seleccionarLeccion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .comentario{

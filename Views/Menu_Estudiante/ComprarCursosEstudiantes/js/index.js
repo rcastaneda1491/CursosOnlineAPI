@@ -103,15 +103,8 @@ function GenerarFactura(){
             })
         })
             .then(respuesta => respuesta)
-            .then(resultado => {
-            })
-    
-            
-            setTimeout(GenerarCompra(), 8000);  
+            .then(setTimeout(GenerarCompra(), 8000))  
     }
-
- 
-        
 }
 
 function GenerarCompra(){
