@@ -39,6 +39,10 @@
                     <a href="../MisCursos/misCursos.html" class="nav-link">Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
 
+                <div class="nav flex-column flex-md-row">
+                    <a href="../Perfil/perfilUsuario.html" class="nav-link" id="seccion-cursos">Perfil</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                  </div>
+
                 <!-- Elementos a la derecha-->
                 <div class="nav ms-auto text-white flex-column flex-md-row">
                     <a href="../../Index.html" onclick="CerrarSesion();" class="nav-link">Salir</a>
@@ -50,9 +54,16 @@
     <!-- ---------------------------------------- FIN BARRA DE NAVEGACION ---------------------------------------- -->
     <!-- --------------------------------------------------------------------------------------------------------- -->
 
-        <div class="d-flex justify-content-center boton-Agregar" style="margin-top: 100px; margin-bottom: 20px;">
+    <div class="cont" style=" margin-top: 90px;"></div>
+        <div style="text-align: center; color: white;" id="titulo">
+
+        </div>
+
+        <div class="d-flex justify-content-center boton-Agregar" style="margin-top: 30px; margin-bottom: 20px;">
             <button onclick="agregarLeccion();" class="btn" style="background-color: #09297C; color: white; width: 50%;" type="button">Agregar Lección</button>
         </div>
+
+        
     
         <div class="video" style=" background-color: #BEC0C6;" id="contenedorVideo">
 
@@ -80,14 +91,6 @@
         </div>
         <div class="comentarios" style="background-color: #ABB8D8" id="comentarios">
 
-            <!--<div class="comentario">
-                <h1> ⚫️ Usuario: ${nombresApellidos} | Id: ${idUsuarioEstudiante}</h1>
-                <h2>Comentario: ${mensaje}</h2>
-                <hr>
-                <h2 id="respuesta">Respuesta: ${respuesta} 🔵 <button onclick="actualizarRespuesta(idComentario);"> <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </button></h2>
-                <br>
-                <input style="display: none;" ></input>
-            </div>-->
 
         </div>
     
