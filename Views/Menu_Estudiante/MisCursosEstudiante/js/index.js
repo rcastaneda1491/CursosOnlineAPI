@@ -18,8 +18,11 @@ function parseJwt(token) {
   }
   
   window.onload = () => {
+    if (jwt.rol != "estudiante") {
+      history.back();
+  } else {
     GetDatosMisCursos();
-   
+  }
   }
 
   function GetDatosMisCursos() {

@@ -15,7 +15,7 @@
         <div class="container">
             <!-- Logo -->
             <div class="navbar-brand">
-                <img src="../../img/logo-blanco.svg" alt="Logo">
+                <img src="../img/logo-blanco.svg" alt="Logo" style="width: 170px;">
             </div>
             <!-- Btn -->
             <button 
@@ -32,17 +32,20 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <!-- Elementos a la izquierda-->
                 <div class="nav flex-column flex-md-row">
-                    <a href="../menuPrincipalInstructor.html" class="nav-link">Menú Principal</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                    <a href="../index.html" class="nav-link">Menú Principal</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
 
                 <div class="nav flex-column flex-md-row">
-                    <a href="../MisCursos/misCursos.html" class="nav-link">Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                    <a href="../MisCursosEstudiante/index.html" class="nav-link active" >Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
 
                 <div class="nav flex-column flex-md-row">
-                    <a href="./index.html" class="nav-link">Estadisticas</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                    <a href="../Perfil_Estudiante/index.html" class="nav-link ">Perfil</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
 
+                <div class="nav flex-column flex-md-row">
+                    <a href="../FacturasEstudiante/index.html" class="nav-link ">Facturas</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                </div>
                 <!-- Elementos a la derecha-->
                 <div class="nav ms-auto text-white flex-column flex-md-row">
                     <a href="../../Index.html" onclick="CerrarSesion();" class="nav-link">Salir</a>
@@ -54,7 +57,12 @@
     <!-- ---------------------------------------- FIN BARRA DE NAVEGACION ---------------------------------------- -->
     <!-- --------------------------------------------------------------------------------------------------------- -->
 
+    
+
     <div class="cont" style=" margin-top: 100px;">
+        <div style="text-align: center; color: white;" id="titulo">
+
+        </div>
     
         <div class="video" style=" background-color: black;" id="contenedorVideo">
 
@@ -69,9 +77,22 @@
 
 
         </div>
-        <div class="comentarios" style="background-color: #ABB8D8">
-            <h1> Comentarios</h1>
+        <div class="comentarios">
+            <div id="divpregunta" style="display: none; width: 100%;background-color: #ABB8D8">
+                <input 
+                style="width: 90% !important;
+                margin: 5px 5px 5px 5px; 
+                height: 40px; padding-left: 10px;"
+                id="pregunta" type="text" placeholder="Escribe tu comentario">
+                <a onclick="enviarpregunta()" id="send-comment" ><img style="width: 30px;" src="./img/send.svg" alt="Enviar"></a>       
+            </div>
+            <div style="background-color: #ABB8D8" id="comentarios">
+            </div>
+
+            
+                   
         </div>
+        
     </div>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
         <script src="./js/lecciones.js"></script>

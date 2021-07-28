@@ -4,6 +4,7 @@ const listaCursos = document.querySelector('#lista-cursos');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 let articulosCarrito = [];
 let idsMisCursos = [];
+let carritocursos = [];
 let validate;
 
 
@@ -20,23 +21,40 @@ function cargarEventListeners() {
 
      // NUEVO: Contenido cargado
      document.addEventListener('DOMContentLoaded', () => {
-          GetDatosCurso();
+          if (jwt.rol != "estudiante") {
+               history.back();
+          } else {
+               GetDatosCurso();
 
-          carritoHTML();
+               //GetDatosCarrito();
 
-          GetDatosMisCursos();
+               carritoHTML();
+
+               GetDatosMisCursos();
+          }
      });
 }
 
 
 // Función que añade el curso al carrito
 function agregarCurso(e) {
-     console.log(idsMisCursos);
+     debugger;
+     console.log(carritocursos);
      validate = 0;
      e.preventDefault();
      // Delegation para agregar-carrito
      if (e.target.classList.contains('agregar-carrito')) {
           const curso = e.target.parentElement.parentElement;
+
+          for (i = 0; i < carritocursos.length; i++) {
+               if (carritocursos[i] == curso.querySelector('a').getAttribute('data-id')) {
+
+                    alert('Ya tienes este curso en el carrito')
+                    validate = 1;
+                    break;
+               }     
+          } 
+
           for (i = 0; i < idsMisCursos.length; i++) {
                if (idsMisCursos[i] == curso.querySelector('a').getAttribute('data-id')) {
 
@@ -46,7 +64,11 @@ function agregarCurso(e) {
                }
           }
 
+          
+          
+
           if (validate != 1) {
+               //carritocursos.push(curso.querySelector('a').getAttribute('data-id'));
                leerDatosCurso(curso);
                window.location.reload();
           }
@@ -54,6 +76,8 @@ function agregarCurso(e) {
           // Enviamos el curso seleccionado para tomar sus datos        
      }
 }
+
+          
 
 async function GetDatosMisCursos() {
 
@@ -159,6 +183,7 @@ function carritoHTML() {
      vaciarCarrito();
 
      articulosCarrito.forEach(curso => {
+          
           const row = document.createElement('tr');
           row.innerHTML = `
 
@@ -169,6 +194,7 @@ function carritoHTML() {
                </td>
           `;
           contenedorCarrito.appendChild(row);
+          
      });
 
      var elementscarrito = document.getElementsByClassName("deletecurso");
@@ -215,6 +241,8 @@ function mostrarDatos2(datos) {
      console.log('mostrar datos')
 
      datos.forEach(curso => {
+          carritocursos.push(curso.idCurso);
+ 
           const row = document.createElement('tr');
           row.innerHTML = `
 

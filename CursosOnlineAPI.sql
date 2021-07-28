@@ -118,7 +118,7 @@ select * from Lecciones;
 select * from Factura;
 select * from Compra;
 SELECT * FROM CarritoCompra ;
-SELECT * FROM Cursos;
+
 SELECT * FROM Lecciones;
 
 select * from Comentario;
@@ -128,17 +128,20 @@ select * from Usuarios;
 --delete from CarritoCompra where idUsuario=2
 
 INSERT INTO Usuarios(nombres,apellidos,correo,noTelefono,nit,clave,rol)
-	VALUES('admin','admin','admin@admin.com','585596586','1225285','12345','administrador');
+	VALUES('Julio','Garcia','jucegaro@gmail.com','123','1225285','12345','instructor');
 
 INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
-	Values('Curso ACER','Curso de computadoras','100','120',1,1);
+	Values('Curso JS','Basico','100','120',1,1);
 
 INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
-	Values('Curso 11','Intermedio','50','60',1,1);
+	Values('Curso 3','Intermedio','50','60',1,1);
 
 INSERT INTO Lecciones(idCurso,titulo,descripcion,duracion,enlace)
-	Values(1,'Curso Básico de Javascript 5. ','Tipos de Datos',15.27,'https://www.youtube.com/watch?v=Zx-RuG66X5M&list=PLhSj3UTs2_yVC0iaCGf16glrrfXuiSd0G&index=3');
-
-
-INSERT INTO Comentario(idLeccion, idUsuarioEstudiante, idUsuarioInstructor, mensaje, respuesta)
-	VALUES(2, 3, 2, 'Tengo una duda 2', 'Duda resuelta');
+	Values(5,'Curso Básico de Javascript 5. ','Tipos de Datos',15.27,'https://www.youtube.com/watch?v=Zx-RuG66X5M&list=PLhSj3UTs2_yVC0iaCGf16glrrfXuiSd0G&index=3');
+	select * from CarritoCompra
+	select * from Comentario
+	SELECT * FROM Lecciones
+	SELECT * FROM Cursos;
+	select * from Usuarios
+INSERT INTO Comentario(idLeccion, idUsuarioEstudiante, idUsuarioInstructor, mensaje)
+	VALUES(8, 2, 4, '');
