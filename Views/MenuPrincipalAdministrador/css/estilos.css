@@ -1,25 +1,30 @@
 :root {
-    --color-blue-medium: #8fe2e4;
-    --color-purple: #632ce7;
-    --color-gray: #ccc;
-    --color-gray-medium: #f8f9fa;
-    --color-yellow: #fac32c;
-  
-    position: relative;
-    min-height: 100%;
-  }
-  
-  body {
-    background-color: #4F73CF;
-  }
-  
-  a {
-    color: inherit;
-  }
-  
-  .container > .row {
-    margin-bottom: 3rem;
-  }
+  --color-blue-medium: #8fe2e4;
+  --color-purple: #632ce7;
+  --color-gray: #ccc;
+  --color-gray-medium: #f8f9fa;
+  --color-yellow: #fac32c;
+
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: #4F73CF;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: inherit;
+}
+
+.container > .row {
+  margin-bottom: 3rem;
+}
   /* ------ ------------------- ------- */
   /* ------ Barra De Navegacion ------- */
   /* ------ ------------------- ------- */
@@ -61,7 +66,6 @@
     padding: 0 20px;
     box-sizing: border-box;
     display: block;
-    background-color: #4F73CF;
 
     margin-top: 100px;
 
@@ -105,3 +109,7 @@
   border-color: brown;
   border-style: outset;
 }*/
+
+.buttonHover:hover{
+  background-color: #2752C3 !important;
+}

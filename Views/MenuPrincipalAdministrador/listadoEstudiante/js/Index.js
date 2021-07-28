@@ -112,3 +112,30 @@ async function ModificarEstado(e) {
 
 }
 
+async function searchCursos() {
+    document.getElementById('alert').style.display = 'none';
+    if (searchInput.value == "") {
+      document.getElementById("lista-cursos").innerHTML = "";
+      GetDatos();
+    }
+    else {
+      document.getElementById("lista-cursos").innerHTML = "";
+      const url = `https://localhost:44328/api/BuscadorEstudiantesAdmin?correoEstudiante=${searchInput.value}`;
+  
+      await fetch(url, {
+        headers: new Headers({
+          'Authorization': 'Bearer ' + stringJWT
+        })
+      })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+          mostrarDatos(resultado);
+          if (Object.keys(resultado).length == 0) {
+            document.getElementById('alert').style.display = 'block';
+          } else {
+  
+            document.getElementById('alert').style.display = 'none';
+          }
+        })
+    }
+}

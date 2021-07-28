@@ -32,7 +32,7 @@ a {
 }
 
 .navbar-main {
-  background-color: black;
+  background-color: #0B0E17;
 }
 
 .navbar-main a {
@@ -90,6 +90,7 @@ a {
 
 #main-text {
   width: 50%;
+  color: #0B0E17;
   padding: 0px 70px 0px 70px;
 }
 

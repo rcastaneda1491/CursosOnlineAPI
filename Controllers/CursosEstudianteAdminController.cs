@@ -12,7 +12,7 @@ namespace CursosOnlineAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CursosEstudianteAdminController : ControllerBase
     {
         [HttpGet]

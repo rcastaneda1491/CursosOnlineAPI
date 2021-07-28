@@ -46,17 +46,26 @@ const signIn = async (e) => {
         }
 
         if(stringJWT == ""){
+            alerta.textContent = "Correo o Contraseña Incorrecta"
             alerta.style.display = 'block';
             setTimeout(() => {
                 alerta.style.display = 'none';
             }, 3000);
-        }else if(jwt.rol == "estudiante"){
-            window.location.href = "../../Menu_Estudiante/index.html";
-        }else if(jwt.rol == "instructor"){
-            window.location.href = "../../InstructoresMenuPrincipal/menuPrincipalInstructor.html";
-        }else if(jwt.rol == "administrador"){
-            window.location.href = "../../MenuPrincipalAdministrador/Index.html";
-        };
+        }else if(jwt.estado == "True"){
+            if(jwt.rol == "estudiante"){
+                window.location.href = "../../Menu_Estudiante/index.html";
+            }else if(jwt.rol == "instructor"){
+                window.location.href = "../../InstructoresMenuPrincipal/menuPrincipalInstructor.html";
+            }else if(jwt.rol == "administrador"){
+                window.location.href = "../../MenuPrincipalAdministrador/Index.html";
+            };
+        }else{
+            alerta.textContent = "Usuario Bloqueado o Inactivo"
+            alerta.style.display = 'block';
+            setTimeout(() => {
+                alerta.style.display = 'none';
+            }, 3000);
+        }
     } catch (err) {
         console.error(err);
     }
