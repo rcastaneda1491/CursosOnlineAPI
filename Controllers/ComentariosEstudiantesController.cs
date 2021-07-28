@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +13,8 @@ namespace CursosOnlineAPI.Controllers
     [ApiController]
     [EnableCors("permitir")]
     [Authorize]
-    public class ComentariosInstructorController : ControllerBase
+    public class ComentariosEstudiantesController : ControllerBase
     {
-
         [HttpGet]
         public ActionResult Get(int? idLeccion)
         {
@@ -32,23 +30,24 @@ namespace CursosOnlineAPI.Controllers
             }
         }
 
-        [HttpPut]
-        public ActionResult Put(int idComentario, int idInstructor ,string repuesta)
+        [HttpPost]
+        public ActionResult Post(int IdLeccion, int IdEstudiante, int IdInstructor, string mensaje)
         {
             using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
             {
-                Models.Comentario datos = db.Comentarios.Find(idComentario);
+                Models.Comentario comentario = new Models.Comentario();
 
-                datos.IdUsuarioInstructor = idInstructor;
-                datos.Respuesta = repuesta;
+                comentario.IdLeccion = IdLeccion;
+                comentario.IdUsuarioEstudiante = IdEstudiante;
+                comentario.IdUsuarioInstructor = IdInstructor;
+                comentario.Mensaje = mensaje;
 
-                db.Entry(datos).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.Comentarios.Add(comentario);
                 db.SaveChanges();
 
-                return Ok("Datos Actualizados Correctamente");
-
             }
-        }
 
+            return Ok("El comentario se añadio correctamente");
+        }
     }
 }
