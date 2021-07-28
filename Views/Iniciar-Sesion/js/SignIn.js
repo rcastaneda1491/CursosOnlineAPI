@@ -1,7 +1,7 @@
-/*function SignIn(){
-    Cookies.get("jwt");
-    Cookies.set("jwt", "casca");
-}*/
+/*
+    Desarrollador: Rogelio Raúl Castañeda Flores
+*/
+
 const URL = 'https://localhost:44328/api/Usuarios/SignIn';
 const emailInput = document.getElementById("inputEmail");
 const passwordInput = document.getElementById("inputPassword");

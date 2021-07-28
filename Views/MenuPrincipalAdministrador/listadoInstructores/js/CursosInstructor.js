@@ -1,3 +1,7 @@
+/* 
+    Desarrollador: Rogelio Raúl Castañeda Flores
+*/
+
 const cardListElement = document.getElementById("lista-cursos");
 const searchInput = document.getElementById("search");
 

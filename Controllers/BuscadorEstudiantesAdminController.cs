@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/*
+    Desarrollador: Rogelio Raúl Castañeda Flores 
+*/
+
 namespace CursosOnlineAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class BuscadorEstudiantesAdminController : Controller
+    public class BuscadorEstudiantesAdminController : ControllerBase
     {
         [HttpGet]
         public ActionResult Get(string correoEstudiante)

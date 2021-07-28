@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
+/*
+    Desarrollador: Rogelio Raúl Castañeda Flores 
+*/
+
 namespace CursosOnlineAPI
 {
     public class JwtAuthenticationManager : IJwtAuthenticationManager

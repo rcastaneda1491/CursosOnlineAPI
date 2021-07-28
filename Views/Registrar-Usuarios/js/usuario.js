@@ -1,3 +1,7 @@
+/* 
+    Desarrollador: Rogelio Raúl Castañeda Flores
+*/
+
 const submitButton = document.getElementById("submitButton");
 const form = document.getElementById("form");
 const correoInput = document.getElementById("inputEmail");
