@@ -239,9 +239,15 @@ async function imprimirComentarios(comentarios){
                 <hr>
                 <h2 id="respuesta">Respuesta: ${respuesta} 🔵 <button onclick="actualizarRespuesta(${idComentario});"> <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </button></h2>
                 <br>
-                <input name="${idComentario}" style="display: none;" value="${respuesta}" placeholder="Escribe aquí tu respuesta"></input>
-                <button style="display: none; margin-top: 10px;" id="${idComentario}" onclick="actualizarRespuestaTerminada(${idComentario});" class="btn btn-success">Guardar</button>
+                
+                <input 
+                style="width: 90% !important;
+                margin: 5px 5px 5px 5px; 
+                height: 40px; padding-left: 10px; display: none;"
+                name="${idComentario}" value="${respuesta}" placeholder="Escribe aquí tu respuesta"></input>
+                <a onclick="actualizarRespuestaTerminada(${idComentario});" id="${idComentario}" style="display: none;" ><img style="width: 30px;" src="../../Menu_Estudiante/MisCursosEstudiante/img/send.svg" alt="Enviar"></a>       
             </div>
+            
         `;
     })
 
@@ -249,21 +255,21 @@ async function imprimirComentarios(comentarios){
 
 function actualizarRespuesta(idComentario){
 
-    const btnGuardarRespuesta = document.querySelector(`button[id="${idComentario}"]`);
+    const btnGuardarRespuesta = document.querySelector(`a[id= "${idComentario}"]`);
     const inputEditarRespuesta = document.querySelector(`input[name="${idComentario}"]`);
 
     if(inputEditarRespuesta.value === 'Sin respuesta'){
         inputEditarRespuesta.value = '';
     }
 
-    inputEditarRespuesta.style.display = 'block';
-    btnGuardarRespuesta.style.display = 'block';
+    inputEditarRespuesta.style.display = 'inline';
+    btnGuardarRespuesta.style.display = 'inline';
 }
 
 async function actualizarRespuestaTerminada(idComentario){
 
+    const btnGuardarRespuesta = document.querySelector(`a[id= "${idComentario}"]`);
     const inputEditarRespuesta = document.querySelector(`input[name="${idComentario}"]`);
-    const btnGuardarRespuesta = document.querySelector(`button[id="${idComentario}"]`);
 
     if(inputEditarRespuesta.value === ''){
         alert('La respuesta no puede estar vacía');
