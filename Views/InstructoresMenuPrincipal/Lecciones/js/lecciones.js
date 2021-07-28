@@ -38,9 +38,54 @@ const contenedorVideo = document.querySelector('#contenedorVideo');
 
 const alerta = document.querySelector('#alert');
 
+const titulocurso = document.querySelector('#titulo');
+
 
 window.onload = () => {
     obtenerLecciones();
+    GetTitulo();
+}
+
+async function GetTitulo(){
+    const url = `https://localhost:44328/api/DatosCurso?IdCurso=${idCurso}`;
+
+    await fetch(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            mostrartitulo(resultado);
+        })
+}
+
+function mostrartitulo(datos) {
+    
+
+    datos.forEach(curso => {
+        const { idCurso, nombre, descripcion, duracion, costo, costoVenta, cantidadEstudiante,estado,idUsuario } = curso;
+
+        titulocurso.innerHTML += `
+            <h1>${nombre}</h1>
+            <h5>${descripcion}</h5>
+        `;
+    })
+}
+
+
+function mostrartitulo(datos) {
+    
+
+    datos.forEach(curso => {
+        const { idCurso, nombre, descripcion, duracion, costo, costoVenta, cantidadEstudiante,estado,idUsuario } = curso;
+
+        titulocurso.innerHTML += `
+            <h1>${nombre}</h1>
+            <h5>${descripcion}</h5>
+        `;
+    })
 }
 
 function agregarLeccion(){
