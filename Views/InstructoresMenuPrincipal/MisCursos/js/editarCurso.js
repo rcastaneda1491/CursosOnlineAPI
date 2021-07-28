@@ -71,9 +71,9 @@ function mostrarDatos(cursos) {
         costoEstudiantesI.value = costoVenta;
 
         if (estado == true) {
-            estadoI.value = 1;
-        } else {
             estadoI.value = 0;
+        } else {
+            estadoI.value = 1;
         }
     })
 }
@@ -101,9 +101,10 @@ function validarDatos() {
 async function editarCurso() {
     let estadoLetras;
 
-    if (estado.value = 1) {
+    if (estadoI.value == 0) {
         estadoLetras = true;
-    } else {
+    } 
+    if(estadoI.value == 1) {
         estadoLetras = false;
     }
 

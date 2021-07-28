@@ -58,9 +58,10 @@ async function agregarCurso() {
 
     let estadoLetras;
 
-    if (estado.value = 1) {
+    if (estado.value == 0) {
         estadoLetras = true;
-    } else {
+    } 
+    if(estado.value == 1) {
         estadoLetras = false;
     }
 

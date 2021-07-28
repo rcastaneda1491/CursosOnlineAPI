@@ -214,6 +214,10 @@ a {
   float: right;
 }
 
+.comentario input{
+  width: 100%;
+}
+
 
 
 /* ------ ------------------- ------- */
