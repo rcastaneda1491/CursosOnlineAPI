@@ -30,7 +30,11 @@ if (stringJWT) {
 let IdUsuario;
 
 window.onload = () => {
+    if (jwt.rol != "estudiante") {
+        history.back();
+    } else {
     GetDatos();
+    }
 }
 
 function CerrarSesion() {

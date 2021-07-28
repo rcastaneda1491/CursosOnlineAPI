@@ -39,10 +39,6 @@
                     <a href="../MisCursos/misCursos.html" class="nav-link">Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
 
-                <div class="nav flex-column flex-md-row">
-                    <a href="./index.html" class="nav-link">Estadisticas</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
-                </div>
-
                 <!-- Elementos a la derecha-->
                 <div class="nav ms-auto text-white flex-column flex-md-row">
                     <a href="../../Index.html" onclick="CerrarSesion();" class="nav-link">Salir</a>
@@ -85,11 +81,12 @@
         <div class="comentarios" style="background-color: #ABB8D8" id="comentarios">
 
             <!--<div class="comentario">
-                <h1> ⚫️ Usuario: Erick Eduardo Echeverría Garrido | 202100027</h1>
-                <h2>Comentario: Esto es un comentario del usuario</h2>
+                <h1> ⚫️ Usuario: ${nombresApellidos} | Id: ${idUsuarioEstudiante}</h1>
+                <h2>Comentario: ${mensaje}</h2>
                 <hr>
-                <h2 id="respuesta">Respuesta: Sin respuesta 🔵 <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </h2>
+                <h2 id="respuesta">Respuesta: ${respuesta} 🔵 <button onclick="actualizarRespuesta(idComentario);"> <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </button></h2>
                 <br>
+                <input style="display: none;" ></input>
             </div>-->
 
         </div>
