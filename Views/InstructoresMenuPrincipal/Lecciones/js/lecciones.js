@@ -30,6 +30,8 @@ if (stringJWT) {
 let idCurso = getParameterByName('idCurso');
 let idUsuarioObtenido = jwt.sub;
 
+let leccionEnProceso;
+
 const mostrar = document.querySelector('#listado');
 const mostrarComentarios = document.querySelector('#comentarios');
 const contenedorVideo = document.querySelector('#contenedorVideo');
@@ -106,6 +108,8 @@ async function confimarEliminar(id) {
 }
 
 async function visualizarVideoComentarios(codigoVideo,idLeccion){
+
+    leccionEnProceso = idLeccion;
     
     const visualizador = document.querySelector('#visualizador');
     const textoAlerta = document.querySelector('#textoAlerta');
@@ -128,26 +132,44 @@ async function visualizarVideoComentarios(codigoVideo,idLeccion){
     video.src = `https://www.youtube.com/embed/${codigoVideo}?&autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&rel=0`;
 
     contenedorVideo.appendChild(video);
-  
+
+    obtenerComentarios(idLeccion);
+
+        
+}
+
+async function obtenerComentarios(idLeccion){
+
     const urlComentarios = `https://localhost:44328/api/ComentariosInstructor?idLeccion=${idLeccion}`;
 
-        await fetch(urlComentarios, {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': 'Bearer ' + stringJWT
-            })
+    await fetch(urlComentarios, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
         })
-            .then(respuesta => respuesta.json())
-            .then(resultado => {
-                imprimirComentarios(resultado);
-            })
+    })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            imprimirComentarios(resultado);
+        })
 }
 
 async function imprimirComentarios(comentarios){
 
-    comentarios.forEach(async comentario => {
-        const { idUsuarioEstudiante, mensaje, respuesta} = comentario;
+    limpiarComentarios();
 
+    if(comentarios.length == 0){
+        mostrarComentarios.innerHTML += `
+        <div class="comentario">
+            <center><h1> -- Sin Comentarios -- </h1></center>
+        </div>
+        `
+        return;
+    }
+
+    comentarios.forEach(async comentario => {
+        const { idUsuarioEstudiante, idComentario , mensaje, respuesta} = comentario;
+        
         let nombresApellidos;
 
         var urlObtnerNombresDelEstudiante = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${idUsuarioEstudiante}`;
@@ -167,15 +189,67 @@ async function imprimirComentarios(comentarios){
 
         mostrarComentarios.innerHTML += `
         <div class="comentario">
-            <h1> ⚫️ Usuario: ${nombresApellidos} | ${idUsuarioEstudiante}</h1>
-            <h2>Comentario: ${mensaje}</h2>
-            <hr>
-            <h2 id="respuesta">Respuesta: ${respuesta} 🔵 <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </h2>
-            <br>
-        </div>
+                <h1> ⚫️ Usuario: ${nombresApellidos} | Id: ${idUsuarioEstudiante}</h1>
+                <h2>Comentario: ${mensaje}</h2>
+                <hr>
+                <h2 id="respuesta">Respuesta: ${respuesta} 🔵 <button onclick="actualizarRespuesta(${idComentario});"> <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </button></h2>
+                <br>
+                <input name="${idComentario}" style="display: none;" value="${respuesta}" placeholder="Escribe aquí tu respuesta"></input>
+                <button style="display: none; margin-top: 10px;" id="${idComentario}" onclick="actualizarRespuestaTerminada(${idComentario});" class="btn btn-success">Guardar</button>
+            </div>
         `;
     })
 
+}
+
+function actualizarRespuesta(idComentario){
+
+    const btnGuardarRespuesta = document.querySelector(`button[id="${idComentario}"]`);
+    const inputEditarRespuesta = document.querySelector(`input[name="${idComentario}"]`);
+
+    if(inputEditarRespuesta.value === 'Sin respuesta'){
+        inputEditarRespuesta.value = '';
+    }
+
+    inputEditarRespuesta.style.display = 'block';
+    btnGuardarRespuesta.style.display = 'block';
+}
+
+async function actualizarRespuestaTerminada(idComentario){
+
+    const inputEditarRespuesta = document.querySelector(`input[name="${idComentario}"]`);
+    const btnGuardarRespuesta = document.querySelector(`button[id="${idComentario}"]`);
+
+    if(inputEditarRespuesta.value === ''){
+        alert('La respuesta no puede estar vacía');
+
+        return;
+    }
+
+    var url = `https://localhost:44328/api/ComentariosInstructor?idComentario=${idComentario}&idInstructor=${idUsuarioObtenido}&repuesta=${inputEditarRespuesta.value}`;
+
+    await fetch(url, {
+        method: 'PUT',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
+
+    inputEditarRespuesta.style.display = 'none';
+    btnGuardarRespuesta.style.display = 'none';
+
+    alert("Comentario editado exitosamente");
+
+    obtenerComentarios(leccionEnProceso);
+    
+}
+
+
+
+function limpiarComentarios(){
+    while(mostrarComentarios.firstChild){
+        mostrarComentarios.removeChild(mostrarComentarios.firstChild);
+    }
 }
 
 

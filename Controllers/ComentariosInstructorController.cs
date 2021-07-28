@@ -32,5 +32,23 @@ namespace CursosOnlineAPI.Controllers
             }
         }
 
+        [HttpPut]
+        public ActionResult Put(int idComentario, int idInstructor ,string repuesta)
+        {
+            using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
+            {
+                Models.Comentario datos = db.Comentarios.Find(idComentario);
+
+                datos.IdUsuarioInstructor = idInstructor;
+                datos.Respuesta = repuesta;
+
+                db.Entry(datos).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.SaveChanges();
+
+                return Ok("Datos Actualizados Correctamente");
+
+            }
+        }
+
     }
 }

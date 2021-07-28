@@ -109,7 +109,34 @@ CREATE TABLE Comentario(
 		REFERENCES Usuarios(idUsuario),
 );
 
--- Erick
+-- Erick 2.0
+SELECT * FROM Usuarios;
+SELECT * FROM Cursos;
+SELECT * FROM Lecciones;
+
+
+SELECT * FROM DatosInstructor;
+
+
+INSERT INTO Usuarios(nombres,apellidos,correo,noTelefono,nit,clave,rol)
+	VALUES('Erick','Echeverria','erick@gmail.com','5896586','12585','12345','instructores');
+
+INSERT INTO Usuarios(nombres,apellidos,correo,noTelefono,nit,clave,rol)
+	VALUES('Alejandro','Solares','alejandro@gmail.com','59595','12585','12345','estudiante');
+
+INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
+	Values('Curso ACER','Curso de computadoras','100','120',1,1);
+
+INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
+	Values('Pasos para aprender Matematica','Curso matematica básica','50','60',1,1);
+
+INSERT INTO Comentario(idLeccion, idUsuarioEstudiante, idUsuarioInstructor, mensaje )
+	VALUES(1,2,3,'La suma es de enteros?');
+
+INSERT INTO Comentario(idLeccion, idUsuarioEstudiante, idUsuarioInstructor, mensaje )
+	VALUES(1,2,3,'Esto son las restas?');
+
+-- FIN ERICK
 SELECT * FROM Usuarios;
 SELECT * FROM DatosInstructor;
 

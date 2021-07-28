@@ -57,15 +57,20 @@ function mostrarCursos(cursos) {
             activoLetra = 'Deshabilitado';
         }
 
+        let gananciaGenerada = costoVenta * cantidadEstudiantes;
+
+        let duracionEnHoras = duracion / 60;
+        duracionEnHoras = +duracionEnHoras.toFixed(2);
+
         mostrar.innerHTML += `
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">${nombre}</h5>
                 <p class="card-text">${descripcion}
                 <hr>
-                Duracion: ${duracion} - Costo: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
+                Duracion: ${duracionEnHoras} hrs - Costo Asignado: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
                 <a href="./editarCurso.html?idCurso=${idCurso}" class="btn" style="background-color:#FFDE59;">Editar Curso</a>
-                <button class="btn btn-danger" onclick="confimarEliminar(${idCurso});">Eliminar Curso</button>
+                <button class="btn btn-danger" onclick="confimarEliminar(${idCurso},${cantidadEstudiantes},${duracion});">Eliminar Curso</button>
                 <br>
                 <br>
                 <div class=""d-flex justify-content-center">
@@ -73,7 +78,7 @@ function mostrarCursos(cursos) {
                 </div>
             </div>
             <div class="card-footer text-muted">
-                Cantidad de Estudiantes Inscritos: ${cantidadEstudiantes}
+                Cantidad de Estudiantes Inscritos: ${cantidadEstudiantes} | Ganancia Generada:${gananciaGenerada}
             </div>
         </div>
         <br>
@@ -81,9 +86,19 @@ function mostrarCursos(cursos) {
     })
 }
 
-async function confimarEliminar(id) {
-    const confirmar = confirm('¿ Desea eliminar el Curso ?')
+async function confimarEliminar(id, cantidadEstudiantes, duracion) {
+    
+    if(cantidadEstudiantes > 0){
+        alert('El Curso No se puede eliminar\nEl Curso ya ha sido comprado por estudiantes');
+        return;
+    }
 
+    if(duracion > 0){
+        alert('El Curso No se puede eliminar\nEl Curso aún contiene lecciones asignadas');
+        return;
+    }
+
+    const confirmar = confirm('¿ Desea eliminar el Curso ?')
     if (confirmar) {
 
         const url = `https://localhost:44328/api/CursosInstructor?IdCurso=${id}`;
@@ -100,8 +115,5 @@ async function confimarEliminar(id) {
             })
 
         location.reload();
-
-
-
     }
 }
