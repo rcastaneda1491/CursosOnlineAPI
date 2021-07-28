@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="nav flex-column flex-md-row">
-                    <a href="./MisCursos/misCursos.html" class="nav-link">Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                    <a href="./MisCursos/misCursos.html" class="nav-link" id="seccion-cursos">Mis Cursos</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
 
                 <!-- Elementos a la derecha-->
@@ -56,7 +56,7 @@
             <div class="col">
               <div class="card">
                 <img src="./img/Imagen1.gif" class="card-img-top" alt="...">
-                <div class="card-body">
+                <div class="card-body" id="carta-cursos">
                   <h5 class="card-title">Mis Cursos</h5>
                   <div class="d-grid gap-2">
                     <a href="./MisCursos/misCursos.html" class="btn btn-primary" type="button">Ir</a>
@@ -76,8 +76,12 @@
               </div>
             </div>
           </div>
+          <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; margin-top: 15px; display: none;">
+            Para poder Crear Cursos, por favor complete sus datos en el menú "Perfil"
+        </div>
     </div> 
-    
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="./menuPrincipalInstructor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
