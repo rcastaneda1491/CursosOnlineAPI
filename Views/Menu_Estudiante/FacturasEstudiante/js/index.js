@@ -49,11 +49,15 @@ function parseJwt(token) {
 function mostrarDatos(datos) {
 
     datos.forEach(factura => {
-        
+        var fechaSplit = factura.fecha.split("T");
+        var fecha = fechaSplit[0];
+        var horaSplit = fechaSplit[1].split(".");
+        var hora = horaSplit[0];
            const card = `
         <tr>
           <td>${factura.idFactura}</td>
-          <td>${factura.fecha}</td>
+          <td>${fecha}</td>
+          <td>${hora}</td>
           <td>${factura.total}</td>
           <td><button  class="btn block" id="detalle" data-id="${factura.idFactura}"> Ver Detalle </button></td>
         </tr>

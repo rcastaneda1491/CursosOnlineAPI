@@ -46,15 +46,17 @@ function llenar(datos) {
     datos.forEach(curso => {
       debugger;
       if(curso.estado == 1){
+        let duracionEnHoras = curso.duracion / 60;
+        duracionEnHoras = +duracionEnHoras.toFixed(2);
         const card = `
         <div class="col">
           <div class="card">
-          <div class="card-body">            
-            <h4 class="card-title"">${curso.nombre}</h4>
-            <p>${curso.descripcion}</p>
-            <p>Duracion: ${curso.duracion}</p>
-            <button class="btn view" id="boton-verleccion" data-id="${curso.idCurso}"> Ver Lecciones </button>
-          </div>
+            <div class="card-body">            
+              <h4 class="card-title"">${curso.nombre}</h4>
+              <p>${curso.descripcion}</p>
+              <p>Duracion: ${duracionEnHoras} hrs</p>
+              <button class="btn view" id="boton-verleccion" data-id="${curso.idCurso}"> Ver Lecciones </button>
+            </div>
           </div>
         </div> 
        `;
@@ -63,12 +65,12 @@ function llenar(datos) {
         const card2 = `
         <div class="col">
           <div class="card">
-          <div class="card-body">            
-            <h4 class="card-title"">${curso.nombre}</h4>
-            <p>${curso.descripcion}</p>
-            <p>Duracion: ${curso.duracion}</p>
-            <button class="btn btn-danger" disabled> Inactivo </button>
-          </div>
+            <div class="card-body">            
+              <h4 class="card-title"">${curso.nombre}</h4>
+              <p>${curso.descripcion}</p>
+              <p>Duracion: ${duracionEnHoras} hrs</p>
+              <button class="btn btn-danger" disabled> Inactivo </button>
+            </div>
           </div>
         </div> 
        `;

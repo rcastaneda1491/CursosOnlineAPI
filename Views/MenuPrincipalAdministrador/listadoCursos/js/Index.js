@@ -69,7 +69,8 @@ function mostrarDatos(datos) {
                 <td>${curso.costo}</td>
                 <td>${curso.costoVenta}</td>
                 <td>${curso.cantidadEstudiantes}</td>
-                <td>$.${curso.costoVenta * curso.cantidadEstudiantes}</td>
+                <td>$.${curso.costo * curso.cantidadEstudiantes}</td>
+                <td>$.${(curso.costoVenta * curso.cantidadEstudiantes) - (curso.costo * curso.cantidadEstudiantes)}</td>
                 <td style="color: ${color}">${status}</td>
                 <td><button class="btn block" id="detalle" data-id="${curso.idCurso}" style="background-color: #4F73CF; color:white;"> Bloquear/Desbloquear </button></td>
             </tr>

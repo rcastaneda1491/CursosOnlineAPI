@@ -78,13 +78,15 @@ async function searchCursos() {
 function mostrarDatos(datos) {
 
   datos.forEach(curso => {
+    let duracionEnHoras = curso.duracion / 60;
+    duracionEnHoras = +duracionEnHoras.toFixed(2);
     const card = `
     <div class="col">
       <div class="card">
       <div class="card-body">            
         <h4 class="card-title"">${curso.nombre}</h4>
         <p>${curso.descripcion}</p>
-        <p>Duracion: ${curso.duracion}</p>
+        <p>Duracion: ${duracionEnHoras} hrs</p>
         <a style="background-color: #09297C; color: white;" class="u-full-width button input agregar-carrito addcarrito" data-id="${curso.idCurso}">$${curso.costoVenta}</a>
       </div>
       </div>

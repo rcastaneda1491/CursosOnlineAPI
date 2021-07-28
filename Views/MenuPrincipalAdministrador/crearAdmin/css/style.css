@@ -19,6 +19,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
+  color: black;
   align-items: center;
 }
 
@@ -79,11 +80,9 @@ a {
 
   
   #container {
-    background-color: white;
     width: 50%;
     padding: 2.5em;
     border-radius: 30px;
-    background-color: #dfe0e6 !important;
     margin-top: 200px;
     margin-bottom: 150px;
   }

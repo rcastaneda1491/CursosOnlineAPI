@@ -11,7 +11,12 @@
   
   body {
     background-color: #4F73CF;
+    color: black;
   }
+  
+.card:hover {
+  color: #6644ed;
+}
   
   a {
     color: inherit;
