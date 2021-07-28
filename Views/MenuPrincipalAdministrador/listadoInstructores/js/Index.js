@@ -1,3 +1,7 @@
+/*
+    Desarrollador: Rogelio Raúl Castañeda Flores
+*/
+
 const cardListElement = document.getElementById("lista-cursos");
 const searchInput = document.getElementById("search");
 
@@ -68,17 +72,28 @@ function mostrarDatos(datos) {
               <td>${instructor.rol}</td>
               <td style="color: ${color}">${status}</td>
               <td class="block"><button class="btn" id="detalle" data-id="${instructor.idUsuario}" style="background-color: #4F73CF; color:white;"> Bloquear/Desbloquear </button></td>
-              <td><button class="btn" id="detalle" data-id="${instructor.idUsuario}" style="background-color: #4F73CF; color:white;"> Ver Cursos </button></td>
+              <td><button class="btn cursosBoton" id="detalle" data-id="${instructor.idUsuario}" style="background-color: #4F73CF; color:white;"> Ver Cursos </button></td>
             </tr>
         `;
         cardListElement.innerHTML += card;
     })
 
     var elements = document.getElementsByClassName("block");
-
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', ModificarEstado);
     }
+
+    var elementsCursos = document.getElementsByClassName("cursosBoton");
+    for (var i = 0; i < elementsCursos.length; i++) {
+
+        elementsCursos[i].addEventListener('click', EnviarACursos);
+    }
+}
+
+function EnviarACursos(e) {
+    const estudiante = e.target.parentElement.parentElement;
+    const instructorId = estudiante.querySelector('button').getAttribute('data-id');
+    window.location.href = (`./CursosInstructor.html?IdInstructor=${instructorId}`);
 }
 
 function ModificarEstado(e) {
@@ -96,4 +111,32 @@ function ModificarEstado(e) {
         .then(respuesta => respuesta.json())
     alert("Estado actualizado correctamente", window.location.reload());
 
+}
+
+async function searchCursos() {
+    document.getElementById('alert').style.display = 'none';
+    if (searchInput.value == "") {
+      document.getElementById("lista-cursos").innerHTML = "";
+      GetDatos();
+    }
+    else {
+      document.getElementById("lista-cursos").innerHTML = "";
+      const url = `https://localhost:44328/api/BuscadorInstructoresAdmin?correoInstructor=${searchInput.value}`;
+  
+      await fetch(url, {
+        headers: new Headers({
+          'Authorization': 'Bearer ' + stringJWT
+        })
+      })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+          mostrarDatos(resultado);
+          if (Object.keys(resultado).length == 0) {
+            document.getElementById('alert').style.display = 'block';
+          } else {
+  
+            document.getElementById('alert').style.display = 'none';
+          }
+        })
+    }
 }

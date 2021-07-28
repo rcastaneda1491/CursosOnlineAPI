@@ -1,3 +1,7 @@
+<!-- 
+    Desarrollador: Rogelio Raúl Castañeda Flores
+-->
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -34,7 +38,7 @@
                 </div>
 
                 <div class="nav flex-column flex-md-row">
-                    <a href="" class="nav-link">Perfil</a>
+                    <a href="../PerfilAdmin/Index.html" class="nav-link">Perfil</a>
                     <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
 
@@ -52,6 +56,10 @@
                     <a href="../listadoEstudiante/Index.html" class="nav-link">Estudiantes</a>
                     <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
                 </div>
+                <div class="nav flex-column flex-md-row">
+                    <a href="../listadoCursos/Index.html" class="nav-link">Cursos</a>
+                    <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
+                </div>
                 <!-- Elementos a la derecha-->
                 <div class="nav ms-auto text-white flex-column flex-md-row">
                     <a href="../../Index.html" onclick="CerrarSesion();" class="nav-link">Salir</a>
@@ -66,7 +74,7 @@
         <br>
         <div class="input-group rounded" style="padding-left: 30%; padding-right: 30%; padding-bottom: 3%;">
             <input id="search" type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-                aria-describedby="search-addon" style="font-size: 20px; padding-left: 5%; " /><a onclick="" id="editar">
+                aria-describedby="search-addon" style="font-size: 20px; padding-left: 5%; " /><a onclick="searchCursos()" id="editar">
                 <img src="../../Menu_Estudiante/img/search.svg" id="imgeditar" alt="" style=" width: 45px;"> </a>
         </div>
         <div class="container" style="padding-bottom: 50px;">

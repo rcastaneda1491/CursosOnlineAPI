@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/*
+    Desarrollador: Rogelio Raúl Castañeda Flores 
+*/
+
 namespace CursosOnlineAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -21,15 +25,8 @@ namespace CursosOnlineAPI.Controllers
             using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
             {
                 var usuarioPeticion = db.Usuarios.Find(idUsuario);
-                if (usuarioPeticion.Rol == "administrador")
-                {
-                    var searchItems = BuscarDatos(IdEstudiante);
-                    return searchItems;
-                }
-                else
-                {
-                    return new List<Curso>();
-                }
+                var searchItems = BuscarDatos(IdEstudiante);
+                return searchItems;
             }
         }
 
@@ -46,7 +43,8 @@ namespace CursosOnlineAPI.Controllers
                 foreach (var item in compras)
                 {
                     var curso = db.Cursos.Find(item.IdCurso);
-                    cursosList.Add(new Curso { IdCurso = curso.IdCurso, Nombre = curso.Nombre, Descripcion = curso.Descripcion, Duracion = curso.Duracion, Costo = curso.Costo, CostoVenta = curso.CostoVenta, CantidadEstudiantes = curso.CantidadEstudiantes, IdUsuario = curso.IdUsuario });
+                    var instructor = db.Usuarios.Find(item.IdUsuario);
+                    cursosList.Add(new Curso { IdCurso = curso.IdCurso, Nombre = curso.Nombre, Descripcion = curso.Descripcion, Duracion = curso.Duracion, Costo = curso.Costo, CostoVenta = curso.CostoVenta, CantidadEstudiantes = curso.CantidadEstudiantes, IdUsuario = curso.IdUsuario, Estado = curso.Estado });
                 }
 
                 return cursosList;

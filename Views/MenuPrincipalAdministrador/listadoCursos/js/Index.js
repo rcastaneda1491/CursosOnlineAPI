@@ -1,4 +1,4 @@
-/*
+/* 
     Desarrollador: Rogelio Raúl Castañeda Flores
 */
 
@@ -22,23 +22,18 @@ if (stringJWT) {
     jwt = parseJwt(stringJWT);
 }
 
-
 function CerrarSesion() {
     Cookies.remove('jwt');
 };
-
+const urlParams = new URLSearchParams(window.location.search);
+const IdInstructor = urlParams.get('IdInstructor');
 
 window.onload = () => {
-    if (jwt.rol != "administrador") {
-        history.back();
-    } else {
         GetDatos();
-    }
 }
 
 function GetDatos() {
-
-    const url = `https://localhost:44328/api/Administradores?idUsuario=${jwt.sub}`;
+    const url = `https://localhost:44328/api/CursosAdmin?idUsuario=${jwt.sub}`;
 
     fetch(url, {
         headers: new Headers({
@@ -53,11 +48,11 @@ function GetDatos() {
 
 function mostrarDatos(datos) {
 
-    datos.forEach(instructor => {
+    datos.forEach(curso => {
         var status;
         var color;
 
-        if (instructor.estado == true) {
+        if (curso.estado == 1) {
             status = "Activo";
             color = "green";
         } else {
@@ -67,31 +62,33 @@ function mostrarDatos(datos) {
 
         const card = `
             <tr>
-              <td>${instructor.nombres} ${instructor.apellidos}</td>
-              <td>${instructor.correo}</td>
-              <td>${instructor.noTelefono}</td>
-              <td>${instructor.nit}</td>
-              <td>${instructor.rol}</td>
-              <td style="color: ${color}">${status}</td>
-              <td><button class="btn block" id="detalle" data-id="${instructor.idUsuario}" style="background-color: #4F73CF; color:white;"> Bloquear/Desbloquear </button></td>
+                <td>${curso.idCurso}</td>
+                <td>${curso.nombre}</td>
+                <td>${curso.descripcion}</td>
+                <td>${curso.duracion}</td>
+                <td>${curso.costo}</td>
+                <td>${curso.costoVenta}</td>
+                <td>${curso.cantidadEstudiantes}</td>
+                <td>$.${curso.costoVenta * curso.cantidadEstudiantes}</td>
+                <td style="color: ${color}">${status}</td>
+                <td><button class="btn block" id="detalle" data-id="${curso.idCurso}" style="background-color: #4F73CF; color:white;"> Bloquear/Desbloquear </button></td>
             </tr>
         `;
         cardListElement.innerHTML += card;
     })
     var elements = document.getElementsByClassName("block");
-
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', ModificarEstado);
     }
 }
 
-function ModificarEstado(e) {
-    const admin = e.target.parentElement.parentElement;
-    const adminId = admin.querySelector('button').getAttribute('data-id');
+async function ModificarEstado(e) {
+    const curso = e.target.parentElement.parentElement;
+    const cursoId = curso.querySelector('button').getAttribute('data-id');
 
-    const url = `https://localhost:44328/api/Administradores?idUsuario=${jwt.sub}&idAdmin=${adminId}`;
+    const url = `https://localhost:44328/api/CursosInstructorAdmin?idUsuario=${jwt.sub}&idCurso=${cursoId}`;
 
-    fetch(url, {
+    await fetch(url, {
         method: 'PUT',
         headers: new Headers({
             'Authorization': 'Bearer ' + stringJWT
@@ -111,7 +108,7 @@ async function searchCursos() {
     }
     else {
       document.getElementById("lista-cursos").innerHTML = "";
-      const url = `https://localhost:44328/api/BuscadorAdministradores?correoAdmin=${searchInput.value}`;
+      const url = `https://localhost:44328/api/BuscadorCursosAdmin?cursoNombre=${searchInput.value}`;
   
       await fetch(url, {
         headers: new Headers({

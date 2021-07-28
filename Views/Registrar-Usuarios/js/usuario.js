@@ -1,3 +1,7 @@
+/* 
+    Desarrollador: Rogelio Raúl Castañeda Flores
+*/
+
 const submitButton = document.getElementById("submitButton");
 const form = document.getElementById("form");
 const correoInput = document.getElementById("inputEmail");
@@ -11,8 +15,15 @@ const loginButton = document.getElementById("loginButton");
 
 function validarDatos() {
 
-    if (rol.value != null) {
-        agregarCurso();
+    if (nombresInput.value != "" && 
+        rolInput.value != "" &&
+        apellidosInput.value != "" &&
+        correoInput.value != "" &&
+        telefonoInput.value != "" &&
+        nitInput.value != "" &&
+        passwordInput.value != ""
+    ) {
+        crearUsuario();
     } else {
         alert("Todos los datos son necesarios");
     }

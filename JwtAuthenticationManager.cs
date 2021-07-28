@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
+/*
+    Desarrollador: Rogelio Raúl Castañeda Flores 
+*/
+
 namespace CursosOnlineAPI
 {
     public class JwtAuthenticationManager : IJwtAuthenticationManager
@@ -21,7 +25,8 @@ namespace CursosOnlineAPI
             {
                 Subject = new ClaimsIdentity(new Claim[] {
                     new Claim("sub", usuario.IdUsuario.ToString()),
-                    new Claim("rol", usuario.Rol)
+                    new Claim("rol", usuario.Rol),
+                    new Claim("estado", usuario.Estado.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)

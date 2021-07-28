@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/*
+    Desarrollador: Rogelio Raúl Castañeda Flores 
+*/
+
 namespace CursosOnlineAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -52,6 +56,7 @@ namespace CursosOnlineAPI.Controllers
             using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
             {
                 var user = db.Usuarios.Where(x => x.Correo == credentials.Correo && x.Clave == credentials.Clave).FirstOrDefault();
+
                 if (user == null)
                 {
                     var tokenEmpty = "";
