@@ -68,7 +68,7 @@ function mostrarCursos(cursos) {
                 <h5 class="card-title">${nombre}</h5>
                 <p class="card-text">${descripcion}
                 <hr>
-                Duracion: ${duracionEnHoras} hrs - Costo Asignado: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
+                Duracion: ${duracionEnHoras} hrs - Costo asignado: ${costo} - Costo al estudiante: ${costoVenta} - Estado: ${activoLetra}</p>
                 <a href="./editarCurso.html?idCurso=${idCurso}" class="btn" style="background-color:#FFDE59;">Editar Curso</a>
                 <button class="btn btn-danger" onclick="confimarEliminar(${idCurso},${cantidadEstudiantes},${duracion});">Eliminar Curso</button>
                 <br>
@@ -78,7 +78,7 @@ function mostrarCursos(cursos) {
                 </div>
             </div>
             <div class="card-footer text-muted">
-                Cantidad de Estudiantes Inscritos: ${cantidadEstudiantes} | Ganancia Generada:${gananciaGenerada}
+                Cantidad de Estudiantes Inscritos: ${cantidadEstudiantes} | Ganancia Generada: ${gananciaGenerada}
             </div>
         </div>
         <br>

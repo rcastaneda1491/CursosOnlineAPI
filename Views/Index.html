@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagina Principal</title>
-    <!-- CSS Bootstrap v5-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="./Menu_Estudiante/css/normalize.css">
-    <link rel="stylesheet" href="./Menu_Estudiante/css/skeleton.css">
-    <link rel="stylesheet" href="./Menu_Estudiante/css/custom.css">
-    <!-- CSS Main -->
-    <link rel="stylesheet" href="./css/main.css" />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-main">
-        <div class="container">
-            <!-- Logo -->
-            <div class="navbar-brand">
-              <img src="./img/logo-blanco.svg" alt="Logo">
-          </div>
-            <!-- Btn -->
-            <button 
-                class="navbar-toggler" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#mainNav" 
-                aria-controls="mainNav"
-                aria-expanded="false" 
-                aria-label="Barra de navegacion"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Elementos -->
-            <div class="collapse navbar-collapse" id="mainNav">
-                <!-- Elementos a la izquierda-->
-                <div class="nav flex-column flex-md-row">
-                    <a href="./index.html" class="nav-link active">Menú Principal</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
-                </div>
-                <!-- Elementos a la derecha-->
-                <div class="nav ms-auto text-white flex-column flex-md-row">
-                    <a href="./Iniciar-Sesion/Index.html" class="nav-link">Iniciar Sesión</a>
-                    <a href="./Registrar-Usuarios/Index.html" class="nav-link">Registrarse</a>
-                </div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina Principal</title>
+  <!-- CSS Bootstrap v5-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./Menu_Estudiante/css/normalize.css">
+  <link rel="stylesheet" href="./Menu_Estudiante/css/skeleton.css">
+  <link rel="stylesheet" href="./Menu_Estudiante/css/custom.css">
+  <!-- CSS Main -->
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark navbar-main">
+    <div class="container">
+      <!-- Logo -->
+      <div class="navbar-brand">
+        <img src="./img/logo-blanco.svg" alt="Logo">
+      </div>
+      <!-- Btn -->
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav"
+        aria-expanded="false" aria-label="Barra de navegacion">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Elementos -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <!-- Elementos a la izquierda-->
+        <!-- Elementos a la derecha-->
+        <div class="nav ms-auto text-white flex-column flex-md-row">
+          <a href="./Iniciar-Sesion/Index.html" class="nav-link">Iniciar Sesión</a>
+          <a href="./Registrar-Usuarios/Index.html" class="nav-link">Registrarse</a>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   </nav>
   <!-- --------------------------------------------------------------------------------------------------------- -->
@@ -79,24 +72,28 @@
   </div>
 
   <div class="contenedor">
-      <!-- Cursos -->
-      <h1 style="text-align: center;">Cursos Disponibles</h1>
-      <div class="input-group rounded" style="padding-left: 30%; padding-right: 30%; padding-bottom: 3%;">
-        <input id="search" type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-          aria-describedby="search-addon"  style="font-size: 20px; padding-left: 5%; "/><a onclick="searchCursos()" id="editar">  <img src="./Menu_Estudiante/img/search.svg" id="imgeditar" alt="" style=" width: 45px;"> </a>
-        </div>
-        <div class="container">
-          <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; display: none;">
-            No se encontraron Resultados!!
-          </div>
-          <div class="alert alert-warning" role="alert" id="alert2" style="text-align: center; display: none;">
-            Inicia Sesión para comprar cursos
-          </div>
-          <div id="lista-cursos" class="row row-cols-1 row-cols-md-3 g-4">
-        </div>
+    <!-- Cursos -->
+    <h1 style="text-align: center;">Cursos Disponibles</h1>
+    <div class="input-group rounded" style="padding-left: 30%; padding-right: 30%; padding-bottom: 3%;">
+      <input id="search" type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
+        aria-describedby="search-addon" style="font-size: 20px; padding-left: 5%; " /><a onclick="searchCursos()"
+        id="editar"> <img src="./Menu_Estudiante/img/search.svg" id="imgeditar" alt="" style=" width: 45px;"> </a>
+    </div>
+    <div class="container">
+      <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; display: none;">
+        No se encontraron Resultados!!
       </div>
-    
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <div class="alert alert-warning" role="alert" id="alert2" style="text-align: center; display: none;">
+        Inicia Sesión para comprar cursos
+      </div>
+      <div id="lista-cursos" class="row row-cols-1 row-cols-md-3 g-4">
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
     <script src="./js/menuGeneral.js"></script>
-  </body>
+</body>
+
 </html>
