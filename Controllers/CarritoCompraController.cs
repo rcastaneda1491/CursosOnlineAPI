@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +13,19 @@ namespace CursosOnlineAPI.Controllers
     [ApiController]
     [EnableCors("permitir")]
     [Authorize]
-    public class ComentariosInstructorController : ControllerBase
+    public class CarritoCompraController : ControllerBase
     {
-
         [HttpGet]
-        public ActionResult Get(int? idLeccion)
+        public ActionResult Get(int IdUsuario)
         {
             using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
             {
-                
-                var comentarios = db.Comentarios.Where(p => p.IdLeccion == idLeccion).ToList();
+                var carrito = (from d in db.CarritoCompras.Where(p => p.IdUsuario == IdUsuario)
+                                select d).ToList();
 
-
-                return Ok(comentarios);
-
-
+                return Ok(carrito);
             }
-        }
 
+        }
     }
 }

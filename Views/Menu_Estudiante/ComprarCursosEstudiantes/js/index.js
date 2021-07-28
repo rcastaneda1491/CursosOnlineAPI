@@ -23,9 +23,12 @@ if (stringJWT) {
 }
 
 window.onload = () => {
+    if (jwt.rol != "estudiante") {
+        history.back();
+    } else {
     DatosUsuario();
     GetDatosCurso();
-
+    }
 }
 
 function CerrarSesion() {
