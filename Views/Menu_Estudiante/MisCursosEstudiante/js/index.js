@@ -44,19 +44,36 @@ function parseJwt(token) {
 function llenar(datos) {
 
     datos.forEach(curso => {
-      const card = `
-      <div class="col">
-        <div class="card">
-        <div class="card-body">            
-          <h4 class="card-title"">${curso.nombre}</h4>
-          <p>${curso.descripcion}</p>
-          <p>Duracion: ${curso.duracion}</p>
-          <button class="btn view" id="boton-verleccion" data-id="${curso.idCurso}"> Ver Lecciones </button>
-        </div>
-        </div>
-      </div> 
-     `;
-      cardListElement.innerHTML += card;
+      debugger;
+      if(curso.estado == 1){
+        const card = `
+        <div class="col">
+          <div class="card">
+          <div class="card-body">            
+            <h4 class="card-title"">${curso.nombre}</h4>
+            <p>${curso.descripcion}</p>
+            <p>Duracion: ${curso.duracion}</p>
+            <button class="btn view" id="boton-verleccion" data-id="${curso.idCurso}"> Ver Lecciones </button>
+          </div>
+          </div>
+        </div> 
+       `;
+        cardListElement.innerHTML += card;
+      }else{
+        const card2 = `
+        <div class="col">
+          <div class="card">
+          <div class="card-body">            
+            <h4 class="card-title"">${curso.nombre}</h4>
+            <p>${curso.descripcion}</p>
+            <p>Duracion: ${curso.duracion}</p>
+            <button class="btn btn-danger" disabled> Inactivo </button>
+          </div>
+          </div>
+        </div> 
+       `;
+        cardListElement.innerHTML += card2;
+      }
     })
 
     var elements = document.getElementsByClassName("view");

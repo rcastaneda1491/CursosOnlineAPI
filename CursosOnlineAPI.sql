@@ -136,12 +136,17 @@ INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
 INSERT INTO Cursos(nombre,descripcion,costo,costoVenta,estado,idUsuario)
 	Values('Curso 3','Intermedio','50','60',1,1);
 
+UPDATE Cursos
+SET estado = 0
+WHERE idCurso = 1;
+
 INSERT INTO Lecciones(idCurso,titulo,descripcion,duracion,enlace)
 	Values(5,'Curso Básico de Javascript 5. ','Tipos de Datos',15.27,'https://www.youtube.com/watch?v=Zx-RuG66X5M&list=PLhSj3UTs2_yVC0iaCGf16glrrfXuiSd0G&index=3');
 	select * from CarritoCompra
 	select * from Comentario
 	SELECT * FROM Lecciones
 	SELECT * FROM Cursos;
+	select * from Compra;
 	select * from Usuarios
 INSERT INTO Comentario(idLeccion, idUsuarioEstudiante, idUsuarioInstructor, mensaje)
 	VALUES(8, 2, 4, '');
