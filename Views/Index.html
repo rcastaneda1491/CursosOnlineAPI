@@ -1,81 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagina Principal</title>
-    <!-- CSS Bootstrap v5-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- CSS Main -->
-    <link rel="stylesheet" href="./css/main.css" />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-main">
-        <div class="container">
-            <!-- Logo -->
-            <a href="#" class="navbar-brand">
-                <img src="./img/logo-blanco.svg" alt="Logo">
-            </a>
-            <!-- Btn -->
-            <button 
-                class="navbar-toggler" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#mainNav" 
-                aria-controls="mainNav"
-                aria-expanded="false" 
-                aria-label="Barra de navegacion"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Elementos -->
-            <div class="collapse navbar-collapse" id="mainNav">
-                <!-- Elementos a la izquierda-->
-                <div class="nav flex-column flex-md-row">
-                    <a href="./index.html" class="nav-link active">Menú Principal</a> <!-- La propiedad "active sirve para indicar que estamos en esa pagina"-->
-                </div>
-                <!-- Elementos a la derecha-->
-                <div class="nav ms-auto text-white flex-column flex-md-row">
-                    <a href="./Iniciar-Sesion/Index.html" class="nav-link">Iniciar Sesión</a>
-                    <a href="./Registrar-Usuarios/Index.html" class="nav-link">Registrarse</a>
-                </div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina Principal</title>
+  <!-- CSS Bootstrap v5-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- CSS Main -->
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-main">
+    <div class="container">
+      <!-- Logo -->
+      <a href="#" class="navbar-brand">
+        <img src="./img/logo-blanco.svg" alt="Logo">
+      </a>
+      <!-- Btn -->
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav"
+        aria-expanded="false" aria-label="Barra de navegacion">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Elementos -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <!-- Elementos a la derecha-->
+        <div class="nav ms-auto text-white flex-column flex-md-row">
+          <a href="./Iniciar-Sesion/Index.html" class="nav-link">Iniciar Sesión</a>
+          <a href="./Registrar-Usuarios/Index.html" class="nav-link">Registrarse</a>
         </div>
-    </nav>
-    <!-- --------------------------------------------------------------------------------------------------------- -->
-    <!-- ---------------------------------------- FIN BARRA DE NAVEGACION ---------------------------------------- -->
-    <!-- --------------------------------------------------------------------------------------------------------- -->
+      </div>
+    </div>
+  </nav>
+  <!-- --------------------------------------------------------------------------------------------------------- -->
+  <!-- ---------------------------------------- FIN BARRA DE NAVEGACION ---------------------------------------- -->
+  <!-- --------------------------------------------------------------------------------------------------------- -->
 
+  <div id="main-div" style="padding-top: 70px;">
+    <div id="main-text">
+      <div id="main-logo-container">
+        <img id="main-logo" src="./img/nav-logo.svg" alt="main-logo">
+      </div>
+      <div id="main-description">
+        <h1>eLearning Courses</h1>
+        <p style="font-size: 20px;">
+          Somos una plataforma de aprendizaje online con un catálogo
+          amplio de cursos sobre algoritmos, diagramas de flujo,
+          metodologías, lenguajes de programación, etc.
+        </p>
+      </div>
+    </div>
+    <div id="main-images">
+      <div class="images">
+        <img src="./img/main1.svg" alt="main1">
+      </div>
+      <div class="images">
+        <img src="./img/main2.svg" alt="main2">
+      </div>
+      <div class="images">
+        <img src="./img/main3.svg" alt="main3">
+      </div>
+    </div>
+  </div>
 
-    <div class="contenedor">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="./img/ImagenInicio1.png" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="./img/ImagenInicio2.png" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <div class="card mb-3">
-                    <img class="card-img-top" src="./img/ImagenInicio3.png" alt="Card image cap">
-                    <div class="card-body">
-                        <center><a href='#'class="btn btn-primary btn-lg btn-block" role="button">Iniciar Sesión</a></center>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-    </div> 
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
+  <div class="contenedor">
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
