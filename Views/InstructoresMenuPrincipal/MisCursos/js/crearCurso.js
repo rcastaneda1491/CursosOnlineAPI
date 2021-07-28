@@ -36,6 +36,15 @@ function CerrarSesion() {
     Cookies.remove('jwt');
 };
 
+window.onload = () => {
+
+    if (jwt.rol != "instructor") {
+        history.back();
+
+        return;
+    }
+}
+
 
 function validarDatos() {
 

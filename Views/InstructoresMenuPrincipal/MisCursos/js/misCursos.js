@@ -20,6 +20,13 @@ if (stringJWT) {
 
 
 window.onload = () => {
+    
+    if (jwt.rol != "instructor") {
+        history.back();
+
+        return;
+    }
+
     cargarCursos();
 }
 
@@ -57,7 +64,7 @@ function mostrarCursos(cursos) {
             activoLetra = 'Deshabilitado';
         }
 
-        let gananciaGenerada = costoVenta * cantidadEstudiantes;
+        let gananciaGenerada = costo * cantidadEstudiantes;
 
         let duracionEnHoras = duracion / 60;
         duracionEnHoras = +duracionEnHoras.toFixed(2);

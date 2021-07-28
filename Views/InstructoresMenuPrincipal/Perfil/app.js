@@ -45,6 +45,13 @@ let IdUsuarioObtenido = jwt.sub;
 let estadoDatosInstuctor;
 
 window.onload = () => {
+
+    if (jwt.rol != "instructor") {
+        history.back();
+
+        return;
+    }
+    
     formulario.addEventListener('submit', validarDatos);
 
     cargarDatos();

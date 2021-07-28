@@ -39,6 +39,12 @@ let idLeccion = getParameterByName('idLeccion');
 let idUsuarioObtenido = jwt.sub;
 
 window.onload = () => {
+    if (jwt.rol != "instructor") {
+        history.back();
+
+        return;
+    }
+    
     obtenerDatosLeccion();
 
 }

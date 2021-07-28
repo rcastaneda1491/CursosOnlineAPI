@@ -42,6 +42,13 @@ const titulocurso = document.querySelector('#titulo');
 
 
 window.onload = () => {
+
+    if (jwt.rol != "instructor") {
+        history.back();
+
+        return;
+    }
+
     obtenerLecciones();
     GetTitulo();
 }

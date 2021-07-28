@@ -19,6 +19,12 @@ let IdUsuarioObtenido = jwt.sub;
 
 window.onload = () => {
 
+    if (jwt.rol != "instructor") {
+        history.back();
+
+        return;
+    }
+
     obtenerDatos();
 
 }
