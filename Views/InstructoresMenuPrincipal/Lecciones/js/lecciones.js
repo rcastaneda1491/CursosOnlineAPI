@@ -241,7 +241,7 @@ async function imprimirComentarios(comentarios){
 
         mostrarComentarios.innerHTML += `
         <div class="comentario">
-                <h1> ⚫️ Usuario: ${nombresApellidos} | Id: ${idUsuarioEstudiante}</h1>
+                <h1> ⚫️ Usuario: ${nombresApellidos}</h1>
                 <h2>Comentario: ${mensaje}</h2>
                 <hr>
                 <h2 id="respuesta">Respuesta: ${respuesta} 🔵 <button onclick="actualizarRespuesta(${idComentario});"> <img src="../Perfil/img/editar-logo.svg" style="background-color: black; cursor: pointer;"> </button></h2>
