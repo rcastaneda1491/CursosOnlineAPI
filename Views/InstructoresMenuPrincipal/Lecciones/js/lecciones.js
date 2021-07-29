@@ -40,7 +40,6 @@ const alerta = document.querySelector('#alert');
 
 const titulocurso = document.querySelector('#titulo');
 
-
 window.onload = () => {
 
     if (jwt.rol != "instructor") {
@@ -137,10 +136,32 @@ function mostrarLecciones(lecciones) {
     })
 }
 
+let cantidadComentarios;
 async function confimarEliminar(id) {
-    const confirmar = confirm('¿ Desea eliminar la lección ?')
+    const confirmar = confirm('¿ Desea eliminar la lección ?');
+
+    
 
     if (confirmar) {
+
+        const urlComentarios = `https://localhost:44328/api/ComentariosInstructor?idLeccion=${id}`;
+
+        await fetch(urlComentarios, {
+            method: 'GET',
+            headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+            })
+        })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            obtenerCantidadComentarios(resultado);
+        })
+
+        if(cantidadComentarios > 0){
+            alert('La lección no se puede eliminar debido a una relación');
+            return;
+        }
+
 
         const url = `https://localhost:44328/api/LeccionesInstructor?idLeccion=${id}`;
 
@@ -157,6 +178,12 @@ async function confimarEliminar(id) {
 
         location.reload();
     }
+}
+
+function obtenerCantidadComentarios(comentarios){
+
+    cantidadComentarios = comentarios.length;
+
 }
 
 async function visualizarVideoComentarios(codigoVideo,idLeccion){
