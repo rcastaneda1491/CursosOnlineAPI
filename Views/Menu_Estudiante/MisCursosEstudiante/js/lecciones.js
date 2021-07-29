@@ -44,21 +44,24 @@ let idInstructorpregunta;
 let idcursobusqueda;
 let codigo;
 
+
 window.onload = () => {
-    if (jwt.rol != "estudiante") {
-        history.back();
+    if (stringJWT) {
+        if (jwt.rol != "estudiante") {
+            history.back();
+        } else {
+            GetTitulo();
+            obtenerLecciones();
+        }
     } else {
-        GetTitulo();
-    obtenerLecciones();
-    
+        history.back();
     }
 }
 
-
-async function obtenerLecciones(){
+async function obtenerLecciones() {
 
     mostrarSpinner();
-    
+
 
     const url = `https://localhost:44328/api/LeccionesEstudiante?idCurso=${idCurso}`;
 
@@ -67,16 +70,16 @@ async function obtenerLecciones(){
             'Authorization': 'Bearer ' + stringJWT
         })
     })
-    .then(respuesta => respuesta.json())
-    .then(resultado => {
-        mostrarLecciones(resultado);
-    })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            mostrarLecciones(resultado);
+        })
 
     eliminarSpinner();
 }
 
 function mostrarLecciones(lecciones) {
-    
+
 
     lecciones.forEach(leccion => {
         const { idLeccion, idCurso, titulo, descripcion, duracion, enlace, idUsuario } = leccion;
@@ -96,17 +99,17 @@ function mostrarLecciones(lecciones) {
 
 
 
-async function visualizarVideoComentarios(codigoVideo,idLeccion,idCurso){
+async function visualizarVideoComentarios(codigoVideo, idLeccion, idCurso) {
     codigo = codigoVideo;
     idLeccionpregunta = idLeccion;
     idcursobusqueda = idCurso;
-   
+
     const visualizador = document.querySelector('#visualizador');
     const textoAlerta = document.querySelector('#textoAlerta');
 
-    if(visualizador){
+    if (visualizador) {
         contenedorVideo.removeChild(visualizador);
-    }else{
+    } else {
         contenedorVideo.removeChild(textoAlerta)
     }
 
@@ -114,36 +117,36 @@ async function visualizarVideoComentarios(codigoVideo,idLeccion,idCurso){
 
     video.width = "98%";
     video.height = "98%";
-    video.id="visualizador";
-    video.title="YouTube video player";
-    video.frameborder="0";
-    video.allowFullscreen="1";
-    video.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;";
+    video.id = "visualizador";
+    video.title = "YouTube video player";
+    video.frameborder = "0";
+    video.allowFullscreen = "1";
+    video.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;";
     video.src = `https://www.youtube.com/embed/${codigoVideo}?&autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&rel=0`;
 
     contenedorVideo.appendChild(video);
-  
+
     const urlComentarios = `https://localhost:44328/api/ComentariosInstructor?idLeccion=${idLeccion}`;
 
-        await fetch(urlComentarios, {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': 'Bearer ' + stringJWT
-            })
+    await fetch(urlComentarios, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
         })
-            .then(respuesta => respuesta.json())
-            .then(resultado => {
-                imprimirComentarios(resultado);
-            })
+    })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            imprimirComentarios(resultado);
+        })
 
-            document.getElementById('divpregunta').style.display = 'flex'; 
+    document.getElementById('divpregunta').style.display = 'flex';
 }
 
-async function imprimirComentarios(comentarios){
+async function imprimirComentarios(comentarios) {
     document.getElementById("comentarios").innerHTML = "";
 
     comentarios.forEach(async comentario => {
-        const { idUsuarioEstudiante, idUsuarioInstructor, mensaje, respuesta} = comentario;
+        const { idUsuarioEstudiante, idUsuarioInstructor, mensaje, respuesta } = comentario;
 
         let nombresApellidos;
         let nombresApellidosEstudiante;
@@ -162,19 +165,19 @@ async function imprimirComentarios(comentarios){
                 nombresApellidos = resultado[0].nombres + ' ' + resultado[0].apellidos;
             })
 
-            await fetch(urlObtnerNombresDelEstudiante, {
-                method: 'GET',
-                headers: new Headers({
-                    'Authorization': 'Bearer ' + stringJWT
-                })
+        await fetch(urlObtnerNombresDelEstudiante, {
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + stringJWT
             })
-                .then(respuesta => respuesta.json())
-                .then(resultado => {
-                    nombresApellidosEstudiante = resultado[0].nombres + ' ' + resultado[0].apellidos;
-                }) 
+        })
+            .then(respuesta => respuesta.json())
+            .then(resultado => {
+                nombresApellidosEstudiante = resultado[0].nombres + ' ' + resultado[0].apellidos;
+            })
 
-       
-            mostrarComentarios.innerHTML += `
+
+        mostrarComentarios.innerHTML += `
         <div class="comentario">
             <h1> ⚫️ Estudiante: ${nombresApellidosEstudiante}</h1>
             <h2 >Comentario: ${mensaje}   </h2>
@@ -185,8 +188,8 @@ async function imprimirComentarios(comentarios){
             <br>
         </div>
         `;
-      
-        
+
+
     })
 
 }
@@ -197,7 +200,7 @@ function CerrarSesion() {
 };
 
 
-function mostrarSpinner(){
+function mostrarSpinner() {
 
     const spinner = document.createElement('div');
     spinner.classList.add('spinner');
@@ -211,7 +214,7 @@ function mostrarSpinner(){
     mostrar.appendChild(spinner);
 }
 
-function eliminarSpinner(){
+function eliminarSpinner() {
     const spinner = document.querySelector('.spinner');
 
     mostrar.removeChild(spinner);
@@ -223,41 +226,41 @@ async function enviarpregunta() {
 
     var urlidInstructor = ` https://localhost:44328/api/IdInstructor?IdCurso=${idcursobusqueda}`;
 
-        await fetch(urlidInstructor, {
-            method: 'GET',
+    await fetch(urlidInstructor, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + stringJWT
+        })
+    })
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            idInstructorpregunta = resultado[0].idUsuario;
+        })
+
+    if (preguntainput.value != "") {
+        const url = `https://localhost:44328/api/ComentariosEstudiantes?IdLeccion=${idLeccionpregunta}&IdEstudiante=${jwt.sub}&IdInstructor=${idInstructorpregunta}&mensaje=${preguntainput.value}`;
+
+        await fetch(url, {
+            method: 'POST',
             headers: new Headers({
                 'Authorization': 'Bearer ' + stringJWT
             })
         })
-            .then(respuesta => respuesta.json())
+            .then(respuesta => respuesta)
             .then(resultado => {
-                idInstructorpregunta = resultado[0].idUsuario;
             })
-   
-   if(preguntainput.value != ""){
-    const url = `https://localhost:44328/api/ComentariosEstudiantes?IdLeccion=${idLeccionpregunta}&IdEstudiante=${jwt.sub}&IdInstructor=${idInstructorpregunta}&mensaje=${preguntainput.value}`;
-
-    await fetch(url, {
-        method: 'POST',
-        headers: new Headers({
-             'Authorization': 'Bearer ' + stringJWT
-        })
-    })
-        .then(respuesta => respuesta)
-        .then(resultado => {
-        })
 
         preguntainput.value = "";
-   }else{
-    alert('Escribe un Comentario');
-    
-   }
-    
-   visualizarVideoComentarios(codigo,idLeccionpregunta,idcursobusqueda);
+    } else {
+        alert('Escribe un Comentario');
+
+    }
+
+    visualizarVideoComentarios(codigo, idLeccionpregunta, idcursobusqueda);
 }
 
 
-async function GetTitulo(){
+async function GetTitulo() {
     const url = `https://localhost:44328/api/DatosCurso?IdCurso=${idCurso}`;
 
     await fetch(url, {
@@ -274,10 +277,10 @@ async function GetTitulo(){
 
 
 function mostrartitulo(datos) {
-    
+
 
     datos.forEach(curso => {
-        const { idCurso, nombre, descripcion, duracion, costo, costoVenta, cantidadEstudiante,estado,idUsuario } = curso;
+        const { idCurso, nombre, descripcion, duracion, costo, costoVenta, cantidadEstudiante, estado, idUsuario } = curso;
 
         titulocurso.innerHTML += `
             <h1>${nombre}</h1>

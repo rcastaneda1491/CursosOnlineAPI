@@ -37,11 +37,12 @@ function CerrarSesion() {
 };
 
 window.onload = () => {
-
-    if (jwt.rol != "instructor") {
+    if (stringJWT) {
+        if (jwt.rol != "instructor") {
+            history.back();
+        }
+    } else {
         history.back();
-
-        return;
     }
 }
 

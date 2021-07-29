@@ -30,10 +30,14 @@ if (stringJWT) {
 let IdUsuario;
 
 window.onload = () => {
-    if (jwt.rol != "estudiante") {
-        history.back();
+    if (stringJWT) {
+        if (jwt.rol != "estudiante") {
+            history.back();
+        } else {
+            GetDatos();
+        }
     } else {
-    GetDatos();
+        history.back();
     }
 }
 

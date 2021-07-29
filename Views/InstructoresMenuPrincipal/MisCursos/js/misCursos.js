@@ -18,17 +18,18 @@ if (stringJWT) {
     jwt = parseJwt(stringJWT);
 }
 
-
 window.onload = () => {
-    
-    if (jwt.rol != "instructor") {
+    if (stringJWT) {
+        if (jwt.rol != "instructor") {
+            history.back();
+        } else {
+            cargarCursos();
+        }
+    } else {
         history.back();
-
-        return;
     }
-
-    cargarCursos();
 }
+
 
 function CerrarSesion() {
     Cookies.remove('jwt');
@@ -94,13 +95,13 @@ function mostrarCursos(cursos) {
 }
 
 async function confimarEliminar(id, cantidadEstudiantes, duracion) {
-    
-    if(cantidadEstudiantes > 0){
+
+    if (cantidadEstudiantes > 0) {
         alert('El curso no se puede eliminar debido a una relación');
         return;
     }
 
-    if(duracion > 0){
+    if (duracion > 0) {
         alert('El curso no se puede eliminar debido a una relación');
         return;
     }

@@ -18,15 +18,15 @@ if (stringJWT) {
 let IdUsuarioObtenido = jwt.sub;
 
 window.onload = () => {
-
-    if (jwt.rol != "instructor") {
+    if (stringJWT) {
+        if (jwt.rol != "instructor") {
+            history.back();
+        } else {
+            obtenerDatos();
+        }
+    } else {
         history.back();
-
-        return;
     }
-
-    obtenerDatos();
-
 }
 
 function obtenerDatos() {

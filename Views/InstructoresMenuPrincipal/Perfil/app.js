@@ -44,19 +44,18 @@ let IdUsuarioObtenido = jwt.sub;
 let estadoDatosInstuctor;
 
 window.onload = () => {
+    if (stringJWT) {
+        if (jwt.rol != "instructor") {
+            history.back();
+        } else {
+            formulario.addEventListener('submit', validarDatos);
 
-    if (jwt.rol != "instructor") {
+            cargarDatos();
+        }
+    } else {
         history.back();
-
-        return;
     }
-    
-    formulario.addEventListener('submit', validarDatos);
-
-    cargarDatos();
-
 }
-
 
 function CerrarSesion() {
     Cookies.remove('jwt');

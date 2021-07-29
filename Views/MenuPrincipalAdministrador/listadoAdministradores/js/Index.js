@@ -29,10 +29,14 @@ function CerrarSesion() {
 
 
 window.onload = () => {
-    if (jwt.rol != "administrador") {
+    if(stringJWT){
+        if (jwt.rol != "administrador") {
+            history.back();
+        } else {
+            GetDatos();
+        }
+    }else{
         history.back();
-    } else {
-        GetDatos();
     }
 }
 

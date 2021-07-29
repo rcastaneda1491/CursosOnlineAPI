@@ -35,17 +35,19 @@ if (stringJWT) {
 let idCurso = getParameterByName('idCurso');
 let IdUsuario = jwt.sub;
 
+
 window.onload = () => {
-
-    if (jwt.rol != "instructor") {
+    if (stringJWT) {
+        if (jwt.rol != "instructor") {
+            history.back();
+        } else {
+            cargarDatos();
+        }
+    } else {
         history.back();
-
-        return;
     }
-
-    cargarDatos();
-
 }
+
 
 function CerrarSesion() {
     Cookies.remove('jwt');
@@ -109,8 +111,8 @@ async function editarCurso() {
 
     if (estadoI.value == 0) {
         estadoLetras = true;
-    } 
-    if(estadoI.value == 1) {
+    }
+    if (estadoI.value == 1) {
         estadoLetras = false;
     }
 

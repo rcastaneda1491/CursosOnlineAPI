@@ -1,6 +1,12 @@
-function CerrarSesion() {
-    Cookies.remove('jwt');
-};
+const formulario = document.querySelector('#formulario');
+
+const titulo = document.querySelector('#titulo');
+const descripcion = document.querySelector('#descripcion');
+const enlace = document.querySelector('#enlace');
+const alerta = document.querySelector('#alert');
+const alerta2 = document.querySelector('#alert2');
+
+let minutos;
 
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
@@ -35,27 +41,22 @@ if (stringJWT) {
 }
 
 let idCurso = getParameterByName('idCurso');
-let idUsuarioObtenido = jwt.sub;
 
 window.onload = () => {
-
-    if (jwt.rol != "instructor") {
+    if (stringJWT) {
+        if (jwt.rol != "instructor") {
+            history.back();
+        }
+    } else {
         history.back();
-
-        return;
     }
-
 }
 
-const formulario = document.querySelector('#formulario');
+let idUsuarioObtenido = jwt.sub;
 
-const titulo = document.querySelector('#titulo');
-const descripcion = document.querySelector('#descripcion');
-const enlace = document.querySelector('#enlace');
-const alerta = document.querySelector('#alert');
-const alerta2 = document.querySelector('#alert2');
-
-let minutos;
+function CerrarSesion() {
+    Cookies.remove('jwt');
+};
 
 function validarDatos() {
 

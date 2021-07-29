@@ -18,12 +18,17 @@ if (stringJWT) {
     jwt = parseJwt(stringJWT);
 }
 
+
 window.onload = () => {
-  if (jwt.rol != "estudiante") {
+  if (stringJWT) {
+    if (jwt.rol != "estudiante") {
+      history.back();
+    } else {
+      GetDatos();
+    }
+  } else {
     history.back();
-} else {
-  GetDatos();
-}
+  }
 }
 
 function CerrarSesion() {

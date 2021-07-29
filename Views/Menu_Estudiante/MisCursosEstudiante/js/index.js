@@ -18,10 +18,14 @@ if (stringJWT) {
 }
 
 window.onload = () => {
-  if (jwt.rol != "estudiante") {
-    history.back();
+  if (stringJWT) {
+    if (jwt.rol != "estudiante") {
+      history.back();
+    } else {
+      GetDatosMisCursos();
+    }
   } else {
-    GetDatosMisCursos();
+    history.back();
   }
 }
 
