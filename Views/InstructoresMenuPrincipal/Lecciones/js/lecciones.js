@@ -252,7 +252,7 @@ async function imprimirComentarios(comentarios){
                 margin: 5px 5px 5px 5px; 
                 height: 40px; padding-left: 10px; display: none;"
                 name="${idComentario}" value="${respuesta}" placeholder="Escribe aquí tu respuesta"></input>
-                <a onclick="actualizarRespuestaTerminada(${idComentario});" id="${idComentario}" style="display: none;" ><img style="width: 30px;" src="../../Menu_Estudiante/MisCursosEstudiante/img/send.svg" alt="Enviar"></a>       
+                <a onclick="actualizarRespuestaTerminada(${idComentario});" id="${idComentario}" style="display: none;" ><img id="search-button" style="width: 30px;" src="../../Menu_Estudiante/MisCursosEstudiante/img/send.svg" alt="Enviar"></a>       
             </div>
             
         `;

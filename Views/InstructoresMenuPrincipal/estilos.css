@@ -22,6 +22,10 @@ a {
   cursor: pointer;
 }
 
+#search-button:hover{
+  cursor: pointer;
+}
+
 .container > .row {
   margin-bottom: 3rem;
 }

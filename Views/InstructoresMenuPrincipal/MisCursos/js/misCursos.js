@@ -96,12 +96,12 @@ function mostrarCursos(cursos) {
 async function confimarEliminar(id, cantidadEstudiantes, duracion) {
     
     if(cantidadEstudiantes > 0){
-        alert('El Curso No se puede eliminar\nEl Curso ya ha sido comprado por estudiantes');
+        alert('El curso no se puede eliminar debido a una relación');
         return;
     }
 
     if(duracion > 0){
-        alert('El Curso No se puede eliminar\nEl Curso aún contiene lecciones asignadas');
+        alert('El curso no se puede eliminar debido a una relación');
         return;
     }
 

@@ -111,3 +111,5 @@ CREATE TABLE Comentario(
 
 INSERT INTO Usuarios(nombres,apellidos,correo,noTelefono,nit,clave,rol)
 	VALUES('admin','admin','admin@admin.com','5896586','12585','12345','administrador');
+select * from Usuarios;
+select * from Compra;

@@ -27,10 +27,14 @@ function CerrarSesion() {
 };
 
 window.onload = () => {
-    if(jwt.rol != "administrador"){
-        history.back();
+    if(stringJWT){
+        if (jwt.rol != "administrador") {
+            history.back();
+        } else {
+            GetDatos();
+        }
     }else{
-        GetDatos();
+        history.back();
     }
 }
 
@@ -65,6 +69,7 @@ function mostrarDatos(datos) {
 
         const card = `
             <tr>
+            <td>${instructor.idUsuario}</td>
               <td>${instructor.nombres} ${instructor.apellidos}</td>
               <td>${instructor.correo}</td>
               <td>${instructor.noTelefono}</td>

@@ -29,7 +29,15 @@ const urlParams = new URLSearchParams(window.location.search);
 const IdInstructor = urlParams.get('IdInstructor');
 
 window.onload = () => {
-        GetDatos();
+    if(stringJWT){
+        if (jwt.rol != "administrador") {
+            history.back();
+        } else {
+            GetDatos();
+        }
+    }else{
+        history.back();
+    }
 }
 
 function GetDatos() {
@@ -72,7 +80,8 @@ function mostrarDatos(datos) {
                 <td>$.${curso.costo * curso.cantidadEstudiantes}</td>
                 <td>$.${(curso.costoVenta * curso.cantidadEstudiantes) - (curso.costo * curso.cantidadEstudiantes)}</td>
                 <td style="color: ${color}">${status}</td>
-                <td><button class="btn block" id="detalle" data-id="${curso.idCurso}" style="background-color: #4F73CF; color:white;"> Bloquear/Desbloquear </button></td>
+                <td><button class="btn block" id="detalle" data-id="${curso.idCurso}" style="background-color: #4F73CF; color:white;">Bloquear/Desbloquear</button></td>
+                <td><button class="btn estudiantes" id="detalle" data-id="${curso.idCurso}" style="background-color: #4F73CF; color:white;">Estudiantes</button></td>
             </tr>
         `;
         cardListElement.innerHTML += card;
@@ -80,6 +89,10 @@ function mostrarDatos(datos) {
     var elements = document.getElementsByClassName("block");
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', ModificarEstado);
+    }
+    var elementsEstudiante = document.getElementsByClassName("estudiantes");
+    for (var i = 0; i < elementsEstudiante.length; i++) {
+        elementsEstudiante[i].addEventListener('click', IngresarEstudiantes);
     }
 }
 
@@ -101,30 +114,36 @@ async function ModificarEstado(e) {
 
 }
 
+function IngresarEstudiantes(e) {
+    const curso = e.target.parentElement.parentElement;
+    const cursoId = curso.querySelector('button').getAttribute('data-id');
+    window.location.href = (`./Estudiantes.html?IdCurso=${cursoId}`);
+}
+
 async function searchCursos() {
     document.getElementById('alert').style.display = 'none';
     if (searchInput.value == "") {
-      document.getElementById("lista-cursos").innerHTML = "";
-      GetDatos();
+        document.getElementById("lista-cursos").innerHTML = "";
+        GetDatos();
     }
     else {
-      document.getElementById("lista-cursos").innerHTML = "";
-      const url = `https://localhost:44328/api/BuscadorCursosAdmin?cursoNombre=${searchInput.value}`;
-  
-      await fetch(url, {
-        headers: new Headers({
-          'Authorization': 'Bearer ' + stringJWT
+        document.getElementById("lista-cursos").innerHTML = "";
+        const url = `https://localhost:44328/api/BuscadorCursosAdmin?cursoNombre=${searchInput.value}`;
+
+        await fetch(url, {
+            headers: new Headers({
+                'Authorization': 'Bearer ' + stringJWT
+            })
         })
-      })
-        .then(respuesta => respuesta.json())
-        .then(resultado => {
-          mostrarDatos(resultado);
-          if (Object.keys(resultado).length == 0) {
-            document.getElementById('alert').style.display = 'block';
-          } else {
-  
-            document.getElementById('alert').style.display = 'none';
-          }
-        })
+            .then(respuesta => respuesta.json())
+            .then(resultado => {
+                mostrarDatos(resultado);
+                if (Object.keys(resultado).length == 0) {
+                    document.getElementById('alert').style.display = 'block';
+                } else {
+
+                    document.getElementById('alert').style.display = 'none';
+                }
+            })
     }
 }

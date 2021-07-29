@@ -54,8 +54,7 @@
         <h1>eLearning Courses</h1>
         <p style="font-size: 20px;">
           Somos una plataforma de aprendizaje online con un catálogo
-          amplio de cursos sobre algoritmos, diagramas de flujo,
-          metodologías, lenguajes de programación, etc.
+          amplio de cursos.
         </p>
       </div>
     </div>
@@ -76,20 +75,21 @@
     <!-- Cursos -->
     <h1 style="text-align: center; color: white;">Cursos Disponibles</h1>
     <hr style="height: 6px; color: #DFE0E6;">
-    <div class="input-group rounded" style="padding-left: 30%; padding-right: 30%; padding-bottom: 3%;">
-      <input id="search" type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-        aria-describedby="search-addon" style="font-size: 20px; padding-left: 5%; " /><a onclick="searchCursos()"
-        id="editar"> <img src="./Menu_Estudiante/img/search.svg" id="imgeditar" alt="" style=" width: 45px;"> </a>
+  </div>
+
+  <div class="input-group rounded" style="padding-left: 30%; padding-right: 30%; padding-bottom: 3%;">
+    <input id="search" type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
+      aria-describedby="search-addon" style="font-size: 20px; padding-left: 5%; " /><a onclick="searchCursos()"
+      id="editar"> <img src="./Menu_Estudiante/img/search.svg" id="imgeditar" alt="" style=" width: 45px;"> </a>
+  </div>
+  <div class="container">
+    <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; display: none;">
+      No se encontraron Resultados!!
     </div>
-    <div class="container">
-      <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; display: none;">
-        No se encontraron Resultados!!
-      </div>
-      <div class="alert alert-warning" role="alert" id="alert2" style="text-align: center; display: none;">
-        Inicia Sesión para comprar cursos
-      </div>
-      <div id="lista-cursos" class="row row-cols-1 row-cols-md-3 g-4">
-      </div>
+    <div class="alert alert-warning" role="alert" id="alert2" style="text-align: center; display: none;">
+      Inicia Sesión para comprar cursos
+    </div>
+    <div id="lista-cursos" class="row row-cols-1 row-cols-md-3 g-4">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

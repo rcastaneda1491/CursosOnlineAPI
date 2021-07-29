@@ -29,7 +29,15 @@ const urlParams = new URLSearchParams(window.location.search);
 const IdInstructor = urlParams.get('IdInstructor');
 
 window.onload = () => {
-        GetDatos();
+    if(stringJWT){
+        if (jwt.rol != "administrador") {
+            history.back();
+        } else {
+            GetDatos();
+        }
+    }else{
+        history.back();
+    }
 }
 
 function GetDatos() {

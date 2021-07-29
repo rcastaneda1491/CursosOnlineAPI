@@ -6,7 +6,6 @@ const correoInput = document.querySelector('#correo');
 const telefonoInput = document.querySelector('#telefono');
 const nitInput = document.querySelector('#nit');
 const claveInput = document.querySelector('#clave');
-const rolInput = document.querySelector('#rol');
 
 const nivelEstudiosInput = document.querySelector('#nivelEstudios');
 const certificacionesInput = document.querySelector('#certificaciones');
@@ -100,7 +99,6 @@ function mostrarDatos(datos) {
         nitInput.value = nit;
         claveInput.value = clave;
         telefonoInput.value = noTelefono;
-        rolInput.value = rol;
     })
 
     if (estadoDatosInstuctor === null) {
@@ -152,6 +150,7 @@ function actualizarInformacion() {
 
         estadoActualizar = 1;
 
+        document.getElementById('editar').style.display = 'none';
         btnActualizar.style.display = 'block';
 
     } else {
@@ -221,6 +220,8 @@ function actualizarInformacion() {
             estadoActualizar = 0;
 
             btnActualizar.style.display = 'none';
+            document.getElementById('editar').style.display = 'block';
+            window.location.reload();
         }
     }
 }

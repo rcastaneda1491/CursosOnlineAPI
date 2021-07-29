@@ -33,7 +33,15 @@ if (stringJWT) {
 let IdUsuario;
 
 window.onload = () => {
-    GetDatos();
+    if(stringJWT){
+        if (jwt.rol != "administrador") {
+            history.back();
+        } else {
+            GetDatos();
+        }
+    }else{
+        history.back();
+    }
 }
 
 function CerrarSesion() {
