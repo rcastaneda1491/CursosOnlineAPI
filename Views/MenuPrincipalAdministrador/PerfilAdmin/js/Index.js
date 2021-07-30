@@ -2,6 +2,8 @@
     Desarrollador: Rogelio Raúl Castañeda Flores
 */
 
+const direccion = "25.104.8.22:5001";
+
 const formulario = document.querySelector('#formulario');
 const nombresInput = document.querySelector('#nombres');
 const apellidosInput = document.querySelector('#apellidos');
@@ -63,7 +65,7 @@ function GetDatos() {
     if (stringJWT) {
         jwt = parseJwt(stringJWT);
     }
-    const url = `https://localhost:44328/api/PerfilAdmin?idUsuario=${jwt.sub}`;
+    const url = `https://${direccion}/api/PerfilAdmin?idUsuario=${jwt.sub}`;
 
     fetch(url, {
         headers: new Headers({
@@ -128,7 +130,7 @@ async function actualizar() {
         if (confirmar) {
 
             console.log("Actualizando..")
-            const urlActualizarUsuario = `https://localhost:44328/api/PerfilAdmin?idUsuario=${jwt.sub}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&clave=${contraInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}`;
+            const urlActualizarUsuario = `https://${direccion}/api/PerfilAdmin?idUsuario=${jwt.sub}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&clave=${contraInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}`;
 
             await fetch(urlActualizarUsuario, {
                 method: 'PUT',

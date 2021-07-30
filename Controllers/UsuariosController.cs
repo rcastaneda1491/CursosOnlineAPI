@@ -67,5 +67,19 @@ namespace CursosOnlineAPI.Controllers
                 return Ok(token);
             }
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Get()
+        {
+            using (Models.CURSOS_ONLINE_APIContext db = new Models.CURSOS_ONLINE_APIContext())
+            {
+                var correos = (from d in db.Usuarios
+                                        select d).ToList();
+
+                return Ok(correos);
+            }
+        }
+
     }
 }

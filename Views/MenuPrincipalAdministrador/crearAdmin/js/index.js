@@ -56,7 +56,7 @@ function validarDatos() {
 }
 
 function crearUsuario() {
-    const urlCrearUsuario = `https://localhost:44328/api/Usuarios?Nombres=${nombresInput.value}&Apellidos=${apellidosInput.value}&Correo=${correoInput.value}&NoTelefono=${telefonoInput.value}&Nit=${nitInput.value}&Clave=${passwordInput.value}&Rol=administrador`;
+    const urlCrearUsuario = `https://${direccion}/api/Usuarios?Nombres=${nombresInput.value}&Apellidos=${apellidosInput.value}&Correo=${correoInput.value}&NoTelefono=${telefonoInput.value}&Nit=${nitInput.value}&Clave=${passwordInput.value}&Rol=administrador`;
 
     fetch(urlCrearUsuario, { method: 'POST' })
         .then(respuesta => respuesta)

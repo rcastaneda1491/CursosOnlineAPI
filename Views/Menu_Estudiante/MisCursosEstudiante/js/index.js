@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const cardListElement = document.getElementById("lista-cursos");
 
 function parseJwt(token) {
@@ -32,7 +34,7 @@ window.onload = () => {
 function GetDatosMisCursos() {
 
   console.log('llenando...')
-  const url = `https://localhost:44328/api/MisCursosEstudiante?IdUsuario=${jwt.sub}`;
+  const url = `https://${direccion}/api/MisCursosEstudiante?IdUsuario=${jwt.sub}`;
 
   fetch(url, {
     headers: new Headers({

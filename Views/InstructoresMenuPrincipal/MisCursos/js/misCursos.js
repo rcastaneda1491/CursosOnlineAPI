@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const contenedor = document.querySelector('#contenedor');
 const mostrar = document.querySelector('#cursosMostrar');
 
@@ -39,7 +41,7 @@ function CerrarSesion() {
 async function cargarCursos() {
 
 
-    const url = `https://localhost:44328/api/CursosInstructor?idInstructor=${jwt.sub}`;
+    const url = `https://${direccion}/api/CursosInstructor?idInstructor=${jwt.sub}`;
 
     await fetch(url, {
         headers: new Headers({
@@ -109,7 +111,7 @@ async function confimarEliminar(id, cantidadEstudiantes, duracion) {
     const confirmar = confirm('¿ Desea eliminar el Curso ?')
     if (confirmar) {
 
-        const url = `https://localhost:44328/api/CursosInstructor?IdCurso=${id}`;
+        const url = `https://${direccion}/api/CursosInstructor?IdCurso=${id}`;
 
         await fetch(url, {
             method: 'DELETE',

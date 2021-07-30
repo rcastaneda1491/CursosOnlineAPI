@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const tableElements = document.getElementById("table");
 const idsCursos = [];
 const precio = [];
@@ -42,7 +44,7 @@ function CerrarSesion() {
 function GetDatosCurso() {
 
     console.log('cargando...')
-    const url = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}`;
+    const url = `https://${direccion}/api/CarritoEstudiante?IdUsuario=${jwt.sub}`;
 
     fetch(url, {
         headers: new Headers({
@@ -101,7 +103,7 @@ async function GenerarFactura() {
     } else {
         generarid = uuid.v4();
 
-        const url = `https://localhost:44328/api/FacturaEstudiante?NoFactura=${generarid}&IdUsuario=${jwt.sub}&Total=${total}`;
+        const url = `https://${direccion}/api/FacturaEstudiante?NoFactura=${generarid}&IdUsuario=${jwt.sub}&Total=${total}`;
 
         await fetch(url, {
             method: 'POST',
@@ -119,7 +121,7 @@ async function GenerarCompra() {
     for (i = 0; i < idsCursos.length; i++) {
 
         console.log(idsCursos[i]);
-        const url = `https://localhost:44328/api/CompraEstudiante?IdUsuario=${jwt.sub}&idCurso=${idsCursos[i]}&NoFactura=${generarid}`;
+        const url = `https://${direccion}/api/CompraEstudiante?IdUsuario=${jwt.sub}&idCurso=${idsCursos[i]}&NoFactura=${generarid}`;
 
         await fetch(url, {
             method: 'POST',
@@ -140,8 +142,8 @@ async function GenerarCompra() {
 async function BorrarCarrito() {
     for (i = 0; i < idsCursos.length; i++) {
 
-        const urlVaciarCarrito = `https://localhost:44328/api/CompraEstudiante?IdUsuario=${jwt.sub}&IdCurso=${idsCursos[i]}`;
-        const urlCantidadEstudiantes = `https://localhost:44328/api/CompraEstudiante?IdCurso=${idsCursos[i]}`;
+        const urlVaciarCarrito = `https://${direccion}/api/CompraEstudiante?IdUsuario=${jwt.sub}&IdCurso=${idsCursos[i]}`;
+        const urlCantidadEstudiantes = `https://${direccion}/api/CompraEstudiante?IdCurso=${idsCursos[i]}`;
 
         await fetch(urlVaciarCarrito, {
             method: 'DELETE',
@@ -172,7 +174,7 @@ async function BorrarCarrito() {
 async function DatosUsuario() {
 
 
-    const url = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${jwt.sub}`;
+    const url = `https://${direccion}/api/PerfilEstudiante?idEstudiante=${jwt.sub}`;
 
     await fetch(url, {
         headers: new Headers({

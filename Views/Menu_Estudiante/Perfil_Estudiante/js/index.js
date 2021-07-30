@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const formulario = document.querySelector('#formulario');
 
 const nombresInput = document.querySelector('#nombres');
@@ -60,7 +62,7 @@ function GetDatos() {
     if (stringJWT) {
         jwt = parseJwt(stringJWT);
     }
-    const url = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${jwt.sub}`;
+    const url = `https://${direccion}/api/PerfilEstudiante?idEstudiante=${jwt.sub}`;
 
     fetch(url, {
         headers: new Headers({
@@ -126,7 +128,7 @@ function actualizar() {
         if (confirmar) {
            
             console.log("Actualizando..")
-            const urlActualizarUsuario = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${jwt.sub}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&clave=${contraInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&noTarjeta=${noTarjetaInput.value}`;
+            const urlActualizarUsuario = `https://${direccion}/api/PerfilEstudiante?idEstudiante=${jwt.sub}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&clave=${contraInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&noTarjeta=${noTarjetaInput.value}`;
 
             fetch(urlActualizarUsuario, {
                 method: 'PUT',

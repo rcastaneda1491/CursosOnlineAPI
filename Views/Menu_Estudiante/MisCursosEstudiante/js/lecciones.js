@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 function CerrarSesion() {
     Cookies.remove('jwt');
 };
@@ -63,7 +65,7 @@ async function obtenerLecciones() {
     mostrarSpinner();
 
 
-    const url = `https://localhost:44328/api/LeccionesEstudiante?idCurso=${idCurso}`;
+    const url = `https://${direccion}/api/LeccionesEstudiante?idCurso=${idCurso}`;
 
     await fetch(url, {
         headers: new Headers({
@@ -126,7 +128,7 @@ async function visualizarVideoComentarios(codigoVideo, idLeccion, idCurso) {
 
     contenedorVideo.appendChild(video);
 
-    const urlComentarios = `https://localhost:44328/api/ComentariosInstructor?idLeccion=${idLeccion}`;
+    const urlComentarios = `https://${direccion}/api/ComentariosInstructor?idLeccion=${idLeccion}`;
 
     await fetch(urlComentarios, {
         method: 'GET',
@@ -151,8 +153,8 @@ async function imprimirComentarios(comentarios) {
         let nombresApellidos;
         let nombresApellidosEstudiante;
 
-        var urlObtnerNombresDelInstructor = `https://localhost:44328/api/Instructor?idInstructor=${idUsuarioInstructor}`;
-        var urlObtnerNombresDelEstudiante = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${idUsuarioEstudiante}`;
+        var urlObtnerNombresDelInstructor = `https://${direccion}/api/Instructor?idInstructor=${idUsuarioInstructor}`;
+        var urlObtnerNombresDelEstudiante = `https://${direccion}/api/PerfilEstudiante?idEstudiante=${idUsuarioEstudiante}`;
 
         await fetch(urlObtnerNombresDelInstructor, {
             method: 'GET',
@@ -224,7 +226,7 @@ function eliminarSpinner() {
 async function enviarpregunta() {
     let idInstructorpregunta;
 
-    var urlidInstructor = ` https://localhost:44328/api/IdInstructor?IdCurso=${idcursobusqueda}`;
+    var urlidInstructor = ` https://${direccion}/api/IdInstructor?IdCurso=${idcursobusqueda}`;
 
     await fetch(urlidInstructor, {
         method: 'GET',
@@ -238,7 +240,7 @@ async function enviarpregunta() {
         })
 
     if (preguntainput.value != "") {
-        const url = `https://localhost:44328/api/ComentariosEstudiantes?IdLeccion=${idLeccionpregunta}&IdEstudiante=${jwt.sub}&IdInstructor=${idInstructorpregunta}&mensaje=${preguntainput.value}`;
+        const url = `https://${direccion}/api/ComentariosEstudiantes?IdLeccion=${idLeccionpregunta}&IdEstudiante=${jwt.sub}&IdInstructor=${idInstructorpregunta}&mensaje=${preguntainput.value}`;
 
         await fetch(url, {
             method: 'POST',
@@ -261,7 +263,7 @@ async function enviarpregunta() {
 
 
 async function GetTitulo() {
-    const url = `https://localhost:44328/api/DatosCurso?IdCurso=${idCurso}`;
+    const url = `https://${direccion}/api/DatosCurso?IdCurso=${idCurso}`;
 
     await fetch(url, {
         method: 'GET',

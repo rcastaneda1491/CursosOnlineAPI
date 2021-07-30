@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const formulario = document.querySelector('#formulario');
 
 const titulo = document.querySelector('#titulo');
@@ -86,6 +88,8 @@ async function agregarLeccion() {
             alerta2.style.display = 'none';
         }, 3000);
 
+        eliminarSpinner();
+        
         return;
     }
 
@@ -97,7 +101,7 @@ async function agregarLeccion() {
             obtenerDatosVideo(resultado.items);
         });
 
-    const url = `https://localhost:44328/api/LeccionesInstructor?idCurso=${idCurso}&titulo=${titulo.value}&descripcion=${descripcion.value}&duracion=${minutos}&enlace=${codigoVideo}`;
+    const url = `https://${direccion}/api/LeccionesInstructor?idCurso=${idCurso}&titulo=${titulo.value}&descripcion=${descripcion.value}&duracion=${minutos}&enlace=${codigoVideo}`;
 
     await fetch(url, {
         method: 'POST',

@@ -2,6 +2,8 @@
     Desarrollador: Rogelio Raúl Castañeda Flores
 */
 
+const direccion = "25.104.8.22:5001";
+
 const submitButton = document.getElementById("submitButton");
 const form = document.getElementById("form");
 const correoInput = document.getElementById("inputEmail");
@@ -13,7 +15,13 @@ const nitInput = document.getElementById("inputNIT");
 const rolInput = document.getElementById("rolInput");
 const loginButton = document.getElementById("loginButton");
 
-function validarDatos() {
+window.onload = () => {
+
+    submitButton.addEventListener('click', validarDatos);
+}
+
+function validarDatos(e) {
+    e.preventDefault();
 
     if (nombresInput.value != "" && 
         rolInput.value != "" &&
@@ -29,11 +37,52 @@ function validarDatos() {
     }
 }
 
-function crearUsuario() {
-    const urlCrearUsuario = `https://localhost:44328/api/Usuarios?Nombres=${nombresInput.value}&Apellidos=${apellidosInput.value}&Correo=${correoInput.value}&NoTelefono=${telefonoInput.value}&Nit=${nitInput.value}&Clave=${passwordInput.value}&Rol=${rolInput.value}`;
+let cantidadCorreos = false;
 
-    fetch(urlCrearUsuario, { method: 'POST' })
+function validarCorreos(usuarios){
+    usuarios.forEach(usuario => {
+    
+        if(correoInput.value == usuario.correo){
+            cantidadCorreos = true;
+        }
+        
+    })
+}
+
+async function crearUsuario() {
+
+    const URLComentarios = `https://${direccion}/api/Usuarios`;
+
+    await fetch(URLComentarios)
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            validarCorreos(resultado);
+        })
+
+    if(cantidadCorreos == true){
+        alert('Correo ya existente, por favor intentelo nuevamente');
+
+        correoInput.value = '';
+
+        return;
+    }
+
+    const urlCrearUsuario = `https://${direccion}/api/Usuarios?Nombres=${nombresInput.value}&Apellidos=${apellidosInput.value}&Correo=${correoInput.value}&NoTelefono=${telefonoInput.value}&Nit=${nitInput.value}&Clave=${passwordInput.value}&Rol=${rolInput.value}`;
+
+    await fetch(urlCrearUsuario, { method: 'POST' })
         .then(respuesta => respuesta)
 
     alert('Usuario Agregado Exitosamente');
+
+    nombresInput.value = ""; 
+    rolInput.value = "";
+    apellidosInput.value = "";
+    correoInput.value = "";
+    telefonoInput.value = "";
+    nitInput.value = "";
+    passwordInput.value = "";
+
+    window.location.href = ('../../Iniciar-Sesion/Index.html');
+
+
 }

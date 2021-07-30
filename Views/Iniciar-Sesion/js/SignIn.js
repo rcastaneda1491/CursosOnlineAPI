@@ -2,7 +2,9 @@
     Desarrollador: Rogelio Raúl Castañeda Flores
 */
 
-const URL = 'https://localhost:44328/api/Usuarios/SignIn';
+const direccion = "25.104.8.22:5001";
+
+const URL = `https://${direccion}/api/Usuarios/SignIn`;
 const emailInput = document.getElementById("inputEmail");
 const passwordInput = document.getElementById("inputPassword");
 const form = document.getElementById('signin-form');
@@ -17,6 +19,8 @@ function parseJwt(token) {
 
     return JSON.parse(jsonPayload);
 };
+
+let cantidadCorreos;
 
 const signIn = async (e) => {
     e.preventDefault()

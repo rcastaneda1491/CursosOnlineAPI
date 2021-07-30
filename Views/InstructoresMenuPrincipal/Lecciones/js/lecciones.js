@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 function CerrarSesion() {
     Cookies.remove('jwt');
 };
@@ -53,7 +55,7 @@ window.onload = () => {
 }
 
 async function GetTitulo(){
-    const url = `https://localhost:44328/api/DatosCurso?IdCurso=${idCurso}`;
+    const url = `https://${direccion}/api/DatosCurso?IdCurso=${idCurso}`;
 
     await fetch(url, {
         method: 'GET',
@@ -102,7 +104,7 @@ async function obtenerLecciones(){
 
     mostrarSpinner();
 
-    const url = `https://localhost:44328/api/LeccionesInstructor?idCurso=${idCurso}`;
+    const url = `https://${direccion}/api/LeccionesInstructor?idCurso=${idCurso}`;
 
     await fetch(url, {
         headers: new Headers({
@@ -144,7 +146,7 @@ async function confimarEliminar(id) {
 
     if (confirmar) {
 
-        const urlComentarios = `https://localhost:44328/api/ComentariosInstructor?idLeccion=${id}`;
+        const urlComentarios = `https://${direccion}/api/ComentariosInstructor?idLeccion=${id}`;
 
         await fetch(urlComentarios, {
             method: 'GET',
@@ -163,7 +165,7 @@ async function confimarEliminar(id) {
         }
 
 
-        const url = `https://localhost:44328/api/LeccionesInstructor?idLeccion=${id}`;
+        const url = `https://${direccion}/api/LeccionesInstructor?idLeccion=${id}`;
 
         await fetch(url, {
             method: 'DELETE',
@@ -219,7 +221,7 @@ async function visualizarVideoComentarios(codigoVideo,idLeccion){
 
 async function obtenerComentarios(idLeccion){
 
-    const urlComentarios = `https://localhost:44328/api/ComentariosInstructor?idLeccion=${idLeccion}`;
+    const urlComentarios = `https://${direccion}/api/ComentariosInstructor?idLeccion=${idLeccion}`;
 
     await fetch(urlComentarios, {
         method: 'GET',
@@ -251,7 +253,7 @@ async function imprimirComentarios(comentarios){
         
         let nombresApellidos;
 
-        var urlObtnerNombresDelEstudiante = `https://localhost:44328/api/PerfilEstudiante?idEstudiante=${idUsuarioEstudiante}`;
+        var urlObtnerNombresDelEstudiante = `https://${direccion}/api/PerfilEstudiante?idEstudiante=${idUsuarioEstudiante}`;
 
         await fetch(urlObtnerNombresDelEstudiante, {
             method: 'GET',
@@ -311,7 +313,7 @@ async function actualizarRespuestaTerminada(idComentario){
         return;
     }
 
-    var url = `https://localhost:44328/api/ComentariosInstructor?idComentario=${idComentario}&idInstructor=${idUsuarioObtenido}&repuesta=${inputEditarRespuesta.value}`;
+    var url = `https://${direccion}/api/ComentariosInstructor?idComentario=${idComentario}&idInstructor=${idUsuarioObtenido}&repuesta=${inputEditarRespuesta.value}`;
 
     await fetch(url, {
         method: 'PUT',

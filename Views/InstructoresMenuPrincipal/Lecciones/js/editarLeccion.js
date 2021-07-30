@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const formulario = document.querySelector('#formulario');
 
 const tituloI = document.querySelector('#titulo');
@@ -62,7 +64,7 @@ function CerrarSesion() {
 
 async function obtenerDatosLeccion(){
 
-    const url = `https://localhost:44328/api/LeccionesInstructor?idLeccion=${idLeccion}`;
+    const url = `https://${direccion}/api/LeccionesInstructor?idLeccion=${idLeccion}`;
 
     await fetch(url, {
         method: 'GET',
@@ -129,7 +131,7 @@ async function actualizarLeccion() {
             obtenerDatosVideo(resultado.items);
         });
 
-    const url = `https://localhost:44328/api/LeccionesInstructor?idLeccion=${idLeccion}&titulo=${titulo.value}&descripcion=${descripcion.value}&duracion=${minutos}&enlace=${codigoVideo}`;
+    const url = `https://${direccion}/api/LeccionesInstructor?idLeccion=${idLeccion}&titulo=${titulo.value}&descripcion=${descripcion.value}&duracion=${minutos}&enlace=${codigoVideo}`;
 
     await fetch(url, {
         method: 'PUT',

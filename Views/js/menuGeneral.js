@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 window.onload = () => {
     GetDatos();
 }
@@ -6,8 +8,7 @@ const cardListElement = document.getElementById("lista-cursos");
 const searchInput = document.getElementById("search");
 
 async function GetDatos() {
-
-    const url = `https://localhost:44328/api/MenuGeneral`;
+    const url = `https://${direccion}/api/MenuGeneral`;
   
     await fetch(url)
     .then(respuesta => respuesta.json())
@@ -24,7 +25,7 @@ async function searchCursos() {
     }
     else {
       document.getElementById("lista-cursos").innerHTML = "";
-      const url = `https://localhost:44328/api/MenuGeneral?nombreCurso=${searchInput.value}`;
+      const url = `https://${direccion}/api/MenuGeneral?nombreCurso=${searchInput.value}`;
   
       await fetch(url)
         .then(respuesta => respuesta.json())
