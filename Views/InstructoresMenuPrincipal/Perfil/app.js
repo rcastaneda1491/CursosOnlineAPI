@@ -142,7 +142,7 @@ function mostrarDatosInstructor(datos) {
     })
 }
 
-function actualizarInformacion() {
+async function actualizarInformacion() {
     if (estadoActualizar === 0) {
 
         for (i = 0; ele = formulario.elements[i]; i++) {
@@ -174,7 +174,7 @@ function actualizarInformacion() {
         } else {
             const urlActualizarUsuario = `https://${direccion}/api/Instructor?idInstructor=${IdUsuarioObtenido}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&clave=${claveInput.value}`;
 
-            fetch(urlActualizarUsuario, {
+            await fetch(urlActualizarUsuario, {
                 method: 'PUT',
                 headers: new Headers({
                     'Authorization': 'Bearer ' + stringJWT
@@ -182,13 +182,14 @@ function actualizarInformacion() {
             })
                 .then(respuesta => respuesta)
                 .then(resultado => {
+                    
                 })
 
             if (estadoDatosInstuctor == null) {
                 // Metodo POST Para agregar datos del Instructor
                 const urlActualizarDatosInstructor = `https://${direccion}/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
 
-                fetch(urlActualizarDatosInstructor, {
+                await fetch(urlActualizarDatosInstructor, {
                     method: 'POST',
                     headers: new Headers({
                         'Authorization': 'Bearer ' + stringJWT
@@ -202,7 +203,7 @@ function actualizarInformacion() {
                 // Metodo POST para actualizar datos del Instructor
                 const urlActualizarDatosInstructor = `https://${direccion}/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
 
-                fetch(urlActualizarDatosInstructor, {
+                await fetch(urlActualizarDatosInstructor, {
                     method: 'PUT',
                     headers: new Headers({
                         'Authorization': 'Bearer ' + stringJWT
