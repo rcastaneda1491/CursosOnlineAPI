@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const formulario = document.querySelector('#formulario');
 
 const nombreI = document.querySelector('#nombre');
@@ -55,7 +57,7 @@ function CerrarSesion() {
 
 
 function cargarDatos() {
-    const url = `https://localhost:44328/api/CursosInstructor?idCurso=${idCurso}`;
+    const url = `https://${direccion}/api/CursosInstructor?idCurso=${idCurso}`;
     console.log(idCurso);
     fetch(url, {
         headers: new Headers({
@@ -116,7 +118,7 @@ async function editarCurso() {
         estadoLetras = false;
     }
 
-    const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdCurso=${idCurso}&nombre=${nombreI.value}&descripcion=${descripcionI.value.toString()}&costo=${costoVentaI.value}&costoVenta=${costoEstudiantesI.value}&estado=${estadoLetras}`;
+    const urlActualizarUsuario = `https://${direccion}/api/CursosInstructor?IdCurso=${idCurso}&nombre=${nombreI.value}&descripcion=${descripcionI.value.toString()}&costo=${costoVentaI.value}&costoVenta=${costoEstudiantesI.value}&estado=${estadoLetras}`;
 
     await fetch(urlActualizarUsuario, {
         method: 'PUT',

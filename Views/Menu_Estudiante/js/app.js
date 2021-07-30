@@ -43,7 +43,7 @@ function cargarEventListeners() {
 
 // Función que añade el curso al carrito
 function agregarCurso(e) {
-     debugger;
+
      console.log(carritocursos);
      validate = 0;
      e.preventDefault();
@@ -87,7 +87,7 @@ function agregarCurso(e) {
 async function GetDatosMisCursos() {
 
      console.log('llenando...')
-     const url = `https://localhost:44328/api/MisCursosEstudiante?IdUsuario=${jwt.sub}`;
+     const url = `https://${direccion}/api/MisCursosEstudiante?IdUsuario=${jwt.sub}`;
 
      await fetch(url, {
           headers: new Headers({
@@ -134,7 +134,7 @@ async function leerDatosCurso(curso) {
      console.log(articulosCarrito)
 
 
-     const urlActualizarUsuario = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${curso_id}`;
+     const urlActualizarUsuario = `https://${direccion}/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${curso_id}`;
 
      await fetch(urlActualizarUsuario, {
           method: 'POST',
@@ -162,7 +162,7 @@ async function eliminarCurso(e) {
           articulosCarrito = articulosCarrito.filter(curso => curso.id !== cursoId);
 
 
-          const urlActualizarUsuario = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${cursoId}`;
+          const urlActualizarUsuario = `https://${direccion}/api/CarritoEstudiante?IdUsuario=${jwt.sub}&IdCurso=${cursoId}`;
 
           await fetch(urlActualizarUsuario, {
                method: 'DELETE',
@@ -227,7 +227,7 @@ function vaciarCarrito() {
 async function GetDatosCurso() {
 
      console.log('cargando...')
-     const url = `https://localhost:44328/api/CarritoEstudiante?IdUsuario=${jwt.sub}`;
+     const url = `https://${direccion}/api/CarritoEstudiante?IdUsuario=${jwt.sub}`;
 
      await fetch(url, {
           headers: new Headers({

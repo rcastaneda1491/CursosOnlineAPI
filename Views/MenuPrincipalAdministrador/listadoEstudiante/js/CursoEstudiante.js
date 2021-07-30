@@ -2,6 +2,8 @@
     Desarrollador: Rogelio Raúl Castañeda Flores
 */
 
+const direccion = "25.104.8.22:5001";
+
 const cardListElement = document.getElementById("lista-cursos");
 const searchInput = document.getElementById("search");
 
@@ -41,7 +43,7 @@ window.onload = () => {
 }
 
 function GetDatos() {
-    const url = `https://localhost:44328/api/CursosEstudianteAdmin?idUsuario=${jwt.sub}&IdEstudiante=${IdEstudiante}`;
+    const url = `https://${direccion}/api/CursosEstudianteAdmin?idUsuario=${jwt.sub}&IdEstudiante=${IdEstudiante}`;
 
     fetch(url, {
         headers: new Headers({

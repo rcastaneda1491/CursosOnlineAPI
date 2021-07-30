@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const tableElements = document.getElementById("table");
 const tableElements2 = document.getElementById("table2");
 
@@ -36,7 +38,7 @@ function CerrarSesion() {
 
 function GetFacturas() {
 
-  const url = `https://localhost:44328/api/FacturaEstudiante?IdUsuario=${jwt.sub}`;
+  const url = `https://${direccion}/api/FacturaEstudiante?IdUsuario=${jwt.sub}`;
 
   fetch(url, {
     headers: new Headers({
@@ -83,7 +85,7 @@ function GetDetalle(e) {
   const curso = e.target.parentElement.parentElement;
   const cursoId = curso.querySelector('button').getAttribute('data-id');
 
-  const url = `https://localhost:44328/api/DetalleFactura?IdFactura=${cursoId}`;
+  const url = `https://${direccion}/api/DetalleFactura?IdFactura=${cursoId}`;
 
   fetch(url, {
     headers: new Headers({

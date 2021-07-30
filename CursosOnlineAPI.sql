@@ -113,3 +113,13 @@ INSERT INTO Usuarios(nombres,apellidos,correo,noTelefono,nit,clave,rol)
 	VALUES('admin','admin','admin@admin.com','5896586','12585','12345','administrador');
 select * from Usuarios;
 select * from Compra;
+
+-- Limpieza de la base de datos
+delete from DatosInstructor;
+delete from Usuarios;
+delete from Cursos;
+delete from Lecciones;
+delete from Factura;
+delete from Compra;
+delete from CarritoCompra;
+delete from Comentario;

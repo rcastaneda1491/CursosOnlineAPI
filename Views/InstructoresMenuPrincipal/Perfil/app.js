@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const formulario = document.querySelector('#formulario');
 
 const nombresInput = document.querySelector('#nombres');
@@ -67,7 +69,7 @@ function validarDatos() {
 
 function cargarDatos() {
 
-    const url = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}`;
+    const url = `https://${direccion}/api/Instructor?idInstructor=${IdUsuarioObtenido}`;
 
     fetch(url, {
         headers: new Headers({
@@ -110,7 +112,7 @@ function mostrarDatos(datos) {
 }
 
 function cargarDatosInstructor(id) {
-    const url = `https://localhost:44328/api/DatosInstructor?idInstructor=${id}`;
+    const url = `https://${direccion}/api/DatosInstructor?idInstructor=${id}`;
 
     fetch(url, {
         headers: new Headers({
@@ -170,7 +172,7 @@ function actualizarInformacion() {
             return;
 
         } else {
-            const urlActualizarUsuario = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&clave=${claveInput.value}`;
+            const urlActualizarUsuario = `https://${direccion}/api/Instructor?idInstructor=${IdUsuarioObtenido}&nombres=${nombresInput.value}&apellidos=${apellidosInput.value}&correo=${correoInput.value}&telefono=${telefonoInput.value}&nit=${nitInput.value}&clave=${claveInput.value}`;
 
             fetch(urlActualizarUsuario, {
                 method: 'PUT',
@@ -184,7 +186,7 @@ function actualizarInformacion() {
 
             if (estadoDatosInstuctor == null) {
                 // Metodo POST Para agregar datos del Instructor
-                const urlActualizarDatosInstructor = `https://localhost:44328/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
+                const urlActualizarDatosInstructor = `https://${direccion}/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
 
                 fetch(urlActualizarDatosInstructor, {
                     method: 'POST',
@@ -198,7 +200,7 @@ function actualizarInformacion() {
                     })
             } else {
                 // Metodo POST para actualizar datos del Instructor
-                const urlActualizarDatosInstructor = `https://localhost:44328/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
+                const urlActualizarDatosInstructor = `https://${direccion}/api/DatosInstructor?IdDatos=${IdUsuarioObtenido}&NivelEstudios=${nivelEstudiosInput.value}&Certificaciones=${certificacionesInput.value}&ExperienciaLaboral=${experienciaLaboralInput.value}&NombreBanco=${nombreBancoInput.value}&NombreCuenta=${nombreCuentaInput.value}&TipoDeCuenta=${tipoDeCuentaInput.value}&NoCuentaBancaria=${noCuentaInput.value}`;
 
                 fetch(urlActualizarDatosInstructor, {
                     method: 'PUT',

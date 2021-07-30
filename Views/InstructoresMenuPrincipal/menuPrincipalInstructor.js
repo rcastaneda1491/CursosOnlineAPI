@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -31,7 +33,7 @@ window.onload = () => {
 
 function obtenerDatos() {
 
-    const url = `https://localhost:44328/api/Instructor?idInstructor=${IdUsuarioObtenido}`;
+    const url = `https://${direccion}/api/Instructor?idInstructor=${IdUsuarioObtenido}`;
 
     fetch(url, {
         headers: new Headers({

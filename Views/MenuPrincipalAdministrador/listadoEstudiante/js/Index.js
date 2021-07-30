@@ -2,6 +2,8 @@
     Desarrollador: Rogelio Raúl Castañeda Flores
 */
 
+const direccion = "25.104.8.22:5001";
+
 const cardListElement = document.getElementById("lista-cursos");
 const searchInput = document.getElementById("search");
 
@@ -41,7 +43,7 @@ window.onload = () => {
 
 function GetDatos() {
 
-    const url = `https://localhost:44328/api/EstudianteAdmin?idUsuario=${jwt.sub}`;
+    const url = `https://${direccion}/api/EstudianteAdmin?idUsuario=${jwt.sub}`;
 
     fetch(url, {
         headers: new Headers({
@@ -106,7 +108,7 @@ async function ModificarEstado(e) {
     const estudiante = e.target.parentElement.parentElement;
     const estudianteId = estudiante.querySelector('button').getAttribute('data-id');
 
-    const url = `https://localhost:44328/api/EstudianteAdmin?idUsuario=${jwt.sub}&idEstudiante=${estudianteId}`;
+    const url = `https://${direccion}/api/EstudianteAdmin?idUsuario=${jwt.sub}&idEstudiante=${estudianteId}`;
 
     await fetch(url, {
         method: 'PUT',
@@ -128,7 +130,7 @@ async function searchCursos() {
     }
     else {
       document.getElementById("lista-cursos").innerHTML = "";
-      const url = `https://localhost:44328/api/BuscadorEstudiantesAdmin?correoEstudiante=${searchInput.value}`;
+      const url = `https://${direccion}/api/BuscadorEstudiantesAdmin?correoEstudiante=${searchInput.value}`;
   
       await fetch(url, {
         headers: new Headers({

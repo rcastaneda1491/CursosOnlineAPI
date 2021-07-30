@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const cardListElement = document.getElementById("lista-cursos");
 const searchInput = document.getElementById("search");
 
@@ -38,7 +40,7 @@ function CerrarSesion() {
 
 async function GetDatos() {
 
-  const url = `https://localhost:44328/api/CursoEstudiante`;
+  const url = `https://${direccion}/api/CursoEstudiante`;
 
   await fetch(url, {
     headers: new Headers({
@@ -59,7 +61,7 @@ async function searchCursos() {
   }
   else {
     document.getElementById("lista-cursos").innerHTML = "";
-    const url = `https://localhost:44328/api/BuscadorEstudiante?nombreCurso=${searchInput.value}`;
+    const url = `https://${direccion}/api/BuscadorEstudiante?nombreCurso=${searchInput.value}`;
 
     await fetch(url, {
       headers: new Headers({

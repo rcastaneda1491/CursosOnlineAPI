@@ -2,6 +2,8 @@
     Desarrollador: Rogelio Raúl Castañeda Flores
 */
 
+const direccion = "25.104.8.22:5001";
+
 const cardListElement = document.getElementById("lista-cursos");
 const searchInput = document.getElementById("search");
 
@@ -41,7 +43,7 @@ window.onload = () => {
 }
 
 function GetDatos() {
-    const url = `https://localhost:44328/api/CursosAdmin?idUsuario=${jwt.sub}`;
+    const url = `https://${direccion}/api/CursosAdmin?idUsuario=${jwt.sub}`;
 
     fetch(url, {
         headers: new Headers({
@@ -68,6 +70,12 @@ function mostrarDatos(datos) {
             color = "red";
         }
 
+        let gananciasInstructor = curso.costo * curso.cantidadEstudiantes;
+        gananciasInstructor = +gananciasInstructor.toFixed(2);
+
+        let gananciasPlataforma = (curso.costoVenta * curso.cantidadEstudiantes) - (curso.costo * curso.cantidadEstudiantes);
+        gananciasPlataforma = +gananciasPlataforma.toFixed(2);
+
         const card = `
             <tr>
                 <td>${curso.idCurso}</td>
@@ -77,8 +85,8 @@ function mostrarDatos(datos) {
                 <td>${curso.costo}</td>
                 <td>${curso.costoVenta}</td>
                 <td>${curso.cantidadEstudiantes}</td>
-                <td>$.${curso.costo * curso.cantidadEstudiantes}</td>
-                <td>$.${(curso.costoVenta * curso.cantidadEstudiantes) - (curso.costo * curso.cantidadEstudiantes)}</td>
+                <td>$.${gananciasInstructor}</td>
+                <td>$.${gananciasPlataforma}</td>
                 <td style="color: ${color}">${status}</td>
                 <td><button class="btn block" id="detalle" data-id="${curso.idCurso}" style="background-color: #4F73CF; color:white;">Bloquear/Desbloquear</button></td>
                 <td><button class="btn estudiantes" id="detalle" data-id="${curso.idCurso}" style="background-color: #4F73CF; color:white;">Estudiantes</button></td>
@@ -100,7 +108,7 @@ async function ModificarEstado(e) {
     const curso = e.target.parentElement.parentElement;
     const cursoId = curso.querySelector('button').getAttribute('data-id');
 
-    const url = `https://localhost:44328/api/CursosInstructorAdmin?idUsuario=${jwt.sub}&idCurso=${cursoId}`;
+    const url = `https://${direccion}/api/CursosInstructorAdmin?idUsuario=${jwt.sub}&idCurso=${cursoId}`;
 
     await fetch(url, {
         method: 'PUT',
@@ -128,7 +136,7 @@ async function searchCursos() {
     }
     else {
         document.getElementById("lista-cursos").innerHTML = "";
-        const url = `https://localhost:44328/api/BuscadorCursosAdmin?cursoNombre=${searchInput.value}`;
+        const url = `https://${direccion}/api/BuscadorCursosAdmin?cursoNombre=${searchInput.value}`;
 
         await fetch(url, {
             headers: new Headers({

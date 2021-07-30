@@ -1,3 +1,5 @@
+const direccion = "25.104.8.22:5001";
+
 const formulario = document.querySelector('#formulario');
 const contenedor = document.querySelector('#contenedor');
 
@@ -77,7 +79,7 @@ async function agregarCurso() {
 
     mostrarSpinner();
 
-    const urlActualizarUsuario = `https://localhost:44328/api/CursosInstructor?IdUsuario=${IdUsuario}&nombre=${nombre.value}&descripcion=${descripcion.value}&costo=${costoVenta.value}&costoVenta=${costoEstudiantes.value}&estado=${estadoLetras}`;
+    const urlActualizarUsuario = `https://${direccion}/api/CursosInstructor?IdUsuario=${IdUsuario}&nombre=${nombre.value}&descripcion=${descripcion.value}&costo=${costoVenta.value}&costoVenta=${costoEstudiantes.value}&estado=${estadoLetras}`;
 
     await fetch(urlActualizarUsuario, {
         method: 'POST',
